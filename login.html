@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso · Syccoro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --az:#123781; --az-noche:#0B2255; --marfil:#F7F5F0;
+  --oro:#C4A15A; --oro-claro:#E5D3A8; --tinta:#212B3D;
+  --gris:#6B7280; --linea:#E3DFD6; --rojo:#B3261E;
+  --sombra:0 18px 50px rgba(11,34,85,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Source Sans 3',sans-serif;color:var(--tinta);
+  background:var(--marfil);min-height:100vh;
+  display:flex;align-items:center;justify-content:center;padding:24px;
+}
+h1,h2{font-family:'Playfair Display',serif;font-weight:500;color:var(--az-noche)}
+a{color:var(--az)}
+.caja{
+  width:100%;max-width:420px;background:#fff;border:1px solid var(--linea);
+  box-shadow:var(--sombra);padding:44px 38px;
+}
+.logo-txt{
+  text-align:center;font-family:'Playfair Display',serif;font-size:1.3rem;
+  color:var(--az-noche);margin-bottom:6px;
+}
+.logo-txt small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--oro);margin-top:4px}
+.tabs{display:flex;border-bottom:1px solid var(--linea);margin:30px 0 26px}
+.tab{
+  flex:1;text-align:center;padding:10px 0;font-size:.92rem;font-weight:600;
+  color:var(--gris);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;
+}
+.tab.act{color:var(--az);border-color:var(--oro)}
+.vista{display:none}
+.vista.on{display:block}
+label{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gris);margin-bottom:6px;margin-top:16px}
+label:first-of-type{margin-top:0}
+input{
+  width:100%;padding:11px 13px;border:1px solid var(--linea);font-family:inherit;
+  font-size:.96rem;background:var(--marfil);color:var(--tinta);
+}
+input:focus{outline:none;border-color:var(--oro)}
+.btn{
+  display:block;width:100%;padding:13px;border:none;border-radius:2px;
+  font-weight:600;font-size:.95rem;font-family:inherit;cursor:pointer;transition:all .2s;margin-top:22px;
+}
+.btn-az{background:var(--az);color:#fff}
+.btn-az:hover{background:var(--az-noche)}
+.btn-az:disabled{background:var(--linea);color:var(--gris);cursor:not-allowed}
+.btn-google{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:#fff;color:var(--tinta);border:1px solid var(--linea);margin-top:12px;
+}
+.btn-google:hover{border-color:var(--gris)}
+.btn-google svg{width:18px;height:18px}
+.sep{
+  display:flex;align-items:center;gap:12px;margin:22px 0 0;
+  color:var(--gris);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;
+}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:var(--linea)}
+.msg{
+  margin-top:16px;padding:11px 14px;font-size:.86rem;border-left:3px solid var(--oro);
+  background:var(--marfil);display:none;
+}
+.msg.on{display:block}
+.msg.error{border-color:var(--rojo);color:var(--rojo)}
+.msg.ok{border-color:#3A7D44;color:#3A7D44}
+.legal{font-size:.76rem;color:var(--gris);margin-top:18px;line-height:1.5}
+.volver{display:block;text-align:center;margin-top:26px;font-size:.85rem;color:var(--gris)}
+.volver a{color:var(--az);font-weight:600}
+.check-row{display:flex;align-items:flex-start;gap:8px;margin-top:18px}
+.check-row input{width:auto;margin-top:3px}
+.check-row label{margin:0;text-transform:none;font-size:.82rem;letter-spacing:normal;color:var(--gris)}
+.spinner{
+  display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);
+  border-top-color:#fff;border-radius:50%;animation:girar .7s linear infinite;margin-right:8px;vertical-align:-2px;
+}
+@keyframes girar{to{transform:rotate(360deg)}}
+.verifica{text-align:center}
+.verifica .icono{
+  width:54px;height:54px;border-radius:50%;background:var(--marfil);border:1px solid var(--oro);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.4rem;color:var(--oro);
+}
+.verifica p{color:var(--gris);font-size:.92rem;margin-bottom:8px}
+.verifica b{color:var(--az-noche)}
+</style>
+</head>
+<body>
+
+<div class="caja">
+  <a class="logo-txt" href="index.html">Syccoro<small>Acceso clientes</small></a>
+
+  <!-- ===== Vista: elección inicial (login) ===== -->
+  <div class="vista on" id="vLogin">
+    <div class="tabs">
+      <div class="tab act" onclick="irA('vLogin')">Entrar</div>
+      <div class="tab" onclick="irA('vRegistro')">Crear cuenta</div>
+    </div>
+
+    <button class="btn btn-google" id="btnGoogleLogin" onclick="loginGoogle()">
+      <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.4 26.7 36 24 36c-5.3 0-9.6-3.4-11.2-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.2-4.2 5.6l6.2 5.2C40.8 36 44 30.7 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+      Continuar con Google
+    </button>
+    <div class="sep">o con tu email</div>
+
+    <form onsubmit="return loginEmail(event)">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" required autocomplete="email">
+      <label for="loginPass">Contraseña</label>
+      <input type="password" id="loginPass" required autocomplete="current-password">
+      <button class="btn btn-az" type="submit" id="btnLogin">Entrar</button>
+    </form>
+    <div class="msg" id="msgLogin"></div>
+    <p class="volver"><a href="#" onclick="recuperar();return false">¿Has olvidado tu contraseña?</a></p>
+  </div>
+
+  <!-- ===== Vista: registro particular ===== -->
+  <div class="vista" id="vRegistro">
+    <div class="tabs">
+      <div class="tab" onclick="irA('vLogin')">Entrar</div>
+      <div class="tab act" onclick="irA('vRegistro')">Crear cuenta</div>
+    </div>
+
+    <button class="btn btn-google" onclick="loginGoogle()">
+      <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.6 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.4 26.7 36 24 36c-5.3 0-9.6-3.4-11.2-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.2-4.2 5.6l6.2 5.2C40.8 36 44 30.7 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+      Registrarme con Google
+    </button>
+    <div class="sep">o con tu email</div>
+
+    <form onsubmit="return registrar(event)">
+      <label for="regNombre">Nombre</label>
+      <input type="text" id="regNombre" required autocomplete="name">
+      <label for="regEmail">Email</label>
+      <input type="email" id="regEmail" required autocomplete="email">
+      <label for="regPass">Contraseña</label>
+      <input type="password" id="regPass" required minlength="6" autocomplete="new-password">
+      <div class="check-row">
+        <input type="checkbox" id="regLegal" required>
+        <label for="regLegal">He leído y acepto el aviso legal y la política de privacidad de Syccoro.</label>
+      </div>
+      <button class="btn btn-az" type="submit" id="btnRegistro">Crear mi cuenta gratuita</button>
+    </form>
+    <div class="msg" id="msgRegistro"></div>
+    <p class="legal">Con una cuenta personal podrás diseñar vuestra alianza en el configurador, guardar los diseños y consultar joyerías colaboradoras cerca de ti. No se muestran precios ni se gestionan pedidos: eso se hace directamente con tu joyería.</p>
+  </div>
+
+  <!-- ===== Vista: email de verificación enviado ===== -->
+  <div class="vista" id="vVerifica">
+    <div class="verifica">
+      <div class="icono">✉</div>
+      <h2 style="margin-bottom:14px">Revisa tu correo</h2>
+      <p>Te hemos enviado un email de verificación a<br><b id="vEmailTxt">—</b>.</p>
+      <p>Confirma tu email para poder iniciar sesión. Si no lo ves, revisa la carpeta de spam.</p>
+      <button class="btn btn-az" onclick="irA('vLogin')" style="margin-top:26px">Ir a iniciar sesión</button>
+    </div>
+  </div>
+
+  <p class="volver">¿Eres una joyería? <a href="registro-profesional.html">Solicita tu acceso profesional</a></p>
+</div>
+
+<!-- Firebase (SDK compat, vía <script>, sin npm) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+"use strict";
+
+/* ============ Configuración real del proyecto Syccoro ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyDakUsgbwpp-ZCBKy9J8YmUvgo5rQFSWa4",
+  authDomain: "syccoro-web.firebaseapp.com",
+  projectId: "syccoro-web",
+  storageBucket: "syccoro-web.firebasestorage.app",
+  messagingSenderId: "548259273508",
+  appId: "1:548259273508:web:3076eee1fe220a73dc31b1"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+/* ============ Navegación entre vistas ============ */
+function irA(id){
+  document.querySelectorAll('.vista').forEach(v=>v.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('act'));
+  if(id==='vLogin'){ document.querySelectorAll('.tab')[0].classList.add('act'); }
+  if(id==='vRegistro'){ document.querySelectorAll('.tab')[1] && document.querySelectorAll('.tab')[1].classList.add('act'); }
+}
+
+function mostrarMsg(elId, texto, tipo){
+  const el = document.getElementById(elId);
+  el.textContent = texto;
+  el.className = 'msg on ' + tipo;
+}
+
+/* ============ Traducción de errores de Firebase a español llano ============ */
+function traduceError(err){
+  const c = err && err.code;
+  const map = {
+    'auth/invalid-email': 'Ese email no parece válido.',
+    'auth/user-not-found': 'No hay ninguna cuenta con ese email.',
+    'auth/wrong-password': 'La contraseña no es correcta.',
+    'auth/invalid-credential': 'Email o contraseña incorrectos.',
+    'auth/email-already-in-use': 'Ya existe una cuenta con ese email. Prueba a iniciar sesión.',
+    'auth/weak-password': 'La contraseña debe tener al menos 6 caracteres.',
+    'auth/too-many-requests': 'Demasiados intentos. Prueba de nuevo en unos minutos.',
+    'auth/popup-closed-by-user': 'Has cerrado la ventana de Google antes de terminar.',
+    'auth/network-request-failed': 'No hay conexión. Comprueba tu red.'
+  };
+  return map[c] || 'Ha ocurrido un error. Inténtalo de nuevo.';
+}
+
+/* ============ Crear/actualizar ficha de usuario en Firestore ============ */
+function aseguraFichaUsuario(user, nombre){
+  const ref = db.collection('usuarios').doc(user.uid);
+  return ref.get().then(function(snap){
+    if(snap.exists) return;
+    return ref.set({
+      nombre: nombre || user.displayName || '',
+      email: user.email,
+      rol: 'particular',
+      creado: firebase.firestore.FieldValue.serverTimestamp(),
+      origen: nombre ? 'email' : 'google'
+    });
+  });
+}
+
+/* ============ Registro con email/contraseña ============ */
+function registrar(ev){
+  ev.preventDefault();
+  const nombre = document.getElementById('regNombre').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass = document.getElementById('regPass').value;
+  const btn = document.getElementById('btnRegistro');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Creando cuenta…';
+
+  auth.createUserWithEmailAndPassword(email, pass)
+    .then(function(cred){
+      return cred.user.updateProfile({displayName: nombre})
+        .then(function(){ return aseguraFichaUsuario(cred.user, nombre); })
+        .then(function(){ return cred.user.sendEmailVerification(); })
+        .then(function(){
+          document.getElementById('vEmailTxt').textContent = email;
+          irA('vVerifica');
+        });
+    })
+    .catch(function(err){
+      mostrarMsg('msgRegistro', traduceError(err), 'error');
+    })
+    .finally(function(){
+      btn.disabled = false;
+      btn.textContent = 'Crear mi cuenta gratuita';
+    });
+  return false;
+}
+
+/* ============ Login con email/contraseña ============ */
+function loginEmail(ev){
+  ev.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const btn = document.getElementById('btnLogin');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Entrando…';
+
+  auth.signInWithEmailAndPassword(email, pass)
+    .then(function(cred){
+      if(!cred.user.emailVerified){
+        mostrarMsg('msgLogin', 'Tu email todavía no está verificado. Revisa tu correo.', 'error');
+        auth.signOut();
+        return;
+      }
+      window.location.href = 'index.html';
+    })
+    .catch(function(err){
+      mostrarMsg('msgLogin', traduceError(err), 'error');
+    })
+    .finally(function(){
+      btn.disabled = false;
+      btn.textContent = 'Entrar';
+    });
+  return false;
+}
+
+/* ============ Login / registro con Google ============ */
+function loginGoogle(){
+  auth.signInWithPopup(googleProvider)
+    .then(function(res){
+      return aseguraFichaUsuario(res.user, null).then(function(){
+        window.location.href = 'index.html';
+      });
+    })
+    .catch(function(err){
+      const el = document.getElementById('vRegistro').classList.contains('on') ? 'msgRegistro' : 'msgLogin';
+      mostrarMsg(el, traduceError(err), 'error');
+    });
+}
+
+/* ============ Recuperar contraseña ============ */
+function recuperar(){
+  const email = document.getElementById('loginEmail').value.trim();
+  if(!email){
+    mostrarMsg('msgLogin', 'Escribe primero tu email arriba y vuelve a pulsar el enlace.', 'error');
+    return;
+  }
+  auth.sendPasswordResetEmail(email)
+    .then(function(){
+      mostrarMsg('msgLogin', 'Te hemos enviado un email para restablecer tu contraseña.', 'ok');
+    })
+    .catch(function(err){
+      mostrarMsg('msgLogin', traduceError(err), 'error');
+    });
+}
+</script>
+</body>
+</html>

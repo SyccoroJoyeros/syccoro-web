@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Syccoro · Aprende todo sobre alianzas de boda</title>
+<meta name="description" content="La Biblioteca Syccoro: guías breves y claras para entender los metales, perfiles, acabados, grabados, diamantes y tallas de una alianza de boda antes de elegirla.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BIBLIOTECA SYCCORO · biblioteca.html · v0.7
+   v0.7: Nueva Guía 05 Acabados (reflejos animados CSS) · Consejo del
+         Taller (renombrado) · "Sigue aprendiendo" · Barra de progreso ·
+         Lema de la Biblioteca · Acentos de color por guía · Etiqueta
+         "Muy fácil" · Bloque "¿Por dónde empiezo?" · Frase final del hub
+   v0.6:   v0.6: Nueva Guía 04 Anchos y grosores (escala de anchos) · Hub con
+         jerarquía (Esenciales/Personalización/Después de elegir) e
+         iconos monolínea · Sección fija "En la mesa del joyero" ·
+         Guía 07 reordenada como recorrido + ilustración del engaste
+         + variante tres separadas · Texto recortado (menos es más)
+   v0.5:   v0.5: Nueva Guía 07 Diamantes y circonitas (dibujos técnicos de
+         engastes) · Mejoras globales: indicador de colección,
+         navegación anterior/siguiente, enlaces internos, bloques
+         "Consejo del Taller" y "Error frecuente"
+   v0.4:   v0.4: Nueva Guía 02 Colores del oro (fotos A/B/R, barras de aleación
+         conceptuales, rodio) · Perfiles corregidos según fábrica
+         (media caña abombada, gota semiplana, interiores rectos) ·
+         Nuevo bloque interior plano vs suavizado (confort)
+   v0.3: Guía 01 rediseñada (donuts de milésimas, "Lo que aprenderás",
+         aleación, ¿Sabías que...?, comparativa a 3 metales) +
+         "Lo que aprenderás" añadido a Guía 03
+   Misma identidad que index: azul #123781 · Playfair · Source Sans 3
+   ============================================================ */
+:root{
+  --az:#123781; --az-noche:#0B2255; --marfil:#F7F5F0;
+  --oro:#C4A15A; --oro-claro:#E5D3A8; --tinta:#212B3D;
+  --gris:#6B7280; --linea:#E3DFD6;
+  --sombra:0 18px 50px rgba(11,34,85,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{font-family:'Source Sans 3',sans-serif;color:var(--tinta);background:var(--marfil);line-height:1.65}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500;line-height:1.18;color:var(--az-noche)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--oro);font-weight:600;margin-bottom:14px}
+.eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--oro);vertical-align:middle;margin-right:10px}
+.btn{display:inline-block;padding:12px 26px;border-radius:3px;font-weight:600;font-size:.93rem;transition:all .2s;cursor:pointer;border:none;font-family:inherit}
+.btn-az{background:var(--az);color:#fff}
+.btn-az:hover{background:var(--az-noche)}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(247,245,240,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--az-noche)}
+.nav-logo small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--oro)}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:.92rem;font-weight:500}
+.nav-links a:hover{color:var(--az)}
+@media(max-width:700px){.nav-links{gap:16px;font-size:.84rem}}
+
+/* ---------- Portada biblioteca ---------- */
+.port{background:linear-gradient(160deg,var(--az-noche),var(--az));color:#fff;padding:84px 0 90px;text-align:center}
+.port h1{color:#fff;font-size:clamp(2rem,4.4vw,3.1rem);margin-bottom:18px}
+.port p{color:#C7D2E8;max-width:640px;margin:0 auto;font-size:1.06rem}
+.port .eyebrow{color:var(--oro-claro);justify-content:center}
+.port .eyebrow::before{display:none}
+.regla{display:inline-block;margin-top:26px;border:1px solid rgba(229,211,168,.45);color:var(--oro-claro);padding:8px 18px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- Rejilla de temas ---------- */
+.temas{padding:72px 0 96px}
+.temas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:14px}
+.tema{
+  background:#fff;border:1px solid var(--linea);padding:30px 28px;
+  display:flex;flex-direction:column;transition:box-shadow .25s,transform .25s;position:relative;
+}
+.tema:hover{box-shadow:var(--sombra);transform:translateY(-3px)}
+.tema .num{font-family:'Playfair Display',serif;color:var(--oro);font-size:.95rem;margin-bottom:10px}
+.tema h3{font-size:1.18rem;margin-bottom:8px}
+.tema p{font-size:.9rem;color:var(--gris);flex:1}
+.tema .pie{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase}
+.tema .pie .min{color:var(--gris)}
+.tema .pie .estado{color:var(--az);font-weight:600}
+.tema.prox .pie .estado{color:var(--gris);font-weight:400}
+.tema.prox{opacity:.75}
+@media(max-width:900px){.temas-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.temas-grid{grid-template-columns:1fr}}
+
+/* ---------- Artículo ---------- */
+.art{display:none;padding:64px 0 90px}
+.art.on{display:block}
+.temas.off{display:none}
+.port.off{display:none}
+.art-head{max-width:760px;margin:0 auto 44px}
+.art-head h1{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:16px}
+.art-head .intro{font-size:1.1rem;color:var(--gris)}
+.art-body{max-width:760px;margin:0 auto}
+.art-body h2{font-size:1.45rem;margin:52px 0 16px}
+.art-body p{margin-bottom:16px}
+.art-body .volver{font-size:.85rem;color:var(--az);font-weight:600;letter-spacing:.06em}
+.pregunta{
+  background:#fff;border:1px solid var(--linea);border-left:3px solid var(--oro);
+  padding:26px 28px;margin:26px 0;
+}
+.pregunta h3{font-size:1.12rem;margin-bottom:10px}
+.pregunta p:last-child{margin-bottom:0}
+
+/* Lo que aprenderás */
+.aprenderas{background:#fff;border:1px solid var(--linea);border-top:2px solid var(--oro);padding:26px 28px;margin:0 0 42px}
+.aprenderas ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;margin-top:4px}
+.aprenderas li{position:relative;padding-left:24px;font-size:.93rem;color:var(--tinta)}
+.aprenderas li::before{content:"✓";position:absolute;left:0;color:var(--oro);font-weight:600}
+@media(max-width:640px){.aprenderas ul{grid-template-columns:1fr}}
+
+/* Donuts de milésimas (aro corporativo Syccoro) */
+.aleacion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:34px 0}
+.aleacion{background:#fff;border:1px solid var(--linea);padding:26px 14px 20px;text-align:center;display:flex;flex-direction:column}
+.donut{width:118px;max-width:100%;height:auto;margin:0 auto 14px;display:block}
+.donut .fondo{fill:none;stroke:#E9E6DC;stroke-width:11}
+.donut .oroseg{fill:none;stroke:#D8B14A;stroke-width:11}
+.donut .plataseg{fill:none;stroke:#B9BEC7;stroke-width:11}
+.donut .d-k{font-family:'Playfair Display',serif;font-size:22px;fill:var(--az-noche)}
+.donut .d-mil{font-family:'Source Sans 3',sans-serif;font-size:10px;fill:var(--gris);letter-spacing:.06em}
+.ale-pct{font-size:.85rem;color:var(--tinta);font-weight:600}
+.ale-otros{font-size:.78rem;color:var(--gris);margin-top:2px}
+.ale-frase{font-size:.82rem;color:var(--gris);margin-top:10px;flex:1}
+.ale-tag{margin-top:14px;padding-top:11px;border-top:1px solid var(--linea);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);font-weight:600}
+@media(max-width:900px){.aleacion-grid{grid-template-columns:1fr 1fr}}
+
+/* ¿Sabías que...? */
+.sabias{background:#fff;border:1px solid var(--linea);border-left:3px solid var(--az);padding:24px 28px;margin:34px 0}
+.sabias .eyebrow{color:var(--az);margin-bottom:10px}
+.sabias .eyebrow::before{background:var(--az)}
+.sabias p{margin:0;color:var(--tinta)}
+
+/* Comparativa */
+.compara{border:1px solid var(--linea);background:#fff;margin:30px 0;overflow-x:auto}
+.compara table{width:100%;border-collapse:collapse;font-size:.94rem;min-width:440px}
+.compara th,.compara td{padding:12px 18px;border-bottom:1px solid var(--linea);text-align:left}
+.compara tr:last-child td{border-bottom:none}
+.compara th{font-family:'Playfair Display',serif;font-weight:500;color:var(--az-noche);border-bottom:2px solid var(--oro)}
+.compara td:first-child{color:var(--gris);font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+.estrellas{color:var(--oro);letter-spacing:2px}
+
+/* Consejo */
+.consejo{
+  background:var(--az-noche);color:#fff;padding:30px 32px;margin:36px 0;
+}
+.consejo .eyebrow{color:var(--oro-claro)}
+.consejo .eyebrow::before{background:var(--oro-claro)}
+.consejo p{color:#C7D2E8;margin:0}
+.consejo strong{color:#fff}
+
+/* FAQ */
+details{background:#fff;border:1px solid var(--linea);margin-bottom:10px}
+summary{
+  cursor:pointer;padding:16px 20px;font-weight:600;font-size:.97rem;color:var(--az-noche);
+  list-style:none;position:relative;padding-right:44px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);color:var(--oro);font-size:1.3rem;font-weight:400}
+details[open] summary::after{content:"–"}
+details .resp{padding:0 20px 18px;color:var(--gris);font-size:.94rem}
+
+/* Relacionados + CTA */
+.relacionados{margin-top:56px;border-top:1px solid var(--linea);padding-top:30px}
+.relacionados h2{margin-top:0!important}
+.rel-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.rel-links a{border:1px solid var(--linea);background:#fff;padding:10px 18px;font-size:.88rem;font-weight:500;color:var(--az-noche);transition:all .2s}
+.rel-links a:hover{border-color:var(--oro);color:var(--az)}
+.art-cta{text-align:center;margin-top:60px;padding:44px 24px;background:#fff;border:1px solid var(--linea)}
+.art-cta p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.25rem;color:var(--az-noche);margin-bottom:20px}
+
+/* Guía Perfiles */
+.seccion-svg{display:block;margin:0 auto}
+.seccion-svg .cota{stroke:var(--az-noche);stroke-width:.7;opacity:.55}
+.seccion-svg .cota-txt{font-family:'Source Sans 3',sans-serif;font-size:7px;fill:var(--gris);letter-spacing:.08em}
+.seccion-svg .eje{stroke:var(--az);stroke-width:.6;stroke-dasharray:4 3;opacity:.4}
+.seccion-svg .forma{stroke:var(--oro);stroke-width:1.8;fill:rgba(196,161,90,.07)}
+.perfil-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:34px 0}
+.perfil-card{background:#fff;border:1px solid var(--linea);padding:28px 24px;text-align:center}
+.perfil-card .dibujo{background:var(--marfil);border:1px solid var(--linea);padding:18px 10px;margin-bottom:18px}
+.perfil-card h3{font-size:1.25rem}
+.perfil-card .tag{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro);font-weight:600;display:block;margin:4px 0 12px}
+.perfil-card p{font-size:.9rem;color:var(--gris);text-align:left}
+.perfil-card ul{margin:14px 0;padding:0;text-align:left}
+.perfil-card li{list-style:none;font-size:.88rem;padding:5px 0 5px 22px;position:relative}
+.perfil-card li::before{content:"✓";position:absolute;left:0;color:var(--oro);font-weight:600}
+.perfil-card .ideal{font-size:.82rem;color:var(--az);font-weight:600;border-top:1px solid var(--linea);padding-top:12px;text-align:left}
+.misma{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 10px}
+.misma figure{background:#fff;border:1px solid var(--linea);padding:12px;text-align:center}
+.misma .foto{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,#fff 55%,#F2EFE8)}
+.misma img{width:88%;mix-blend-mode:multiply}
+.misma figcaption{font-family:'Playfair Display',serif;font-size:.98rem;color:var(--az-noche);padding-top:10px}
+.misma-nota{text-align:center;font-size:.84rem;color:var(--gris);margin-bottom:10px}
+.elige{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0}
+.elige div{background:#fff;border:1px solid var(--linea);border-top:2px solid var(--oro);padding:20px;text-align:center}
+.elige .si{font-size:.8rem;color:var(--gris);letter-spacing:.06em}
+.elige .que{font-size:.95rem;margin:6px 0 10px}
+.elige .cual{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--az)}
+@media(max-width:780px){.perfil-cards,.misma,.elige{grid-template-columns:1fr}}
+.interior-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:26px 0 10px}
+.interior-grid figure{background:#fff;border:1px solid var(--linea);padding:18px 14px;text-align:center}
+.interior-grid .dib{background:var(--marfil);border:1px solid var(--linea);padding:14px 8px}
+.interior-grid figcaption{font-family:'Playfair Display',serif;font-size:.96rem;color:var(--az-noche);padding-top:12px}
+.interior-grid figcaption small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);font-weight:600;margin-top:4px}
+.int-linea{stroke:var(--az);stroke-width:2;fill:none}
+@media(max-width:560px){.interior-grid{grid-template-columns:1fr}}
+
+/* Guía Colores del oro */
+.oro-swatch{width:40px;height:40px;border-radius:50%;margin:0 auto 12px;border:1px solid var(--linea)}
+.sw-amarillo{background:radial-gradient(circle at 35% 30%,#F3DC96,#D8B14A)}
+.sw-blanco{background:radial-gradient(circle at 35% 30%,#FDFDFD,#C3C8D1)}
+.sw-rosa{background:radial-gradient(circle at 35% 30%,#F2CDB9,#D0906F)}
+.alea-barra{display:flex;height:15px;border:1px solid var(--linea);overflow:hidden;margin:16px 0 10px}
+.alea-barra span{display:block;height:100%}
+.m-oro{background:#D8B14A}
+.m-plata{background:#CDD1D7}
+.m-cobre{background:#C1755B}
+.m-paladio{background:#AFB6C0}
+.alea-ley{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.74rem;color:var(--gris);text-align:left}
+.alea-ley i{display:inline-block;width:9px;height:9px;margin-right:5px;border-radius:2px;font-style:normal;vertical-align:baseline}
+.alea-nota{text-align:center;font-size:.82rem;color:var(--gris);margin:4px 0 10px}
+
+/* Consejo del Taller */
+.maestro{background:#fff;border:1px solid var(--linea);border-left:3px solid var(--az-noche);padding:24px 28px;margin:34px 0}
+.maestro .eyebrow{color:var(--az-noche);margin-bottom:10px}
+.maestro .eyebrow::before{background:var(--az-noche)}
+.maestro p{margin:0;font-family:'Playfair Display',serif;font-style:italic;font-size:1.02rem;color:var(--tinta)}
+
+/* Error frecuente */
+.errorf{background:#FBF6EE;border:1px solid var(--linea);border-left:3px solid #A4553A;padding:22px 28px;margin:34px 0}
+.errorf .eyebrow{color:#A4553A;margin-bottom:8px}
+.errorf .eyebrow::before{background:#A4553A}
+.errorf p{margin:0;color:var(--tinta);font-size:.95rem}
+
+/* Enlaces internos entre guías */
+.art-body a.lnk{color:var(--az);font-weight:600;border-bottom:1px solid var(--oro-claro)}
+.art-body a.lnk:hover{border-bottom-color:var(--oro)}
+
+/* Navegación anterior / siguiente */
+.guia-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.guia-nav a{border:1px solid var(--linea);background:#fff;padding:14px 18px;font-size:.88rem;font-weight:600;color:var(--az-noche);transition:all .2s;max-width:48%}
+.guia-nav a:hover{border-color:var(--oro);color:var(--az)}
+.guia-nav a.sig{margin-left:auto;text-align:right}
+
+/* Dibujos de engastes */
+.engaste-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:26px 0 10px}
+.engaste-grid figure{background:#fff;border:1px solid var(--linea);padding:14px;text-align:center}
+.engaste-grid .dib{background:var(--marfil);border:1px solid var(--linea);padding:12px 6px}
+.engaste-grid figcaption{font-family:'Playfair Display',serif;font-size:.96rem;color:var(--az-noche);padding-top:10px}
+.engaste-grid figcaption small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);font-weight:600;margin-top:3px}
+.b-c{fill:#fff;stroke:var(--oro);stroke-width:1.2}
+.b-f{stroke:var(--oro);stroke-width:.7;opacity:.7;fill:none}
+@media(max-width:780px){.engaste-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.engaste-grid{grid-template-columns:1fr}}
+
+/* En la mesa del joyero */
+.mesa{background:var(--az-noche);color:#fff;padding:28px 32px;margin:40px 0;position:relative}
+.mesa::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--oro)}
+.mesa .eyebrow{color:var(--oro-claro)}
+.mesa .eyebrow::before{background:var(--oro-claro)}
+.mesa p{color:#C7D2E8;margin:0;font-size:.96rem}
+
+/* Iconos del hub */
+.tema{padding-right:60px}
+.tema .ico{position:absolute;top:28px;right:24px;width:26px;height:26px;color:var(--oro);opacity:.85}
+.tema .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* Grupos del hub */
+.grupo{margin-top:40px}
+.grupo:first-of-type{margin-top:0}
+.grupo>.eyebrow{margin-bottom:2px}
+.grupo .temas-grid{margin-top:14px}
+
+/* Escala de anchos */
+.escala{background:#fff;border:1px solid var(--linea);padding:28px 26px;margin:30px 0}
+.escala svg{display:block;width:100%;height:auto}
+.escala .banda{fill:rgba(196,161,90,.12);stroke:var(--oro);stroke-width:1.4}
+.escala .mm{font-family:'Playfair Display',serif;font-size:11px;fill:var(--az-noche)}
+.escala .desc{font-family:'Source Sans 3',sans-serif;font-size:7.5px;fill:var(--gris);letter-spacing:.06em;text-transform:uppercase}
+
+/* Lema y progreso de portada */
+.lema{font-family:'Playfair Display',serif;font-style:italic;font-size:1.08rem;color:var(--oro-claro);margin:20px 0 4px}
+.prog-barra{height:3px;background:rgba(255,255,255,.18);max-width:240px;margin:12px auto 0}
+.prog-barra i{display:block;height:100%;background:var(--oro-claro)}
+
+/* ¿Por dónde empiezo? */
+.empieza{background:#fff;border:1px solid var(--linea);border-left:3px solid var(--oro);padding:18px 24px;margin:0 0 34px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:.92rem}
+.empieza strong{font-family:'Playfair Display',serif;font-weight:500;color:var(--az-noche);font-size:1rem}
+.empieza a{color:var(--az);font-weight:600}
+.empieza a:hover{color:var(--az-noche)}
+.empieza .fle{color:var(--oro)}
+
+/* Frase final del hub */
+.hub-frase{text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:1.18rem;color:var(--az-noche);max-width:560px;margin:50px auto 0}
+
+/* Acabados: reflejos animados */
+.acab-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:30px 0 10px}
+.acab{background:#fff;border:1px solid var(--linea);padding:16px;text-align:center;margin:0}
+.acab .sw{position:relative;height:62px;border-radius:3px;overflow:hidden;border:1px solid var(--linea);background:linear-gradient(180deg,#E9D194,#D3AD57 55%,#C69D45)}
+.acab .sw::after{content:"";position:absolute;top:-40%;bottom:-40%;width:32%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.9),transparent);transform:skewX(-18deg);animation:brillo 3.4s ease-in-out infinite}
+.acab-mate .sw{background:linear-gradient(180deg,#E2CD98,#D2B26A)}
+.acab-mate .sw::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);filter:blur(5px);width:52%}
+.acab-diam .sw{background-image:radial-gradient(circle,rgba(255,255,255,.95) 1px,transparent 1.5px),linear-gradient(180deg,#E9D194,#D3AD57 55%,#C69D45);background-size:13px 13px,100% 100%}
+.acab-ray .sw{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 1.5px,transparent 1.5px 6px),linear-gradient(180deg,#E9D194,#D3AD57 55%,#C69D45)}
+@keyframes brillo{0%{left:-60%}60%{left:130%}100%{left:130%}}
+.acab figcaption{font-family:'Playfair Display',serif;font-size:1rem;color:var(--az-noche);padding-top:12px}
+.acab figcaption small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);font-weight:600;margin-top:3px}
+@media(max-width:560px){.acab-grid{grid-template-columns:1fr}}
+
+/* Placeholder en preparación */
+.prep{max-width:640px;margin:0 auto;text-align:center;padding:40px 0}
+.prep h1{font-size:2rem;margin-bottom:14px}
+.prep p{color:var(--gris);margin-bottom:26px}
+
+footer{background:var(--az-noche);color:#8FA2C4;padding:38px 0;font-size:.85rem;text-align:center}
+footer em{font-family:'Playfair Display',serif;color:#C7D2E8;display:block;margin-bottom:10px;font-size:1.05rem}
+footer a{color:#C7D2E8}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="index.html">Syccoro<small>Biblioteca</small></a>
+    <nav class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="#" onclick="irHub();return false">Biblioteca</a>
+      <a href="index.html#servicios">Diseña tu alianza</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ PORTADA ============ -->
+<div class="port" id="portada">
+  <div class="wrap">
+    <div class="eyebrow">Biblioteca Syccoro</div>
+    <h1>Aprende todo lo necesario para elegir<br>unas alianzas con confianza</h1>
+    <p>Desde los metales y las milésimas hasta los perfiles, acabados, grabados y diamantes. Guías breves, claras y sin tecnicismos, escritas como te lo contaría tu joyero de confianza.</p>
+    <p class="lema">«El conocimiento también forma parte de una buena elección.»</p>
+    <span class="regla">Cada guía se lee en 1 minuto</span>
+    <p style="margin-top:18px;font-size:.82rem;color:#8FA2C4;letter-spacing:.08em" id="progreso">6 de 12 guías publicadas · la Biblioteca crece cada semana</p>
+    <div class="prog-barra"><i style="width:50%"></i></div>
+  </div>
+</div>
+
+<!-- ============ TEMAS ============ -->
+<section class="temas" id="temas">
+  <div class="wrap">
+    <div class="empieza">
+      <strong>¿Por dónde empiezo?</strong>
+      <span>Si es vuestra primera visita:</span>
+      <a href="#metales">1. Metales</a><span class="fle">→</span>
+      <a href="#perfiles">2. Perfiles</a><span class="fle">→</span>
+      <a href="#anchos-grosores">3. Anchos</a><span class="fle">→</span>
+      <a href="#acabados">4. Acabados</a>
+    </div>
+    <div class="grupo">
+    <div class="eyebrow">Esenciales</div>
+    <div class="temas-grid">
+      <a class="tema" href="#metales" style="border-top:2px solid #C4A15A">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" stroke-width="3.4"/></svg></span><div class="num">01</div><h3>Metales</h3>
+        <p>Oro de 24, 18 y 9 quilates, plata de ley, milésimas y quilates. Qué significa cada cosa y por qué importa.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">Leer guía →</span></div>
+      </a>
+      <a class="tema" href="#colores" style="border-top:2px solid #D0906F">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="9.5" r="4.6"/><circle cx="15" cy="9.5" r="4.6"/><circle cx="12" cy="15" r="4.6"/></svg></span><div class="num">02</div><h3>Colores del oro</h3>
+        <p>Amarillo, blanco y rosa: cómo se obtienen, qué los diferencia y qué es el rodio.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">Leer guía →</span></div>
+      </a>
+      <a class="tema" href="#perfiles" style="border-top:2px solid #123781">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 18 L4 13 C4 7.5 8 5.5 12 5.5 C16 5.5 20 7.5 20 13 L20 18 Z"/></svg></span><div class="num">03</div><h3>Perfiles</h3>
+        <p>Media caña, plano, gota... La forma que define la personalidad de una alianza, con planos de precisión.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">Leer guía →</span></div>
+      </a>
+      <a class="tema" href="#anchos-grosores" style="border-top:2px solid #5B76AE">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M5 5 v14 M19 5 v14 M8 12 h8 M10 9.5 8 12 l2 2.5 M14 9.5 16 12 l-2 2.5"/></svg></span><div class="num">04</div><h3>Anchos y grosores</h3>
+        <p>Qué cambia entre una alianza fina y una ancha, y qué sensación produce cada una.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">Leer guía →</span></div>
+      </a>
+    </div>
+    </div>
+    <div class="grupo">
+    <div class="eyebrow">Personalización</div>
+    <div class="temas-grid">
+      <a class="tema" href="#acabados" style="border-top:2px solid #E5D3A8">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M8.5 13.5 L13.5 8.5 M10.5 16 L16 10.5"/></svg></span><div class="num">05</div><h3>Acabados</h3>
+        <p>Pulido, mate, diamantado, rayado... La textura que define el carácter de la pieza.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">Leer guía →</span></div>
+      </a>
+      <a class="tema prox" href="#personalizacion" style="border-top:2px solid #7E93C4">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 9 h16 M4 15 h16"/><circle cx="10" cy="9" r="2.4" fill="#F7F5F0"/><circle cx="15" cy="15" r="2.4" fill="#F7F5F0"/></svg></span><div class="num">06</div><h3>Personalización</h3>
+        <p>Grabados, piedras, confort interior y combinaciones: todo lo que puede elegirse.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">En preparación</span></div>
+      </a>
+      <a class="tema" href="#diamantes" style="border-top:2px solid #C9CDD3">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M7 9 L12 4.5 L17 9 L12 19.5 Z M7 9 H17 M12 4.5 L10 9 L12 19.5 M12 4.5 L14 9 L12 19.5"/></svg></span><div class="num">07</div><h3>Diamantes y circonitas</h3>
+        <p>Qué los diferencia, cómo se colocan y qué significa eso de «H VS».</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">Leer guía →</span></div>
+      </a>
+      <a class="tema prox" href="#grabados" style="border-top:2px solid #C1755B">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M15.5 4.5 L19.5 8.5 L9 19 L4.5 19.5 L5 15 Z M13.5 6.5 L17.5 10.5"/></svg></span><div class="num">08</div><h3>Grabados</h3>
+        <p>Qué puede grabarse dentro de una alianza, con ejemplos e ideas.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">En preparación</span></div>
+      </a>
+    </div>
+    </div>
+    <div class="grupo">
+    <div class="eyebrow">Después de elegir</div>
+    <div class="temas-grid">
+      <a class="tema prox" href="#fabricacion" style="border-top:2px solid #0B2255">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.6"/><path d="M12 5 V7.4 M12 16.6 V19 M5 12 H7.4 M16.6 12 H19 M7 7 L8.8 8.8 M15.2 15.2 L17 17 M17 7 L15.2 8.8 M8.8 15.2 L7 17"/></svg></span><div class="num">09</div><h3>Fabricación</h3>
+        <p>Cómo nace una alianza, por qué se fabrica bajo pedido y por qué merece la espera.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">En preparación</span></div>
+      </a>
+      <a class="tema prox" href="#express" style="border-top:2px solid #9C7B32">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M12 12 V7.5 M12 12 L15.5 13.5"/></svg></span><div class="num">10</div><h3>Servicio Express</h3>
+        <p>Qué es, qué no es y cuándo es la mejor opción.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">En preparación</span></div>
+      </a>
+      <a class="tema prox" href="#tallas" style="border-top:2px solid #8FA2C4">
+        <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M7 12 h10 M9 10 7 12 l2 2 M15 10 17 12 l-2 2"/></svg></span><div class="num">11</div><h3>Guía de tallas</h3>
+        <p>Cómo medir bien, errores frecuentes y equivalencias internacionales.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">En preparación</span></div>
+      </a>
+      <a class="tema prox" href="#cuidados" style="border-top:2px solid #D8DBE0">
+        <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 4 L13.7 10.3 L20 12 L13.7 13.7 L12 20 L10.3 13.7 L4 12 L10.3 10.3 Z"/></svg></span><div class="num">12</div><h3>Cuidados</h3>
+        <p>Cómo limpiar, guardar y mantener una alianza para toda la vida.</p>
+        <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">En preparación</span></div>
+      </a>
+    </div>
+    </div>
+    <p class="hub-frase">«No hace falta ser joyero para elegir unas buenas alianzas.<br>Solo entender lo importante.»</p>
+  </div>
+</section>
+
+<!-- ============ GUÍA 01 · METALES ============ -->
+<article class="art" id="art-metales">
+  <div class="wrap">
+    <div class="art-head">
+      <p style="margin-bottom:18px"><a class="volver" href="#" onclick="irHub();return false">← Biblioteca Syccoro</a></p>
+      <div class="eyebrow">Guía 01 de 12 · Metales · 1 min</div>
+      <h1>Los metales de una alianza</h1>
+      <p class="intro">La elección del metal es el primer paso para diseñar una alianza que os acompañará durante toda la vida. En menos de un minuto descubriréis qué significan los quilates, por qué el oro necesita mezclarse con otros metales y cuál puede ser la mejor opción para vosotros.</p>
+    </div>
+    <div class="art-body">
+
+      <div class="aprenderas">
+        <div class="eyebrow">Lo que aprenderás</div>
+        <ul>
+          <li>Qué significan realmente los quilates y las milésimas.</li>
+          <li>Por qué el oro puro no sirve para fabricar alianzas.</li>
+          <li>Qué diferencias existen entre el oro de 18K, el oro de 9K y la plata de ley.</li>
+          <li>Cómo elegir el metal que mejor encaja con vuestro presupuesto y estilo de vida.</li>
+        </ul>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Qué significa que una alianza sea de oro de 18 quilates?</h3>
+        <p>Que está hecha con una aleación formada por un 75&nbsp;% de oro puro y un 25&nbsp;% de otros metales que le aportan resistencia. Por eso también se le llama «oro de 750 milésimas»: de cada 1000 partes, 750 son oro.</p>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Y por qué no se hace con oro puro?</h3>
+        <p>Porque el oro puro (24 quilates) es demasiado blando para el uso diario: una alianza que va a acompañarte toda la vida se deformaría y rayaría con facilidad. Por eso se trabaja con aleaciones.</p>
+        <p>Una aleación es, sencillamente, la mezcla del oro puro con pequeñas cantidades de otros metales —como plata, cobre o paladio— que le aportan resistencia sin restarle belleza.</p>
+      </div>
+
+      <h2>Los cuatro metales, de un vistazo</h2>
+      <div class="aleacion-grid">
+        <div class="aleacion">
+          <svg class="donut" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Oro de 24 quilates: 99,9 por ciento de oro puro">
+            <circle class="oroseg" cx="60" cy="60" r="50"/>
+            <text class="d-k" x="60" y="57" text-anchor="middle">24K</text>
+            <text class="d-mil" x="60" y="76" text-anchor="middle">999 milésimas</text>
+          </svg>
+          <p class="ale-pct">99,9&nbsp;% oro puro</p>
+          <p class="ale-otros">0,1&nbsp;% otros metales</p>
+          <p class="ale-frase">Prácticamente toda la pieza es oro puro. Demasiado blando para el uso diario.</p>
+          <p class="ale-tag">No se utiliza en alianzas</p>
+        </div>
+        <div class="aleacion">
+          <svg class="donut" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Oro de 18 quilates: 75 por ciento de oro puro">
+            <circle class="fondo" cx="60" cy="60" r="50"/>
+            <circle class="oroseg" cx="60" cy="60" r="50" stroke-dasharray="235.6 314.2" transform="rotate(-90 60 60)"/>
+            <text class="d-k" x="60" y="57" text-anchor="middle">18K</text>
+            <text class="d-mil" x="60" y="76" text-anchor="middle">750 milésimas</text>
+          </svg>
+          <p class="ale-pct">75&nbsp;% oro puro</p>
+          <p class="ale-otros">25&nbsp;% otros metales</p>
+          <p class="ale-frase">De cada cuatro partes de la alianza, tres son oro puro.</p>
+          <p class="ale-tag">La elección tradicional</p>
+        </div>
+        <div class="aleacion">
+          <svg class="donut" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Oro de 9 quilates: 37,5 por ciento de oro puro">
+            <circle class="fondo" cx="60" cy="60" r="50"/>
+            <circle class="oroseg" cx="60" cy="60" r="50" stroke-dasharray="117.8 314.2" transform="rotate(-90 60 60)"/>
+            <text class="d-k" x="60" y="57" text-anchor="middle">9K</text>
+            <text class="d-mil" x="60" y="76" text-anchor="middle">375 milésimas</text>
+          </svg>
+          <p class="ale-pct">37,5&nbsp;% oro puro</p>
+          <p class="ale-otros">62,5&nbsp;% otros metales</p>
+          <p class="ale-frase">Algo más de un tercio de la pieza es oro puro.</p>
+          <p class="ale-tag">Resistencia y precio en equilibrio</p>
+        </div>
+        <div class="aleacion">
+          <svg class="donut" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plata de ley: 92,5 por ciento de plata pura">
+            <circle class="fondo" cx="60" cy="60" r="50"/>
+            <circle class="plataseg" cx="60" cy="60" r="50" stroke-dasharray="290.6 314.2" transform="rotate(-90 60 60)"/>
+            <text class="d-k" x="60" y="57" text-anchor="middle">Plata</text>
+            <text class="d-mil" x="60" y="76" text-anchor="middle">925 milésimas</text>
+          </svg>
+          <p class="ale-pct">92,5&nbsp;% plata pura</p>
+          <p class="ale-otros">7,5&nbsp;% otros metales</p>
+          <p class="ale-frase">Más de nueve décimas partes son plata pura. Con tratamiento antioxidante.</p>
+          <p class="ale-tag">Luminosa y asequible</p>
+        </div>
+      </div>
+
+      <div class="pregunta">
+        <h3>Quilates y milésimas: dos formas de decir lo mismo</h3>
+        <p>Los quilates dividen el metal en 24 partes: 18 quilates = 18/24 = 75&nbsp;% de oro. Las milésimas lo dividen en 1000: ese mismo oro es «de 750». En España las joyas llevan grabado su contraste con la ley en milésimas (750, 375, 925), tu garantía oficial de pureza.</p>
+      </div>
+
+      <h2>Comparativa rápida</h2>
+      <div class="compara">
+        <table>
+          <tr><th></th><th>Oro 18K</th><th>Oro 9K</th><th>Plata de ley</th></tr>
+          <tr><td>Pureza</td><td>750 milésimas</td><td>375 milésimas</td><td>925 milésimas</td></tr>
+          <tr><td>Durabilidad</td><td><span class="estrellas">★★★★</span></td><td><span class="estrellas">★★★★★</span></td><td><span class="estrellas">★★★</span></td></tr>
+          <tr><td>Valor</td><td><span class="estrellas">★★★★★</span></td><td><span class="estrellas">★★★★</span></td><td><span class="estrellas">★★★</span></td></tr>
+          <tr><td>Color</td><td>Intenso y cálido</td><td>Suave y elegante</td><td>Blanco luminoso</td></tr>
+          <tr><td>Precio</td><td>€€€</td><td>€€</td><td>€</td></tr>
+        </table>
+      </div>
+
+      <div class="consejo">
+        <div class="eyebrow">Nuestro consejo</div>
+        <p>Para una alianza de toda la vida, el <strong>oro de 18 quilates</strong> es la referencia tradicional por algo: el equilibrio perfecto entre color, valor y durabilidad. El <strong>oro de 9 quilates</strong> es una magnífica alternativa para optimizar el presupuesto sin renunciar al oro auténtico, y la <strong>plata de ley</strong>, una opción luminosa y muy asequible. No hay elecciones malas: hay historias distintas.</p>
+      </div>
+
+
+      <div class="mesa">
+        <div class="eyebrow">En la mesa del joyero</div>
+        <p>Una de las dudas más habituales es pensar que el oro blanco contiene menos oro que el amarillo. En realidad, ambos pueden ser exactamente de 18 quilates; lo único que cambia es la composición de la aleación y el acabado final.</p>
+      </div>
+
+      <div class="maestro">
+        <div class="eyebrow">Consejo del Taller</div>
+        <p>«En la mano, un 18K y un 9K bien fabricados se distinguen mucho menos de lo que imagináis. Pedid verlos juntos antes de decidir: es la mejor forma de elegir.»</p>
+      </div>
+
+      <div class="errorf">
+        <div class="eyebrow">Error frecuente</div>
+        <p>Confundir quilates con milésimas. Son dos formas de medir lo mismo: 18 quilates y 750 milésimas es exactamente el mismo oro.</p>
+      </div>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿El oro de 9 quilates es oro auténtico?</summary>
+        <div class="resp">Sí: es oro legalmente reconocido, con contraste oficial de 375 milésimas, y no pierde su color. Su tonalidad es ligeramente menos intensa que la del 18K, aunque con aleaciones de alta calidad la diferencia resulta casi imperceptible. Además, es incluso más duro que el oro de 18K.</div>
+      </details>
+      <details>
+        <summary>¿Cómo sé que una alianza es realmente del oro que dice?</summary>
+        <div class="resp">Por el contraste: un pequeño sello grabado por laboratorio autorizado que certifica la ley del metal (750, 375 o 925). En España es obligatorio y es tu garantía legal.</div>
+      </details>
+      <details>
+        <summary>¿La alianza de 18K se rayará con el uso?</summary>
+        <div class="resp">Cualquier metal precioso adquiere con los años pequeñas marcas de uso: es la pátina natural de una joya vivida. Un pulido profesional la devuelve a su aspecto original cuando queráis.</div>
+      </details>
+      <details>
+        <summary>¿De qué color es el oro de 9 quilates?</summary>
+        <div class="resp">Existe en los mismos colores que el 18K (amarillo, blanco y rosa), con tonos algo más suaves por su menor contenido en oro. Lo vemos en detalle en la <a class="lnk" href="#colores">guía de colores del oro</a>.</div>
+      </details>
+
+      <div class="relacionados">
+        <h2>Sigue aprendiendo</h2>
+        <div class="rel-links">
+          <a href="#colores">→ Colores del oro</a>
+          <a href="#perfiles">→ Cómo elegir el perfil</a>
+          <a href="#fabricacion">→ Cómo se fabrica una alianza</a>
+          <a href="#tallas">→ Guía de tallas</a>
+        </div>
+      </div>
+
+      <div class="art-cta">
+        <p>«Ahora que conocéis las diferencias entre los metales, solo queda elegir el que mejor represente vuestra historia.»</p>
+        <a class="btn btn-az" href="index.html#servicios">Diseñad vuestra alianza</a>
+      </div>
+
+      <nav class="guia-nav" data-guia="metales"></nav>
+
+    </div>
+  </div>
+</article>
+
+
+<!-- ============ GUÍA 02 · COLORES DEL ORO ============ -->
+<article class="art" id="art-colores">
+  <div class="wrap">
+    <div class="art-head">
+      <p style="margin-bottom:18px"><a class="volver" href="#" onclick="irHub();return false">← Biblioteca Syccoro</a></p>
+      <div class="eyebrow">Guía 02 de 12 · Colores del oro · 1 min</div>
+      <h1>Amarillo, blanco y rosa:<br>los tres colores del oro</h1>
+      <p class="intro">Un mismo metal precioso, tres personalidades distintas. En un minuto entenderéis de dónde nace cada color, qué es el rodio y cómo elegir el tono que mejor os representa.</p>
+    </div>
+    <div class="art-body">
+
+      <div class="aprenderas">
+        <div class="eyebrow">Lo que aprenderás</div>
+        <ul>
+          <li>Por qué existen distintos colores de oro.</li>
+          <li>Si un color vale más que otro.</li>
+          <li>Qué metales crean cada tonalidad.</li>
+          <li>Cómo elegir el color perfecto.</li>
+        </ul>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Por qué existe oro amarillo, blanco y rosa?</h3>
+        <p>Los tres contienen oro auténtico. Lo único que cambia son los otros metales de la <a class="lnk" href="#metales">aleación</a>: según cuáles se utilicen y en qué proporción, el tono resultante es más cálido, más blanco o más rosado.</p>
+      </div>
+
+      <h2>El mismo oro, tres colores</h2>
+      <div class="misma">
+        <figure>
+          <div class="foto"><img loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/200/45-200A-B.webp" onerror="this.src='https://syccorojoyeros.github.io/syccoro-img/200/40-200A-B.webp'" alt="Alianza de oro amarillo"></div>
+          <figcaption>Oro amarillo</figcaption>
+        </figure>
+        <figure>
+          <div class="foto"><img loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/200/45-200B-B.webp" onerror="this.src='https://syccorojoyeros.github.io/syccoro-img/200/40-200B-B.webp'" alt="Alianza de oro blanco"></div>
+          <figcaption>Oro blanco</figcaption>
+        </figure>
+        <figure>
+          <div class="foto"><img loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/200/45-200R-B.webp" onerror="this.src='https://syccorojoyeros.github.io/syccoro-img/200/40-200R-B.webp'" alt="Alianza de oro rosa"></div>
+          <figcaption>Oro rosa</figcaption>
+        </figure>
+      </div>
+      <p class="misma-nota">La misma alianza, el mismo oro de 18 quilates. Solo cambia la aleación.</p>
+
+      <h2>Qué hay dentro de cada color</h2>
+      <div class="perfil-cards">
+        <div class="perfil-card">
+          <div class="oro-swatch sw-amarillo"></div>
+          <h3>Oro amarillo</h3>
+          <span class="tag">El clásico de la joyería</span>
+          <p>Es el color del oro de toda la vida. Se obtiene mezclando el oro principalmente con plata y cobre, que conservan su tonalidad cálida natural.</p>
+          <div class="alea-barra"><span class="m-oro" style="width:75%"></span><span class="m-plata" style="width:12.5%"></span><span class="m-cobre" style="width:12.5%"></span></div>
+          <div class="alea-ley"><span><i class="m-oro"></i>Oro</span><span><i class="m-plata"></i>Plata</span><span><i class="m-cobre"></i>Cobre</span></div>
+          <p class="ideal">Ideal para quienes buscan el color más tradicional.</p>
+        </div>
+        <div class="perfil-card">
+          <div class="oro-swatch sw-blanco"></div>
+          <h3>Oro blanco</h3>
+          <span class="tag">Luminoso y actual</span>
+          <p>Su aspecto blanco brillante se consigue añadiendo a la aleación metales blancos, habitualmente paladio. Después recibe un baño de rodio que potencia su brillo.</p>
+          <div class="alea-barra"><span class="m-oro" style="width:75%"></span><span class="m-paladio" style="width:25%"></span></div>
+          <div class="alea-ley"><span><i class="m-oro"></i>Oro</span><span><i class="m-paladio"></i>Paladio</span></div>
+          <p class="ideal">Ideal para quienes prefieren un tono plateado y elegante.</p>
+        </div>
+        <div class="perfil-card">
+          <div class="oro-swatch sw-rosa"></div>
+          <h3>Oro rosa</h3>
+          <span class="tag">Cálido y romántico</span>
+          <p>Su tono característico nace de aumentar la proporción de cobre dentro de la aleación. Técnicamente también se conoce como oro rojo.</p>
+          <div class="alea-barra"><span class="m-oro" style="width:75%"></span><span class="m-cobre" style="width:20%"></span><span class="m-plata" style="width:5%"></span></div>
+          <div class="alea-ley"><span><i class="m-oro"></i>Oro</span><span><i class="m-cobre"></i>Cobre</span><span><i class="m-plata"></i>Plata</span></div>
+          <p class="ideal">Ideal para quienes quieren un color con personalidad propia.</p>
+        </div>
+      </div>
+      <p class="alea-nota">Representación conceptual: cada fabricante utiliza su propia fórmula y las proporciones exactas varían.</p>
+
+      <div class="pregunta">
+        <h3>¿Qué es el rodio?</h3>
+        <p>Un metal precioso de la familia del platino, de color blanco muy brillante. Las joyas de oro blanco reciben un fino baño de rodio para potenciar su luminosidad. Con los años y el uso puede desgastarse; entonces basta con renovarlo en una joyería —el «re-rodiado»— para que recupere su blanco original.</p>
+      </div>
+
+      <h2>Comparativa rápida</h2>
+      <div class="compara">
+        <table>
+          <tr><th></th><th>Amarillo</th><th>Blanco</th><th>Rosa</th></tr>
+          <tr><td>Estilo</td><td>Clásico</td><td>Moderno</td><td>Original</td></tr>
+          <tr><td>Carácter</td><td>Muy tradicional</td><td>Muy elegante</td><td>Muy personal</td></tr>
+          <tr><td>Aspecto</td><td>Cálido</td><td>Luminoso</td><td>Romántico</td></tr>
+        </table>
+      </div>
+
+      <div class="consejo">
+        <div class="eyebrow">Nuestro consejo</div>
+        <p><strong>Ningún color vale más que otro: a igual ley y peso, los tres contienen el mismo oro.</strong> Elegid el tono que mejor encaje con vuestro estilo y con las joyas que ya lleváis a diario. Si tenéis dudas, vuestra joyería podrá enseñaros los tres colores juntos para comparar sobre la mano.</p>
+      </div>
+
+      <div class="sabias">
+        <div class="eyebrow">¿Sabías que...?</div>
+        <p>Los tres colores pueden ser exactamente de 18 quilates. Es decir: contienen la misma cantidad de oro puro. Lo único que cambia son los metales que lo acompañan en la aleación.</p>
+      </div>
+
+      <div class="mesa">
+        <div class="eyebrow">En la mesa del joyero</div>
+        <p>Cada semana alguien nos pregunta si el oro blanco «se vuelve amarillo» con los años. No: lo que ocurre es que el baño de rodio se desgasta y asoma el tono natural de la aleación. Un re-rodiado lo devuelve a su blanco original.</p>
+      </div>
+
+      <div class="maestro">
+        <div class="eyebrow">Consejo del Taller</div>
+        <p>«Mirad el color sobre la piel y junto a las joyas que ya lleváis a diario. Los tonos del oro se aprecian mucho mejor en la mano que en una fotografía.»</p>
+      </div>
+
+      <div class="errorf">
+        <div class="eyebrow">Error frecuente</div>
+        <p>Pensar que el oro blanco es plata. Son metales distintos: el oro blanco es oro auténtico, con aleación blanca y baño de rodio.</p>
+      </div>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿El oro blanco es oro de verdad?</summary>
+        <div class="resp">Sí: contiene la misma cantidad de oro que el amarillo de su misma ley. Su color blanco procede de los metales de la aleación y del baño de rodio que recibe al final.</div>
+      </details>
+      <details>
+        <summary>¿El oro rosa contiene menos oro?</summary>
+        <div class="resp">No. A igualdad de quilates, contiene exactamente el mismo oro que el amarillo o el blanco. Su tono nace del cobre de la aleación, no de una menor pureza.</div>
+      </details>
+      <details>
+        <summary>¿Un color vale más que otro?</summary>
+        <div class="resp">No: con la misma ley y el mismo peso, el valor del oro es el mismo en los tres colores, y los precios de las alianzas son prácticamente idénticos.</div>
+      </details>
+      <details>
+        <summary>¿El rodio del oro blanco dura para siempre?</summary>
+        <div class="resp">No: es un baño superficial que con los años puede desgastarse, sobre todo con el roce diario. Renovarlo es un proceso sencillo y habitual en joyería, y la alianza recupera todo su blanco brillante.</div>
+      </details>
+
+      <div class="relacionados">
+        <h2>Sigue aprendiendo</h2>
+        <div class="rel-links">
+          <a href="#metales">→ Metales</a>
+          <a href="#acabados">→ Acabados</a>
+          <a href="#personalizacion">→ Personalización</a>
+          <a href="#cuidados">→ Cuidados</a>
+        </div>
+      </div>
+
+      <div class="art-cta">
+        <p>«Amarillo, blanco o rosa: el color de vuestra historia lo elegís vosotros.»</p>
+        <a class="btn btn-az" href="index.html#servicios">Diseñad vuestra alianza</a>
+      </div>
+
+      <nav class="guia-nav" data-guia="colores"></nav>
+
+    </div>
+  </div>
+</article>
+
+
+<!-- ============ GUÍA 03 · PERFILES ============ -->
+<article class="art" id="art-perfiles">
+  <div class="wrap">
+    <div class="art-head">
+      <p style="margin-bottom:18px"><a class="volver" href="#" onclick="irHub();return false">← Biblioteca Syccoro</a></p>
+      <div class="eyebrow">Guía 03 de 12 · Perfiles · 1 min</div>
+      <h1>Perfiles: la forma que define<br>la personalidad de una alianza</h1>
+      <p class="intro">El perfil es la forma de la alianza vista en sección. Aunque pueda parecer un pequeño detalle, influye tanto en su aspecto como en la sensación al llevarla puesta. En un minuto sabrás distinguirlos para siempre.</p>
+    </div>
+    <div class="art-body">
+
+      <div class="aprenderas">
+        <div class="eyebrow">Lo que aprenderás</div>
+        <ul>
+          <li>Qué es exactamente el perfil de una alianza.</li>
+          <li>Cómo se diferencian la media caña, el plano y la gota.</li>
+          <li>Qué aporta cada perfil en estilo y comodidad.</li>
+          <li>Cómo elegir el que mejor encaja con vosotros.</li>
+        </ul>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Qué es exactamente el perfil?</h3>
+        <p>Imagina que cortáramos la alianza y la miráramos de lado, como se mira la rodaja de una naranja: esa silueta es el perfil. Es lo que un joyero dibuja primero cuando piensa una alianza, porque de él dependen las proporciones de todo lo demás.</p>
+      </div>
+
+      <h2>Los tres perfiles principales</h2>
+      <div class="perfil-cards">
+        <div class="perfil-card">
+          <div class="dibujo"><svg class="seccion-svg" viewBox="0 0 140 84" width="180" height="108" xmlns="http://www.w3.org/2000/svg"><line class="eje" x1="70" y1="4" x2="70" y2="62"/><path class="forma" d="M25 54 L25 40 C25 20 46 13 70 13 C94 13 115 20 115 40 L115 54 Z"/><line class="cota" x1="25" y1="70" x2="115" y2="70"/><line class="cota" x1="25" y1="66" x2="25" y2="74"/><line class="cota" x1="115" y1="66" x2="115" y2="74"/><text class="cota-txt" x="70" y="80" text-anchor="middle">anchura</text><line class="cota" x1="126" y1="13" x2="126" y2="54"/><line class="cota" x1="122" y1="13" x2="130" y2="13"/><line class="cota" x1="122" y1="54" x2="130" y2="54"/><text class="cota-txt" x="134" y="38" text-anchor="middle" transform="rotate(90 134 38)">grosor</text></svg></div>
+          <h3>Media caña</h3>
+          <span class="tag">El perfil clásico</span>
+          <p>Es el diseño tradicional de las alianzas: su parte exterior es curva, lo que le aporta un aspecto elegante y atemporal.</p>
+          <ul>
+            <li>El más clásico</li>
+            <li>Muy cómodo</li>
+            <li>Nunca pasa de moda</li>
+          </ul>
+          <p class="ideal">Ideal para quienes buscan una alianza tradicional.</p>
+        </div>
+        <div class="perfil-card">
+          <div class="dibujo"><svg class="seccion-svg" viewBox="0 0 140 84" width="180" height="108" xmlns="http://www.w3.org/2000/svg"><line class="eje" x1="70" y1="4" x2="70" y2="62"/><rect class="forma" x="25" y="22" width="90" height="32" rx="2"/><line class="cota" x1="25" y1="70" x2="115" y2="70"/><line class="cota" x1="25" y1="66" x2="25" y2="74"/><line class="cota" x1="115" y1="66" x2="115" y2="74"/><text class="cota-txt" x="70" y="80" text-anchor="middle">anchura</text><line class="cota" x1="126" y1="18" x2="126" y2="54"/><line class="cota" x1="122" y1="18" x2="130" y2="18"/><line class="cota" x1="122" y1="54" x2="130" y2="54"/><text class="cota-txt" x="134" y="38" text-anchor="middle" transform="rotate(90 134 38)">grosor</text></svg></div>
+          <h3>Plano</h3>
+          <span class="tag">Líneas contemporáneas</span>
+          <p>Su superficie completamente plana crea un aspecto moderno y minimalista, con aristas definidas.</p>
+          <ul>
+            <li>Imagen actual</li>
+            <li>Líneas definidas</li>
+            <li>Estética sobria</li>
+          </ul>
+          <p class="ideal">Ideal para quienes prefieren un diseño moderno.</p>
+        </div>
+        <div class="perfil-card">
+          <div class="dibujo"><svg class="seccion-svg" viewBox="0 0 140 84" width="180" height="108" xmlns="http://www.w3.org/2000/svg"><line class="eje" x1="70" y1="4" x2="70" y2="62"/><path class="forma" d="M25 54 L25 34 C25 21 45 16 70 16 C95 16 115 21 115 34 L115 54 Z"/><line class="cota" x1="25" y1="70" x2="115" y2="70"/><line class="cota" x1="25" y1="66" x2="25" y2="74"/><line class="cota" x1="115" y1="66" x2="115" y2="74"/><text class="cota-txt" x="70" y="80" text-anchor="middle">anchura</text><line class="cota" x1="126" y1="16" x2="126" y2="54"/><line class="cota" x1="122" y1="16" x2="130" y2="16"/><line class="cota" x1="122" y1="54" x2="130" y2="54"/><text class="cota-txt" x="134" y="38" text-anchor="middle" transform="rotate(90 134 38)">grosor</text></svg></div>
+          <h3>Gota</h3>
+          <span class="tag">El equilibrio perfecto</span>
+          <p>Está a medio camino entre el plano y la media caña: un perfil plano cuya parte superior se ha redondeado suavemente.</p>
+          <ul>
+            <li>Elegante</li>
+            <li>Muy cómoda</li>
+            <li>Aspecto ligero</li>
+          </ul>
+          <p class="ideal">Ideal para quienes buscan un diseño equilibrado.</p>
+        </div>
+      </div>
+
+      <h2>La misma alianza, tres perfiles</h2>
+      <p>Para que la diferencia se vea de verdad, aquí tienes tres alianzas fabricadas con la misma anchura, el mismo color y el mismo acabado. Solo cambia el perfil.</p>
+      <div class="misma">
+        <figure>
+          <div class="foto"><img loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/200/45-200A-B.webp" onerror="this.src='https://syccorojoyeros.github.io/syccoro-img/200/40-200A-B.webp'" alt="Alianza de perfil media caña en oro amarillo"></div>
+          <figcaption>Media caña</figcaption>
+        </figure>
+        <figure>
+          <div class="foto"><img loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/45-196A-B.webp" onerror="this.src='https://syccorojoyeros.github.io/syccoro-img/196/40-196A-B.webp'" alt="Alianza de perfil plano en oro amarillo"></div>
+          <figcaption>Plano</figcaption>
+        </figure>
+        <figure>
+          <div class="foto"><img loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/340/45-340A-B.webp" onerror="this.src='https://syccorojoyeros.github.io/syccoro-img/340/40-340A-B.webp'" alt="Alianza de perfil gota en oro amarillo"></div>
+          <figcaption>Gota</figcaption>
+        </figure>
+      </div>
+      <p class="misma-nota">Misma anchura, mismo oro amarillo, mismo acabado brillo. Solo cambia el perfil.</p>
+
+      <h2>Comparativa rápida</h2>
+      <div class="compara">
+        <table>
+          <tr><th></th><th>Media caña</th><th>Plano</th><th>Gota</th></tr>
+          <tr><td>Estilo</td><td>Clásico</td><td>Moderno</td><td>Elegante</td></tr>
+          <tr><td>Curvatura</td><td>Alta</td><td>Ninguna</td><td>Suave</td></tr>
+          <tr><td>Sensación</td><td>Muy cómoda</td><td>Más firme</td><td>Muy cómoda</td></tr>
+          <tr><td>Popularidad</td><td><span class="estrellas">★★★★★</span></td><td><span class="estrellas">★★★★</span></td><td><span class="estrellas">★★★★★</span></td></tr>
+        </table>
+      </div>
+
+      <h2>¿Cuál elegir?</h2>
+      <div class="elige">
+        <div><span class="si">Si buscáis...</span><p class="que">La alianza más clásica</p><p class="cual">→ Media caña</p></div>
+        <div><span class="si">Si buscáis...</span><p class="que">Un diseño contemporáneo</p><p class="cual">→ Plano</p></div>
+        <div><span class="si">Si buscáis...</span><p class="que">Un equilibrio entre ambos</p><p class="cual">→ Gota</p></div>
+      </div>
+
+      <h2>El interior: plano o suavizado</h2>
+      <p>Todos los perfiles se fabrican de serie con el <strong>interior plano</strong>. Si lo preferís, cualquier perfil puede pedirse con <strong>interior suavizado</strong> —lo que muchas joyerías llaman «confort»—: un ligero redondeo del interior que hace la alianza más cómoda de llevar, poner y quitar.</p>
+      <div class="interior-grid">
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 74" width="200" height="106" xmlns="http://www.w3.org/2000/svg"><line class="eje" x1="70" y1="4" x2="70" y2="66"/><path class="forma" d="M25 54 L25 40 C25 20 46 13 70 13 C94 13 115 20 115 40 L115 54 Z"/><path class="int-linea" d="M25 54 L115 54"/><text class="cota-txt" x="70" y="68" text-anchor="middle">lado del dedo</text></svg></div>
+          <figcaption>Interior plano<small>De serie</small></figcaption>
+        </figure>
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 74" width="200" height="106" xmlns="http://www.w3.org/2000/svg"><line class="eje" x1="70" y1="4" x2="70" y2="66"/><path class="forma" d="M25 54 L25 40 C25 20 46 13 70 13 C94 13 115 20 115 40 L115 54 Q70 58.5 25 54 Z"/><path class="int-linea" d="M25 54 Q70 58.5 115 54"/><text class="cota-txt" x="70" y="68" text-anchor="middle">lado del dedo</text></svg></div>
+          <figcaption>Interior suavizado<small>Confort</small></figcaption>
+        </figure>
+      </div>
+      <p class="misma-nota">El suavizado es sutil: no es una curva pronunciada, sino un interior ligeramente redondeado.</p>
+
+      <div class="pregunta">
+        <h3>¿Influye el perfil en la comodidad?</h3>
+        <p>Menos de lo que suele pensarse. La comodidad depende del conjunto de la alianza: perfil, anchura, grosor y sobre todo el acabado interior. Todos los perfiles de Syccoro están diseñados para ofrecer una excelente comodidad en el uso diario.</p>
+      </div>
+
+      <div class="consejo">
+        <div class="eyebrow">Nuestro consejo</div>
+        <p><strong>No existe un perfil mejor que otro: existe el perfil que mejor se adapta a vuestro estilo.</strong> Si tenéis dudas, vuestra joyería podrá enseñaros distintos perfiles para comprobar cuál resulta más cómodo y cuál encaja mejor con vuestros gustos.</p>
+      </div>
+
+      <div class="maestro">
+        <div class="eyebrow">Consejo del Taller</div>
+        <p>«Probaos la alianza unos minutos, no unos segundos: la comodidad de un perfil se nota al mover la mano, no al mirarla en la bandeja.»</p>
+      </div>
+
+      <div class="errorf">
+        <div class="eyebrow">Error frecuente</div>
+        <p>Elegir el perfil solo por una fotografía. La sensación en el dedo importa tanto como el aspecto: pedid probarlos en vuestra joyería.</p>
+      </div>
+
+      <div class="mesa">
+        <div class="eyebrow">En la mesa del joyero</div>
+        <p>Muchas parejas llegan convencidas de que quieren un perfil plano y, después de probárselo, terminan eligiendo una media caña. La forma de una alianza cambia mucho cuando la llevas puesta.</p>
+      </div>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Todos los perfiles pueden fabricarse en cualquier metal?</summary>
+        <div class="resp">Sí: media caña, plano y gota se fabrican igual en oro de 18 y 9 quilates y en plata de ley, en cualquiera de sus colores.</div>
+      </details>
+      <details>
+        <summary>¿Puedo añadir diamantes o grabados a cualquier perfil?</summary>
+        <div class="resp">Sí. El grabado interior y las piedras están disponibles en todos los perfiles; solo la anchura y el grosor elegidos marcan el tamaño máximo de piedra recomendable.</div>
+      </details>
+      <details>
+        <summary>¿Se pueden fabricar en diferentes anchuras?</summary>
+        <div class="resp">Sí, cada perfil se fabrica en toda la gama de anchuras, de 2 a 6 milímetros. Lo vemos a fondo en la <a class="lnk" href="#anchos-grosores">guía de anchos y grosores</a>.</div>
+      </details>
+      <details>
+        <summary>¿El perfil cambia el precio?</summary>
+        <div class="resp">No necesariamente: el precio depende sobre todo del metal y del peso de la pieza. Dos perfiles distintos con medidas parecidas tienen precios muy similares.</div>
+      </details>
+
+      <div class="relacionados">
+        <h2>Sigue aprendiendo</h2>
+        <div class="rel-links">
+          <a href="#metales">→ Metales</a>
+          <a href="#acabados">→ Acabados</a>
+          <a href="#personalizacion">→ Personalización</a>
+          <a href="#tallas">→ Guía de tallas</a>
+        </div>
+      </div>
+
+      <div class="art-cta">
+        <p>«Ya sabéis distinguir los perfiles. Ahora, elegid el vuestro.»</p>
+        <a class="btn btn-az" href="index.html#servicios">Diseñad vuestra alianza</a>
+      </div>
+
+      <nav class="guia-nav" data-guia="perfiles"></nav>
+
+    </div>
+  </div>
+</article>
+
+
+<!-- ============ GUÍA 04 · ANCHOS Y GROSORES ============ -->
+<article class="art" id="art-anchos">
+  <div class="wrap">
+    <div class="art-head">
+      <p style="margin-bottom:18px"><a class="volver" href="#" onclick="irHub();return false">← Biblioteca Syccoro</a></p>
+      <div class="eyebrow">Guía 04 de 12 · Anchos y grosores · 1 min</div>
+      <h1>Anchos y grosores:<br>la medida de vuestra alianza</h1>
+      <p class="intro">Dos milímetros de diferencia cambian por completo una alianza: su presencia, su peso y su precio. En un minuto sabréis qué significa cada medida y cuál encaja con vuestra mano.</p>
+    </div>
+    <div class="art-body">
+
+      <div class="aprenderas">
+        <div class="eyebrow">Lo que aprenderás</div>
+        <ul>
+          <li>Qué es el ancho y qué es el grosor.</li>
+          <li>Cómo cambia la alianza al variar cada medida.</li>
+          <li>Cómo influyen en el peso y en el precio.</li>
+          <li>Qué anchura elegir según vuestra mano.</li>
+        </ul>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Qué diferencia hay entre ancho y grosor?</h3>
+        <p>El <strong>ancho</strong> es lo que la alianza ocupa a lo largo del dedo: es la medida que más se ve. El <strong>grosor</strong> es la distancia entre el interior y el exterior del aro: apenas se aprecia a simple vista, pero aporta cuerpo y solidez. En los planos de la <a class="lnk" href="#perfiles">guía de perfiles</a> puedes ver ambas cotas dibujadas.</p>
+      </div>
+
+      <h2>La escala de anchos, a tamaño comparado</h2>
+      <p>Syccoro fabrica cada modelo en anchuras de 2 a 6 milímetros. Así se comparan entre sí:</p>
+      <div class="escala"><svg viewBox="0 0 230 143.0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Escala comparativa de anchos de 2 a 6 milímetros"><rect class="banda" x="14" y="8" width="112" height="8.0" ry="3.0"/><text class="mm" x="134" y="15.5">2 mm</text><text class="desc" x="176" y="14.5">delicada</text><rect class="banda" x="14" y="27.0" width="112" height="12.0" ry="3.0"/><text class="mm" x="134" y="36.5">3 mm</text><text class="desc" x="176" y="35.5">fina</text><rect class="banda" x="14" y="50.0" width="112" height="16.0" ry="3.0"/><text class="mm" x="134" y="61.5">4 mm</text><text class="desc" x="176" y="60.5">equilibrada</text><rect class="banda" x="14" y="77.0" width="112" height="20.0" ry="3.0"/><text class="mm" x="134" y="90.5">5 mm</text><text class="desc" x="176" y="89.5">con presencia</text><rect class="banda" x="14" y="108.0" width="112" height="24.0" ry="3.0"/><text class="mm" x="134" y="123.5">6 mm</text><text class="desc" x="176" y="122.5">protagonista</text></svg></div>
+
+      <h2>Comparativa rápida</h2>
+      <div class="compara">
+        <table>
+          <tr><th></th><th>Fina (2–3 mm)</th><th>Media (3,5–4,5 mm)</th><th>Ancha (5–6 mm)</th></tr>
+          <tr><td>Estilo</td><td>Delicado</td><td>Equilibrado</td><td>Con presencia</td></tr>
+          <tr><td>Peso</td><td>Ligero</td><td>Medio</td><td>Mayor</td></tr>
+          <tr><td>Precio</td><td>Más contenido</td><td>Medio</td><td>Mayor</td></tr>
+          <tr><td>Sensación</td><td>Apenas se nota</td><td>Cómoda y visible</td><td>Se hace notar</td></tr>
+        </table>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Y el grosor, cómo se elige?</h3>
+        <p>El grosor habitual de una alianza se mueve en torno a uno y dos milímetros. Un grosor mayor aporta solidez y algo más de peso; uno menor, ligereza. Salvo preferencias concretas, la propia proporción del modelo ya lo deja bien resuelto.</p>
+      </div>
+
+      <div class="sabias">
+        <div class="eyebrow">¿Sabías que...?</div>
+        <p>El precio de una alianza depende sobre todo de su peso en oro. Por eso dos alianzas idénticas de 3 y de 6 milímetros pueden costar casi el doble una que otra: hay prácticamente el doble de metal.</p>
+      </div>
+
+      <div class="consejo">
+        <div class="eyebrow">Nuestro consejo</div>
+        <p><strong>La anchura se elige con la mano, no con la vista.</strong> Una misma alianza parece más ancha en una mano pequeña y más fina en una grande. Probad varias anchuras en vuestra joyería y quedaos con la que os haga olvidar que la lleváis puesta.</p>
+      </div>
+
+      <div class="maestro">
+        <div class="eyebrow">Consejo del Taller</div>
+        <p>«Si nunca habéis llevado anillos, empezad probando anchuras medias: sobre la mano parecen muy distintas que en la vitrina.»</p>
+      </div>
+
+      <div class="errorf">
+        <div class="eyebrow">Error frecuente</div>
+        <p>Elegir la anchura mirando solo una fotografía. Sin una mano de referencia, no hay forma de saber cómo se verá la alianza puesta.</p>
+      </div>
+
+      <div class="mesa">
+        <div class="eyebrow">En la mesa del joyero</div>
+        <p>Es habitual que alguien llegue pidiendo 6 milímetros «para que se vea»... y salga encantado con 4,5. Sobre la mano, medio milímetro cambia más de lo que parece sobre el papel.</p>
+      </div>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Una alianza ancha es más incómoda?</summary>
+        <div class="resp">Requiere unos días de adaptación, como cualquier anillo. El <a class="lnk" href="#perfiles">interior suavizado</a> ayuda mucho en anchuras generosas, porque facilita ponerla y quitarla.</div>
+      </details>
+      <details>
+        <summary>¿El ancho cambia el precio?</summary>
+        <div class="resp">Sí, es uno de los factores que más influye: a más anchura, más metal y más peso. El <a class="lnk" href="#metales">metal elegido</a> hace el resto.</div>
+      </details>
+      <details>
+        <summary>¿Qué anchura es la más elegida?</summary>
+        <div class="resp">Las intermedias: se ven bien en casi cualquier mano y equilibran presencia, comodidad y precio. Aun así, la mejor anchura es la que os guste a vosotros una vez probada.</div>
+      </details>
+      <details>
+        <summary>¿Podemos llevar anchuras distintas cada uno?</summary>
+        <div class="resp">Por supuesto, y es muy habitual: el mismo modelo se fabrica en toda la gama de anchuras, así que cada uno puede elegir la suya manteniendo el diseño a juego.</div>
+      </details>
+
+      <div class="relacionados">
+        <h2>Sigue aprendiendo</h2>
+        <div class="rel-links">
+          <a href="#perfiles">→ Perfiles</a>
+          <a href="#metales">→ Metales</a>
+          <a href="#tallas">→ Guía de tallas</a>
+          <a href="#diamantes">→ Diamantes y circonitas</a>
+        </div>
+      </div>
+
+      <div class="art-cta">
+        <p>«Fina o con presencia: la medida perfecta es la que os hace olvidar que la lleváis puesta.»</p>
+        <a class="btn btn-az" href="index.html#servicios">Diseñad vuestra alianza</a>
+      </div>
+
+      <nav class="guia-nav" data-guia="anchos-grosores"></nav>
+
+    </div>
+  </div>
+</article>
+
+<!-- ============ GUÍA 05 · ACABADOS ============ -->
+<article class="art" id="art-acabados">
+  <div class="wrap">
+    <div class="art-head">
+      <p style="margin-bottom:18px"><a class="volver" href="#" onclick="irHub();return false">← Biblioteca Syccoro</a></p>
+      <div class="eyebrow">Guía 05 de 12 · Acabados · 1 min</div>
+      <h1>Acabados: la piel<br>de vuestra alianza</h1>
+      <p class="intro">Dos alianzas idénticas pueden parecer completamente distintas solo por su acabado. En un minuto sabréis cómo juega cada uno con la luz y cuál encaja con vuestro estilo.</p>
+    </div>
+    <div class="art-body">
+
+      <div class="aprenderas">
+        <div class="eyebrow">Lo que aprenderás</div>
+        <ul>
+          <li>Qué es el acabado de una alianza.</li>
+          <li>Cómo refleja la luz cada acabado.</li>
+          <li>Cuál disimula mejor las marcas del uso.</li>
+          <li>Cómo se mantiene cada uno con los años.</li>
+        </ul>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Qué es exactamente el acabado?</h3>
+        <p>Es la textura final de la superficie: el último paso del taller, cuando la alianza ya tiene su <a class="lnk" href="#perfiles">perfil</a> y su <a class="lnk" href="#anchos-grosores">anchura</a>. No cambia la forma, pero transforma por completo cómo la pieza recibe la luz.</p>
+      </div>
+
+      <h2>Los cuatro acabados, en movimiento</h2>
+      <p>Observa cómo viaja el reflejo por cada superficie:</p>
+      <div class="acab-grid">
+        <figure class="acab">
+          <div class="sw"></div>
+          <figcaption>Pulido brillo<small>Luz de espejo</small></figcaption>
+        </figure>
+        <figure class="acab acab-mate">
+          <div class="sw"></div>
+          <figcaption>Mate<small>Luz suave y difusa</small></figcaption>
+        </figure>
+        <figure class="acab acab-diam">
+          <div class="sw"></div>
+          <figcaption>Diamantado<small>Destellos puntuales</small></figcaption>
+        </figure>
+        <figure class="acab acab-ray">
+          <div class="sw"></div>
+          <figcaption>Rayado<small>Reflejo lineal</small></figcaption>
+        </figure>
+      </div>
+
+      <h2>Comparativa rápida</h2>
+      <div class="compara">
+        <table>
+          <tr><th></th><th>Pulido</th><th>Mate</th><th>Diamantado</th><th>Rayado</th></tr>
+          <tr><td>Estilo</td><td>Clásico</td><td>Sobrio</td><td>Luminoso</td><td>Original</td></tr>
+          <tr><td>Reflejo</td><td>Espejo</td><td>Difuso</td><td>Destellos</td><td>Lineal</td></tr>
+          <tr><td>Marcas de uso</td><td>Se aprecian antes</td><td>Se disimulan</td><td>Se disimulan</td><td>Se disimulan</td></tr>
+          <tr><td>Renovación</td><td>Pulido sencillo</td><td>Rematado sencillo</td><td>En taller</td><td>En taller</td></tr>
+        </table>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Se pueden combinar acabados?</h3>
+        <p>Sí, y es uno de los recursos más elegantes: un centro mate con los filos en brillo, o una franja diamantada sobre fondo pulido. Las combinaciones multiplican las posibilidades de un mismo modelo.</p>
+      </div>
+
+      <div class="consejo">
+        <div class="eyebrow">Nuestro consejo</div>
+        <p><strong>Ningún acabado es inmune al uso diario: la diferencia está en cómo envejece.</strong> El pulido muestra antes su pátina pero se renueva con un simple pulido; los texturizados la disimulan en el día a día. Elegid el que os enamore hoy, sabiendo que siempre puede renovarse mañana.</p>
+      </div>
+
+      <div class="maestro">
+        <div class="eyebrow">Consejo del Taller</div>
+        <p>«Si os atrae el mate pero os da respeto, combinadlo: centro mate y filos en brillo. Mantiene la sobriedad y luce mejor con el paso del tiempo.»</p>
+      </div>
+
+      <div class="errorf">
+        <div class="eyebrow">Error frecuente</div>
+        <p>Creer que algún acabado evita los arañazos. Ningún metal precioso es inmune al uso: la diferencia está en cuánto se aprecian las marcas y en lo fácil que es renovarlas.</p>
+      </div>
+
+      <div class="mesa">
+        <div class="eyebrow">En la mesa del joyero</div>
+        <p>El mate es el acabado que más sorprende con los años: el roce diario lo va puliendo poco a poco y gana brillo. La buena noticia es que devolverle su aspecto original lleva unos minutos de taller.</p>
+      </div>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿El mate se vuelve brillante con el tiempo?</summary>
+        <div class="resp">Tiende a ello: el roce diario pule la superficie poco a poco. Renovar el mate es un trabajo rápido y habitual en cualquier joyería.</div>
+      </details>
+      <details>
+        <summary>¿Qué acabado se raya menos?</summary>
+        <div class="resp">Todos los metales preciosos marcan con el uso. Los acabados texturizados (mate, diamantado, rayado) disimulan mejor esas marcas; el pulido las muestra antes, pero también es el más sencillo de renovar.</div>
+      </details>
+      <details>
+        <summary>¿El acabado cambia el precio?</summary>
+        <div class="resp">No: el precio depende sobre todo del <a class="lnk" href="#metales">metal</a> y del peso de la pieza. El acabado es el último paso del taller y no altera la cantidad de oro.</div>
+      </details>
+      <details>
+        <summary>¿Puedo cambiar de acabado más adelante?</summary>
+        <div class="resp">Sí. Al ser un tratamiento de superficie, una alianza pulida puede matearse y viceversa. Consultadlo en vuestra joyería: es una forma estupenda de renovar la pieza en un aniversario.</div>
+      </details>
+
+      <div class="relacionados">
+        <h2>Sigue aprendiendo</h2>
+        <div class="rel-links">
+          <a href="#perfiles">→ Perfiles</a>
+          <a href="#colores">→ Colores del oro</a>
+          <a href="#personalizacion">→ Personalización</a>
+          <a href="#cuidados">→ Cuidados</a>
+        </div>
+      </div>
+
+      <div class="art-cta">
+        <p>«El acabado es la piel de vuestra alianza: elegid la que os haga sonreír al mirarla.»</p>
+        <a class="btn btn-az" href="index.html#servicios">Diseñad vuestra alianza</a>
+      </div>
+
+      <nav class="guia-nav" data-guia="acabados"></nav>
+
+    </div>
+  </div>
+</article>
+
+<!-- ============ GUÍA 07 · DIAMANTES Y CIRCONITAS ============ -->
+<article class="art" id="art-diamantes">
+  <div class="wrap">
+    <div class="art-head">
+      <p style="margin-bottom:18px"><a class="volver" href="#" onclick="irHub();return false">← Biblioteca Syccoro</a></p>
+      <div class="eyebrow">Guía 07 de 12 · Diamantes y circonitas · 1 min</div>
+      <h1>Diamantes y circonitas:<br>la luz de una alianza</h1>
+      <p class="intro">Las piedras cambian por completo la personalidad de una alianza. En un minuto descubriréis qué las diferencia, cómo se sujetan y cuál puede ser la mejor opción para vosotros.</p>
+    </div>
+    <div class="art-body">
+
+      <div class="aprenderas">
+        <div class="eyebrow">Lo que aprenderás</div>
+        <ul>
+          <li>Diferencias reales entre diamante y circonita.</li>
+          <li>Qué significa Color H y Pureza VS.</li>
+          <li>Cómo se sujetan las piedras.</li>
+          <li>Qué engaste elegir.</li>
+        </ul>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Por qué añadir una piedra?</h3>
+        <p>Porque cambia por completo el carácter de la alianza. Un solo brillante la hace más especial sin restarle sobriedad; una línea de piedras la convierte en protagonista. Es la forma más directa de personalizarla.</p>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Qué diferencia hay entre un diamante y una circonita?</h3>
+        <p>El diamante es una gema de dureza excepcional, natural o creada en laboratorio, y la piedra más apreciada en joyería. La circonita es una piedra sintética pensada para ofrecer un aspecto muy parecido con un precio mucho más accesible. A simple vista se parecen mucho; la diferencia está en la dureza, la resistencia al paso del tiempo y el valor.</p>
+      </div>
+
+      <h2>Comparativa rápida</h2>
+      <div class="compara">
+        <table>
+          <tr><th></th><th>Diamante</th><th>Circonita</th></tr>
+          <tr><td>Origen</td><td>Natural o de laboratorio</td><td>Sintética</td></tr>
+          <tr><td>Dureza</td><td>Muy alta</td><td>Alta</td></tr>
+          <tr><td>Brillo</td><td>Excelente</td><td>Muy bueno</td></tr>
+          <tr><td>Desgaste</td><td>Excelente resistencia</td><td>Buena resistencia</td></tr>
+          <tr><td>Precio</td><td>Superior</td><td>Muy accesible</td></tr>
+        </table>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Qué significa «H VS»?</h3>
+        <p>Son las dos letras que resumen la calidad de un diamante. El <strong>color H</strong> indica un diamante blanco, sin tonos apreciables a simple vista. La <strong>pureza VS</strong> indica que sus pequeñas inclusiones naturales son muy difíciles de apreciar incluso con lupa. Es una combinación muy habitual en alianzas: excelente calidad, sin pagar por diferencias que el ojo no percibe.</p>
+      </div>
+
+      <h2>¿Cómo se sujetan las piedras?</h2>
+      <p>La piedra no va pegada: va <strong>engastada</strong>. El engastador deforma ligeramente el metal para que abrace el brillante y lo sujete con firmeza. Es un trabajo artesanal que se realiza piedra a piedra.</p>
+      <div class="interior-grid" style="grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto">
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 64" width="260" height="119" xmlns="http://www.w3.org/2000/svg"><rect class="forma" x="14" y="33" width="42" height="20" ry="3"/><rect class="forma" x="84" y="33" width="42" height="20" ry="3"/><path class="b-c" d="M60 18 L80 18 L86 27 L70 46 L54 27 Z"/><line class="b-f" x1="54" y1="27" x2="86" y2="27"/><circle cx="55" cy="30" r="3.2" fill="rgba(196,161,90,.35)" stroke="var(--oro)" stroke-width="1.4"/><circle cx="85" cy="30" r="3.2" fill="rgba(196,161,90,.35)" stroke="var(--oro)" stroke-width="1.4"/><text class="cota-txt" x="70" y="60" text-anchor="middle">el metal abraza la piedra</text></svg></div>
+          <figcaption>Engaste en sección<small>Sujeción artesanal</small></figcaption>
+        </figure>
+      </div>
+
+      <h2>Tipos de engaste, de un vistazo</h2>
+      <p>Cualquier <a class="lnk" href="#perfiles">perfil</a> admite piedras; la <a class="lnk" href="#anchos-grosores">anchura</a> elegida marca el tamaño máximo recomendable. Estas son las disposiciones más habituales:</p>
+      <div class="engaste-grid">
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 60" width="220" height="94" xmlns="http://www.w3.org/2000/svg"><rect class="forma" x="12" y="18" width="116" height="24" ry="4"/><g transform="translate(70,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g></svg></div>
+          <figcaption>Un brillante<small>Discreto y elegante</small></figcaption>
+        </figure>
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 60" width="220" height="94" xmlns="http://www.w3.org/2000/svg"><rect class="forma" x="12" y="18" width="116" height="24" ry="4"/><g transform="translate(58,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(70,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(82,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g></svg></div>
+          <figcaption>Tres piedras<small>El trío clásico</small></figcaption>
+        </figure>
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 60" width="220" height="94" xmlns="http://www.w3.org/2000/svg"><rect class="forma" x="12" y="18" width="116" height="24" ry="4"/><g transform="translate(40,30)"><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(70,30)"><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(100,30)"><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g></svg></div>
+          <figcaption>Tres separadas<small>Ritmo sereno</small></figcaption>
+        </figure>
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 60" width="220" height="94" xmlns="http://www.w3.org/2000/svg"><rect class="forma" x="12" y="18" width="116" height="24" ry="4"/><g transform="translate(46,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(58,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(70,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(82,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(94,30)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g></svg></div>
+          <figcaption>Cinco piedras<small>Presencia serena</small></figcaption>
+        </figure>
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 60" width="220" height="94" xmlns="http://www.w3.org/2000/svg"><rect class="forma" x="12" y="18" width="116" height="24" ry="4"/><g transform="translate(22,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(34,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(46,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(58,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(70,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(82,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(94,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(106,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(118,30) scale(0.85)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g></svg></div>
+          <figcaption>Línea de brillantes<small>Media vuelta de luz</small></figcaption>
+        </figure>
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 60" width="220" height="94" xmlns="http://www.w3.org/2000/svg"><rect class="forma" x="12" y="18" width="116" height="24" ry="4"/><g transform="translate(59,23.6) scale(0.9)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(70,30) scale(0.9)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(81,36.4) scale(0.9)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g></svg></div>
+          <figcaption>En diagonal<small>Un guiño original</small></figcaption>
+        </figure>
+        <figure>
+          <div class="dib"><svg class="seccion-svg" viewBox="0 0 140 60" width="220" height="94" xmlns="http://www.w3.org/2000/svg"><circle class="forma" cx="70" cy="30" r="27"/><circle cx="70" cy="30" r="17" fill="#F7F5F0" stroke="var(--oro)" stroke-width="1.8"/><g transform="translate(92.0,30.0) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(87.8,42.9) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(76.8,50.9) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(63.2,50.9) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(52.2,42.9) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(48.0,30.0) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(52.2,17.1) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(63.2,9.1) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(76.8,9.1) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g><g transform="translate(87.8,17.1) scale(0.58)><circle class="b-c" r="5.2"/><path class="b-f" d="M0 -5.2 L0 5.2 M-5.2 0 L5.2 0 M-3.7 -3.7 L3.7 3.7 M-3.7 3.7 L3.7 -3.7"/></g></svg></div>
+          <figcaption>Toda la vuelta<small>Brillo continuo</small></figcaption>
+        </figure>
+      </div>
+
+      <div class="consejo">
+        <div class="eyebrow">Nuestro consejo</div>
+        <p><strong>El tamaño no siempre es lo más importante.</strong> Una piedra pequeña y bien proporcionada suele resultar mucho más elegante que una excesivamente grande. En una alianza, el brillante debe acompañar al diseño, no dominarlo.</p>
+      </div>
+
+      <div class="maestro">
+        <div class="eyebrow">Consejo del Taller</div>
+        <p>«No elijáis la piedra únicamente por el tamaño. La posición, el engaste y la proporción con la alianza influyen tanto o más que el propio diámetro.»</p>
+      </div>
+
+      <div class="errorf">
+        <div class="eyebrow">Error frecuente</div>
+        <p>Pensar que una circonita es «mala». En realidad es una excelente alternativa cuando se busca estética con un presupuesto más contenido.</p>
+      </div>
+
+      <div class="mesa">
+        <div class="eyebrow">En la mesa del joyero</div>
+        <p>Sobre el papel, 0,015 quilates suena diminuto. Cuando las parejas ven ese brillante ya engastado en la alianza, la reacción más habitual es: «es justo lo que buscábamos». En una alianza, la proporción manda.</p>
+      </div>
+
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Puede caerse un diamante?</summary>
+        <div class="resp">Sí, aunque es muy poco habitual cuando el engaste está correctamente realizado. Una revisión periódica en vuestra joyería ayuda a mantener la piedra perfectamente segura.</div>
+      </details>
+      <details>
+        <summary>¿Las circonitas pierden brillo?</summary>
+        <div class="resp">Con el paso del tiempo pueden desgastarse más que un diamante, pero mantienen un aspecto muy atractivo durante muchos años con un uso normal.</div>
+      </details>
+      <details>
+        <summary>¿Qué significa 0,015 ct?</summary>
+        <div class="resp">Es el peso del diamante. En alianzas, un brillante de 0,015 quilates (≈1,5&nbsp;mm) es una de las medidas más utilizadas porque ofrece un equilibrio excelente entre elegancia, brillo y comodidad.</div>
+      </details>
+      <details>
+        <summary>¿Qué piedra recomienda Syccoro?</summary>
+        <div class="resp">No existe una única respuesta. El diamante es la elección tradicional por su dureza y durabilidad; la circonita ofrece una estética muy similar con un coste mucho más contenido.</div>
+      </details>
+
+      <div class="relacionados">
+        <h2>Sigue aprendiendo</h2>
+        <div class="rel-links">
+          <a href="#personalizacion">→ Personalización</a>
+          <a href="#grabados">→ Grabados</a>
+          <a href="#cuidados">→ Cuidados</a>
+        </div>
+      </div>
+
+      <div class="art-cta">
+        <p>«Dad el toque final a vuestra alianza con la piedra que mejor represente vuestra historia.»</p>
+        <a class="btn btn-az" href="index.html#servicios">Diseñad vuestra alianza</a>
+      </div>
+
+      <nav class="guia-nav" data-guia="diamantes"></nav>
+
+    </div>
+  </div>
+</article>
+
+<!-- ============ PLACEHOLDER GUÍAS EN PREPARACIÓN ============ -->
+<article class="art" id="art-prep">
+  <div class="wrap">
+    <div class="prep">
+      <div class="eyebrow" style="justify-content:center"><span id="prepTema">Guía</span></div>
+      <h1 id="prepTitulo">Guía en preparación</h1>
+      <p>Estamos escribiendo esta guía con el mismo mimo que el resto de la Biblioteca Syccoro. Muy pronto podrás leerla aquí, en un minuto y sin tecnicismos.</p>
+      <a class="btn btn-az" href="#" onclick="irHub();return false">Volver a la Biblioteca</a>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <em>Fabricada para vuestra historia.</em>
+    © <span id="anio"></span> Syccoro Joyeros · España · <a href="index.html">syccoro.es</a>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ===== Enrutado por hash: portada/temas <-> artículos ===== */
+const GUIAS = {
+  'metales': 'art-metales',
+  'colores': 'art-colores',
+  'perfiles': 'art-perfiles',
+  'anchos-grosores': 'art-anchos',
+  'acabados': 'art-acabados',
+  'diamantes': 'art-diamantes'
+};
+const ORDEN = [
+  ['metales','Metales'],['colores','Colores del oro'],['perfiles','Perfiles'],
+  ['anchos-grosores','Anchos y grosores'],['acabados','Acabados'],['personalizacion','Personalización'],
+  ['diamantes','Diamantes y circonitas'],['grabados','Grabados'],['fabricacion','Fabricación'],
+  ['express','Servicio Express'],['tallas','Guía de tallas'],['cuidados','Cuidados']
+];
+const TITULOS = {
+    'personalizacion':'Personalización',  'grabados':'Grabados','fabricacion':'Fabricación','express':'Servicio Express',
+  'tallas':'Guía de tallas','cuidados':'Cuidados'
+};
+function pinta(){
+  const slug = location.hash.replace('#','');
+  const portada = document.getElementById('portada');
+  const temas = document.getElementById('temas');
+  document.querySelectorAll('.art').forEach(a=>a.classList.remove('on'));
+  if(GUIAS[slug]){
+    portada.classList.add('off'); temas.classList.add('off');
+    document.getElementById(GUIAS[slug]).classList.add('on');
+    window.scrollTo(0,0);
+  } else if(TITULOS[slug]){
+    portada.classList.add('off'); temas.classList.add('off');
+    document.getElementById('prepTema').textContent = 'Biblioteca Syccoro';
+    document.getElementById('prepTitulo').textContent = TITULOS[slug];
+    document.getElementById('art-prep').classList.add('on');
+    window.scrollTo(0,0);
+  } else {
+    portada.classList.remove('off'); temas.classList.remove('off');
+  }
+}
+function irHub(){ history.pushState(null,'',location.pathname); pinta(); window.scrollTo(0,0); }
+document.querySelectorAll('.guia-nav').forEach(function(nv){
+  var i = ORDEN.findIndex(function(o){ return o[0] === nv.dataset.guia; });
+  if(i < 0) return;
+  if(i > 0){
+    var a = document.createElement('a');
+    a.href = '#' + ORDEN[i-1][0];
+    a.textContent = '← ' + ORDEN[i-1][1];
+    nv.appendChild(a);
+  }
+  if(i < ORDEN.length - 1){
+    var s = document.createElement('a');
+    s.href = '#' + ORDEN[i+1][0];
+    s.className = 'sig';
+    s.textContent = ORDEN[i+1][1] + ' →';
+    nv.appendChild(s);
+  }
+});
+window.addEventListener('hashchange', pinta);
+pinta();
+document.getElementById('anio').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
