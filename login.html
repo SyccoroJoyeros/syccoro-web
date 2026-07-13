@@ -96,7 +96,6 @@ input:focus{outline:none;border-color:var(--oro)}
 <div class="caja">
   <a class="logo-txt" href="index.html">Syccoro<small>Acceso clientes</small></a>
 
-  <!-- ===== Vista: elección inicial (login) ===== -->
   <div class="vista on" id="vLogin">
     <div class="tabs">
       <div class="tab act" onclick="irA('vLogin')">Entrar</div>
@@ -109,7 +108,7 @@ input:focus{outline:none;border-color:var(--oro)}
     </button>
     <div class="sep">o con tu email</div>
 
-    <form onsubmit="return loginEmail(event)">
+    <form onsubmit="return enviarLogin(event)">
       <label for="loginEmail">Email</label>
       <input type="email" id="loginEmail" required autocomplete="email">
       <label for="loginPass">Contraseña</label>
@@ -120,7 +119,6 @@ input:focus{outline:none;border-color:var(--oro)}
     <p class="volver"><a href="#" onclick="recuperar();return false">¿Has olvidado tu contraseña?</a></p>
   </div>
 
-  <!-- ===== Vista: registro particular ===== -->
   <div class="vista" id="vRegistro">
     <div class="tabs">
       <div class="tab" onclick="irA('vLogin')">Entrar</div>
@@ -150,7 +148,6 @@ input:focus{outline:none;border-color:var(--oro)}
     <p class="legal">Con una cuenta personal podrás diseñar vuestra alianza en el configurador, guardar los diseños y consultar joyerías colaboradoras cerca de ti. No se muestran precios ni se gestionan pedidos: eso se hace directamente con tu joyería.</p>
   </div>
 
-  <!-- ===== Vista: email de verificación enviado ===== -->
   <div class="vista" id="vVerifica">
     <div class="verifica">
       <div class="icono">✉</div>
@@ -164,14 +161,12 @@ input:focus{outline:none;border-color:var(--oro)}
   <p class="volver">¿Eres una joyería? <a href="registro-profesional.html">Solicita tu acceso profesional</a></p>
 </div>
 
-<!-- Firebase (SDK compat, vía <script>, sin npm) -->
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 <script>
 "use strict";
 
-/* ============ Configuración real del proyecto Syccoro ============ */
 const firebaseConfig = {
   apiKey: "AIzaSyDakUsgbwpp-ZCBKy9J8YmUvgo5rQFSWa4",
   authDomain: "syccoro-web.firebaseapp.com",
@@ -185,7 +180,6 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-/* ============ Navegación entre vistas ============ */
 function irA(id){
   document.querySelectorAll('.vista').forEach(v=>v.classList.remove('on'));
   document.getElementById(id).classList.add('on');
@@ -200,7 +194,6 @@ function mostrarMsg(elId, texto, tipo){
   el.className = 'msg on ' + tipo;
 }
 
-/* ============ Traducción de errores de Firebase a español llano ============ */
 function traduceError(err){
   const c = err && err.code;
   const map = {
@@ -217,7 +210,6 @@ function traduceError(err){
   return map[c] || 'Ha ocurrido un error. Inténtalo de nuevo.';
 }
 
-/* ============ Crear/actualizar ficha de usuario en Firestore ============ */
 function aseguraFichaUsuario(user, nombre){
   const ref = db.collection('usuarios').doc(user.uid);
   return ref.get().then(function(snap){
@@ -232,7 +224,6 @@ function aseguraFichaUsuario(user, nombre){
   });
 }
 
-/* ============ Registro con email/contraseña ============ */
 function registrar(ev){
   ev.preventDefault();
   const nombre = document.getElementById('regNombre').value.trim();
@@ -262,8 +253,10 @@ function registrar(ev){
   return false;
 }
 
-/* ============ Login con email/contraseña ============ */
-function loginEmail(ev){
+/* Renombrada a enviarLogin: "loginEmail" chocaba con el id="loginEmail"
+   del campo de email, y el navegador resolvía ese nombre como el <input>
+   en lugar de como la función, dentro del onsubmit inline del formulario. */
+function enviarLogin(ev){
   ev.preventDefault();
   const email = document.getElementById('loginEmail').value.trim();
   const pass = document.getElementById('loginPass').value;
@@ -290,7 +283,6 @@ function loginEmail(ev){
   return false;
 }
 
-/* ============ Login / registro con Google ============ */
 function loginGoogle(){
   auth.signInWithPopup(googleProvider)
     .then(function(res){
@@ -304,7 +296,6 @@ function loginGoogle(){
     });
 }
 
-/* ============ Recuperar contraseña ============ */
 function recuperar(){
   const email = document.getElementById('loginEmail').value.trim();
   if(!email){
@@ -322,3 +313,4 @@ function recuperar(){
 </script>
 </body>
 </html>
+
