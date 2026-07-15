@@ -238,6 +238,10 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+/* Los emails de Firebase (verificacion, recuperacion) se envian
+   en espanol. Cuando la web sea multiidioma, bastara con asignar
+   aqui el idioma elegido por el cliente. */
+auth.languageCode = 'es';
 const db = firebase.firestore();
 
 function val(id){ return document.getElementById(id).value.trim(); }
