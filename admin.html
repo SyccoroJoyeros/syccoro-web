@@ -394,8 +394,29 @@ function cambiaRol(uid, nuevoRol){
 
   db.collection('usuarios').doc(uid).update({ rol: nuevoRol })
     .then(function(){
+      /* Al aprobar, se envía al profesional su email de bienvenida
+         (vía colección "mail"). Si fallara, no bloquea la aprobación. */
+      if(nuevoRol === 'profesional' && c && c.email){
+        return db.collection('mail').add({
+          to: [c.email],
+          message: {
+            subject: 'Tu acceso profesional a Syccoro ya está activo',
+            text: 'Hola' + (c.nombre ? ' ' + c.nombre : '') + ',\n\n' +
+              'Hemos revisado y aprobado la solicitud de acceso profesional de ' + (c.comercial || 'tu negocio') + '. Bienvenido.\n\n' +
+              'Ya puedes entrar con tu email y contraseña desde:\n' +
+              'https://syccorojoyeros.github.io/syccoro-web/login.html\n\n' +
+              'Al identificarte accederás a tu área profesional, donde encontrarás los teléfonos y el WhatsApp de atención directa. Muy pronto se irán activando el configurador con tarifas, el servicio Alianzas Express y la tramitación de pedidos: te avisaremos.\n\n' +
+              'Gracias por confiar en Syccoro.\n' +
+              'Syccoro Alianzas · alianzas@syccoro.es · L-V 8:00-20:00'
+          }
+        }).catch(function(err){
+          console.error('No se pudo enviar la bienvenida profesional:', err);
+        });
+      }
+    })
+    .then(function(){
       avisa(nuevoRol === 'profesional'
-        ? 'Acceso profesional aprobado. Avísale por email o teléfono de que ya puede entrar.'
+        ? 'Acceso profesional aprobado. Le hemos enviado el email de bienvenida con el enlace de entrada.'
         : 'Acceso revocado correctamente.', 'ok');
     })
     .catch(function(err){
