@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diseñad vuestra alianza · Syccoro</title>
 <!-- ============================================================
-   CONFIGURADOR WEB · configurador.html · v0.2
+   CONFIGURADOR WEB · configurador.html · v0.2.1
    Versión PÚBLICA: diseñar y guardar. SIN precios y SIN pesos.
    v0.2: una alianza / pareja / varias (hasta 8), cada alianza con
    su propio modelo, metal, color, acabado, medidas, talla, engaste
    y grabado; pestañas por alianza + "Copiar a las demás"; zoom
    ampliado. Guarda JSON v:2 y sigue cargando diseños v:1.
+   v0.2.1: enlace de la guía de anchos corregido (#anchos-grosores,
+   id real en biblioteca v0.15+) y aviso de que la imagen es un
+   render, no una fotografía.
    El catálogo (modelos, disponibilidad, imágenes) es el mismo del
    configurador interno v0.23: añadir un modelo = añadir su entrada
    en MODELOS + IMG y subir sus fotos al CDN syccoro-img.
@@ -192,7 +195,7 @@ footer{border-top:1px solid var(--linea);padding:22px 0;text-align:center;font-s
         <span class="lupa">Toca para ampliar</span>
       </div>
       <div class="previo-pie" id="fotoPie"></div>
-      <div class="previo-nota">Fotografías reales de alianzas fabricadas en nuestro taller. El resultado puede variar ligeramente según medidas y acabado.</div>
+      <div class="previo-nota">Imagen de referencia generada por ordenador (render), no una fotografía. El resultado real puede variar ligeramente según medidas y acabado.</div>
     </div>
   </div>
 
@@ -235,7 +238,7 @@ footer{border-top:1px solid var(--linea);padding:22px 0;text-align:center;font-s
 
     <div class="sec">
       <h2>5 · Medidas</h2>
-      <div class="ayuda">Ancho visible, alto (grosor de la pared) e interior. <a href="biblioteca.html#anchos" target="_blank" rel="noopener">Guía de anchos y grosores</a>.</div>
+      <div class="ayuda">Ancho visible, alto (grosor de la pared) e interior. <a href="biblioteca.html#anchos-grosores" target="_blank" rel="noopener">Guía de anchos y grosores</a>.</div>
       <div class="campo"><label>Ancho</label><div class="grupo" id="grupoAncho"></div></div>
       <div class="fila">
         <div class="campo"><label>Alto (grosor)</label><select id="selGrosor"></select></div>

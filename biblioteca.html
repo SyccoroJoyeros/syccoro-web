@@ -10,7 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   BIBLIOTECA SYCCORO · biblioteca.html · v0.15 · BASE FINALIZADA
+   BIBLIOTECA SYCCORO · biblioteca.html · v0.16
+   v0.16: Guía 05 Acabados alineada con el taller real — los cinco
+   acabados del configurador (Brillo B, Esmeril E, Diamantado D,
+   Rayado suave R, Rayado fuerte N) mostrados con los renders reales
+   del CDN (modelo 196) en lugar de muestras CSS; combinaciones BE/EB
+   con render; bloque de acabados menos habituales (Arenado H,
+   Arenado suave L, Granulado G).
+   v0.15 · BASE FINALIZADA
    v0.15: Firma "Así trabajamos en Syccoro" al pie de cada guía (una
           línea real por tema, generada por JS) · Más aire entre
           bloques destacados consecutivos · Cierre de la etapa base;
@@ -349,6 +356,9 @@ details .resp{padding:0 20px 18px;color:var(--gris);font-size:.94rem}
 .acab-diam .sw{background-image:radial-gradient(circle,rgba(255,255,255,.95) 1px,transparent 1.5px),linear-gradient(180deg,#E9D194,#D3AD57 55%,#C69D45);background-size:13px 13px,100% 100%}
 .acab-ray .sw{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 1.5px,transparent 1.5px 6px),linear-gradient(180deg,#E9D194,#D3AD57 55%,#C69D45)}
 @keyframes brillo{0%{left:-60%}60%{left:130%}100%{left:130%}}
+.acab .foto{width:100%;aspect-ratio:1.1;object-fit:contain;background:#fff;mix-blend-mode:multiply;display:block}
+.acabs .foto-mini{width:110px;max-width:130px;flex:1 1 90px;aspect-ratio:1;object-fit:contain;mix-blend-mode:multiply}
+.acab-nota{font-size:.78rem;color:var(--gris);font-style:italic;margin-top:10px}
 .acab figcaption{font-family:'Playfair Display',serif;font-size:1rem;color:var(--az-noche);padding-top:12px}
 .acab figcaption small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);font-weight:600;margin-top:3px}
 @media(max-width:560px){.acab-grid{grid-template-columns:1fr}}
@@ -576,7 +586,7 @@ footer a{color:#C7D2E8}
     <div class="temas-grid">
       <a class="tema" href="#acabados" style="border-top:2px solid #E5D3A8">
         <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M8.5 13.5 L13.5 8.5 M10.5 16 L16 10.5"/></svg></span><div class="num">05</div><h3>Acabados</h3>
-        <p>Pulido, mate, diamantado, rayado... La textura que define el carácter de la pieza.</p>
+        <p>Brillo, esmeril, diamantado, rayado suave y fuerte: los acabados reales de nuestro taller, con sus renders.</p>
         <div class="pie"><span class="min">1 min · Muy fácil</span><span class="estado">Leer guía →</span></div>
       </a>
       <a class="tema" href="#personalizacion" style="border-top:2px solid #7E93C4">
@@ -1248,7 +1258,7 @@ footer a{color:#C7D2E8}
       <div class="eyebrow">Guía 05 de 12 · Acabados · 1 min</div>
       <h1>Acabados: la piel<br>de vuestra alianza</h1>
       <p class="intro">Dos alianzas idénticas pueden parecer completamente distintas solo por su acabado. En un minuto sabréis cómo juega cada uno con la luz y cuál encaja con vuestro estilo.</p>
-      <div class="portada-ilus"><div class="acabs"><div class="acab"><div class="sw"></div></div><div class="acab acab-mate"><div class="sw"></div></div><div class="acab acab-diam"><div class="sw"></div></div><div class="acab acab-ray"><div class="sw"></div></div></div></div>
+      <div class="portada-ilus"><div class="acabs"><img class="foto-mini" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-B.webp" alt="Acabado brillo"><img class="foto-mini" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-E.webp" alt="Acabado esmeril"><img class="foto-mini" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-D.webp" alt="Acabado diamantado"><img class="foto-mini" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-N.webp" alt="Acabado rayado fuerte"></div></div>
     </div>
     <div class="art-body">
 
@@ -1267,41 +1277,61 @@ footer a{color:#C7D2E8}
         <p>Es la textura final de la superficie: el último paso del taller, cuando la alianza ya tiene su <a class="lnk" href="#perfiles">perfil</a> y su <a class="lnk" href="#anchos-grosores">anchura</a>. No cambia la forma, pero transforma por completo cómo la pieza recibe la luz.</p>
       </div>
 
-      <h2>Los cuatro acabados, en movimiento</h2>
-      <p>Observa cómo viaja el reflejo por cada superficie:</p>
+      <h2>Los cinco acabados, sobre la misma alianza</h2>
+      <p>La misma alianza (modelo 196, oro amarillo de 4,0 mm) con cada uno de los acabados que encontraréis en el configurador:</p>
       <div class="acab-grid">
         <figure class="acab">
-          <div class="sw"></div>
-          <figcaption>Pulido brillo<small>Luz de espejo</small></figcaption>
+          <img class="foto" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-B.webp" alt="Alianza con acabado brillo">
+          <figcaption>Brillo<small>Luz de espejo</small></figcaption>
         </figure>
-        <figure class="acab acab-mate">
-          <div class="sw"></div>
-          <figcaption>Mate<small>Luz suave y difusa</small></figcaption>
+        <figure class="acab">
+          <img class="foto" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-E.webp" alt="Alianza con acabado esmeril">
+          <figcaption>Esmeril<small>El mate clásico · luz suave</small></figcaption>
         </figure>
-        <figure class="acab acab-diam">
-          <div class="sw"></div>
+        <figure class="acab">
+          <img class="foto" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-D.webp" alt="Alianza con acabado diamantado">
           <figcaption>Diamantado<small>Destellos puntuales</small></figcaption>
         </figure>
-        <figure class="acab acab-ray">
-          <div class="sw"></div>
-          <figcaption>Rayado<small>Reflejo lineal</small></figcaption>
+        <figure class="acab">
+          <img class="foto" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-R.webp" alt="Alianza con acabado rayado suave">
+          <figcaption>Rayado suave<small>Trazo fino y sedoso</small></figcaption>
+        </figure>
+        <figure class="acab">
+          <img class="foto" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/196/40-196A-N.webp" alt="Alianza con acabado rayado fuerte">
+          <figcaption>Rayado fuerte<small>Trazo marcado, con carácter</small></figcaption>
         </figure>
       </div>
+      <p class="acab-nota">Los renders son los mismos que veréis al elegir acabado en el configurador; cada uno lleva su matizado real.</p>
 
       <h2>Comparativa rápida</h2>
       <div class="compara">
         <table>
-          <tr><th></th><th>Pulido</th><th>Mate</th><th>Diamantado</th><th>Rayado</th></tr>
-          <tr><td>Estilo</td><td>Clásico</td><td>Sobrio</td><td>Luminoso</td><td>Original</td></tr>
-          <tr><td>Reflejo</td><td>Espejo</td><td>Difuso</td><td>Destellos</td><td>Lineal</td></tr>
-          <tr><td>Marcas de uso</td><td>Se aprecian antes</td><td>Se disimulan</td><td>Se disimulan</td><td>Se disimulan</td></tr>
-          <tr><td>Renovación</td><td>Pulido sencillo</td><td>Rematado sencillo</td><td>En taller</td><td>En taller</td></tr>
+          <tr><th></th><th>Brillo</th><th>Esmeril</th><th>Diamantado</th><th>R. suave</th><th>R. fuerte</th></tr>
+          <tr><td>Estilo</td><td>Clásico</td><td>Sobrio</td><td>Luminoso</td><td>Elegante</td><td>Original</td></tr>
+          <tr><td>Reflejo</td><td>Espejo</td><td>Difuso</td><td>Destellos</td><td>Lineal fino</td><td>Lineal marcado</td></tr>
+          <tr><td>Marcas de uso</td><td>Se aprecian antes</td><td>Se disimulan</td><td>Se disimulan</td><td>Se disimulan</td><td>Se disimulan</td></tr>
+          <tr><td>Renovación</td><td>Pulido sencillo</td><td>Rematado sencillo</td><td>En taller</td><td>En taller</td><td>En taller</td></tr>
         </table>
       </div>
 
       <div class="pregunta">
         <h3>¿Se pueden combinar acabados?</h3>
-        <p>Sí, y es uno de los recursos más elegantes: un centro mate con los filos en brillo, o una franja diamantada sobre fondo pulido. Las combinaciones multiplican las posibilidades de un mismo modelo.</p>
+        <p>Sí, y es uno de los recursos más elegantes: un centro esmeril con los filos en brillo, o al revés. Las combinaciones multiplican las posibilidades de un mismo modelo.</p>
+      </div>
+      <div class="acab-grid">
+        <figure class="acab">
+          <img class="foto" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/200/40-200A-BE.webp" alt="Alianza con combinación brillo y esmeril">
+          <figcaption>Brillo y esmeril<small>Filos en brillo, centro mate</small></figcaption>
+        </figure>
+        <figure class="acab">
+          <img class="foto" loading="lazy" src="https://syccorojoyeros.github.io/syccoro-img/301/45-301A-EB.webp" alt="Alianza con combinación esmeril y brillo">
+          <figcaption>Esmeril y brillo<small>La combinación inversa</small></figcaption>
+        </figure>
+      </div>
+
+      <div class="pregunta">
+        <h3>¿Hay más acabados?</h3>
+        <p>Sí. En el taller trabajamos también acabados menos habituales, como el <strong>arenado</strong> (una textura granular fina), el <strong>arenado suave</strong> y el <strong>granulado</strong> (un arenado más grueso, de destello intenso). Se irán incorporando al configurador; mientras tanto, podéis pedirlos en vuestra joyería.</p>
       </div>
 
       <div class="consejo">
@@ -1311,7 +1341,7 @@ footer a{color:#C7D2E8}
 
       <div class="maestro">
         <div class="eyebrow">Consejo del Taller</div>
-        <p>«Si os atrae el mate pero os da respeto, combinadlo: centro mate y filos en brillo. Mantiene la sobriedad y luce mejor con el paso del tiempo.»</p>
+        <p>«Si os atrae el esmeril pero os da respeto, combinadlo: centro esmeril y filos en brillo. Mantiene la sobriedad y luce mejor con el paso del tiempo.»</p>
       </div>
 
       <div class="errorf">
@@ -1321,18 +1351,18 @@ footer a{color:#C7D2E8}
 
       <div class="mesa">
         <div class="eyebrow">En la mesa del joyero</div>
-        <p>El mate es el acabado que más sorprende con los años: el roce diario lo va puliendo poco a poco y gana brillo. La buena noticia es que devolverle su aspecto original lleva unos minutos de taller.</p>
+        <p>El esmeril es el acabado que más sorprende con los años: el roce diario lo va puliendo poco a poco y gana brillo. La buena noticia es que devolverle su aspecto original lleva unos minutos de taller.</p>
       </div>
 
       <div class="saber">Para saber más</div>
       <h2>Preguntas frecuentes</h2>
       <details>
-        <summary>¿El mate se vuelve brillante con el tiempo?</summary>
+        <summary>¿El esmeril (mate) se vuelve brillante con el tiempo?</summary>
         <div class="resp">Tiende a ello: el roce diario pule la superficie poco a poco. Renovar el mate es un trabajo rápido y habitual en cualquier joyería.</div>
       </details>
       <details>
         <summary>¿Qué acabado se raya menos?</summary>
-        <div class="resp">Todos los metales preciosos marcan con el uso. Los acabados texturizados (mate, diamantado, rayado) disimulan mejor esas marcas; el pulido las muestra antes, pero también es el más sencillo de renovar.</div>
+        <div class="resp">Todos los metales preciosos marcan con el uso. Los acabados texturizados (esmeril, diamantado, rayados) disimulan mejor esas marcas; el pulido las muestra antes, pero también es el más sencillo de renovar.</div>
       </details>
       <details>
         <summary>¿El acabado cambia el precio?</summary>
