@@ -6,7 +6,9 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Área profesional · Syccoro</title>
 <!-- ============================================================
-   ÁREA PROFESIONAL · area-profesional.html · v0.1
+   ÁREA PROFESIONAL · area-profesional.html · v0.2
+   v0.2: tarjetas del configurador con tarifas y de Alianzas Express
+   activas (enlazan a sus páginas); texto de bienvenida al día.
    Página de inicio para clientes profesionales aprobados.
    Acceso: rol "profesional" (el admin también puede verla).
    ============================================================ -->
@@ -80,6 +82,12 @@ header{background:var(--az-noche);color:#fff;padding:16px 0}
   text-transform:uppercase;color:var(--oro);border:1px solid var(--oro-claro);
   padding:4px 10px;border-radius:2px;background:#FDFBF6}
 .serv svg{width:34px;height:34px;margin-bottom:12px;stroke:var(--az);fill:none;stroke-width:1.4}
+a.serv{display:block;text-decoration:none;color:inherit;transition:.2s}
+a.serv:hover{border-color:var(--oro);transform:translateY(-2px);box-shadow:0 12px 30px rgba(11,34,85,.1)}
+.serv .abrir{display:inline-block;margin-top:14px;font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;color:#fff;background:var(--az);border:1px solid var(--az);
+  padding:4px 12px;border-radius:2px;font-weight:700}
+a.serv:hover .abrir{background:var(--oro);border-color:var(--oro)}
 
 footer{border-top:1px solid var(--linea);padding:22px 0;text-align:center;
   font-size:.8rem;color:var(--gris)}
@@ -128,7 +136,7 @@ footer #redesEnlaces a:hover{color:var(--oro)}
 
     <div class="saludo">
       <h1 id="saludoTitulo">Bienvenido</h1>
-      <p>Gracias por confiar en Syccoro. Desde aquí tendrás acceso a las tarifas, al servicio Alianzas&nbsp;Express y a la tramitación de tus pedidos. Estamos completando estas herramientas: te avisaremos en cuanto estén disponibles.</p>
+      <p>Gracias por confiar en Syccoro. El configurador con tarifas y el servicio Alianzas&nbsp;Express ya están disponibles desde esta página; la tramitación de pedidos desde la web llegará muy pronto.</p>
     </div>
 
     <div class="bloque">
@@ -158,18 +166,18 @@ footer #redesEnlaces a:hover{color:var(--oro)}
     </div>
 
     <div class="serv-grid">
-      <div class="serv">
+      <a class="serv" href="configurador-pro.html">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="7"/><path d="M9 7l1.5-3h3L15 7"/></svg>
         <h3>Configurador con tarifas</h3>
         <p>Configura cada alianza — metal, perfil, ancho, acabado, diamantes, grabado — con precios de coste y PVP recomendado, y genera presupuestos al momento.</p>
-        <span class="pronto">Próximamente</span>
-      </div>
-      <div class="serv">
+        <span class="abrir">Abrir</span>
+      </a>
+      <a class="serv" href="express.html">
         <svg viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
         <h3>Alianzas Express</h3>
         <p>Modelos seleccionados con entrega en 24–72&nbsp;horas y disponibilidad en tiempo real mediante semáforo de stock.</p>
-        <span class="pronto">Próximamente</span>
-      </div>
+        <span class="abrir">Abrir</span>
+      </a>
       <div class="serv">
         <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>
         <h3>Mis pedidos</h3>

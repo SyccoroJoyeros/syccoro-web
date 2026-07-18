@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- ============================================================
+   ALIANZAS EXPRESS · express.html · v0.4
+   v0.4: el profesional ya NO descarga las unidades reales. Lee el
+   documento stock/semaforoExpress (solo estados verde/ámbar/rojo),
+   que la página del administrador escribe junto al stock al pulsar
+   «Guardar stock». Las cifras exactas (stock/express) quedan
+   reservadas al administrador también en las reglas de Firestore.
+   Enlace de vuelta al área profesional en la cabecera.
+   v0.3: segundo correo de aviso (syccorojoyeros@gmail.com, requiere
+   regla de mail ampliada) y etiqueta "Pedir" sobre el contador de
+   unidades para no confundirlo con el stock.
+   v0.2: número de pedido (EX-AAMMDD-XXXX), aviso por email a Syccoro y
+   copia al profesional vía Trigger Email (colección mail), semáforo con
+   ámbar y rojo más diferenciados.
+   Sección web del servicio Express: alianzas en stock con entrega
+   24-72 h. Acceso exclusivo profesional (mismo control que el
+   configurador pro). El profesional ve las tallas con semáforo
+   (Disponible / Últimas unidades / En fabricación) SIN cantidades
+   exactas, y guarda pedidos en Firestore (pedidosExpress).
+   El administrador ve y edita las unidades reales (stock/express),
+   con el mismo criterio de semáforo que el gestor de stock v0.9:
+   verde = umbral o más · ámbar = entre 1 y umbral-1 · rojo = 0.
+   ============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alianzas Express · Syccoro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<style>
+:root{
+  --az:#123781; --az-noche:#0B2255; --marfil:#F7F5F0; --oro:#C4A15A; --oro-claro:#E5D3A8;
+  --linea:#E3DFD6; --gris:#5A6B8C; --verde:#2E8B57; --ambar:#E6A100; --rojo:#C62828;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Source Sans 3",sans-serif;background:var(--marfil);color:var(--az-noche);min-height:100vh}
+a{color:var(--az)}
+
+header{position:sticky;top:0;z-index:50;background:rgba(247,245,240,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--linea);padding:14px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-family:"Playfair Display",serif;font-size:1.35rem;color:var(--az);font-weight:600;text-decoration:none}
+.brand small{display:block;font-family:"Source Sans 3",sans-serif;font-size:.62rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--oro);font-weight:600}
+.head-links{margin-left:auto;display:flex;gap:16px;align-items:center;font-size:.88rem}
+.head-links a{text-decoration:none;font-weight:600}
+.head-links a:hover{color:var(--oro)}
+
+main{max-width:1060px;margin:0 auto;padding:26px 18px 60px}
+.eyebrow{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--oro);font-weight:700;margin-bottom:6px}
+h1{font-family:"Playfair Display",serif;font-size:1.9rem;margin-bottom:6px}
+.intro{color:var(--gris);max-width:640px;line-height:1.55;margin-bottom:24px}
+
+.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:8px;box-shadow:0 6px 24px rgba(18,55,129,.05)}
+
+/* Producto */
+.producto{display:flex;gap:22px;padding:20px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
+.producto img{width:170px;aspect-ratio:1;object-fit:contain;background:#fff;mix-blend-mode:multiply;flex:0 0 auto}
+.p-datos{flex:1;min-width:230px}
+.p-datos h2{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:4px}
+.p-specs{color:var(--gris);font-size:.92rem;line-height:1.6}
+.p-badge{display:inline-flex;align-items:center;gap:7px;margin-top:10px;background:var(--az);color:#fff;
+  font-size:.78rem;font-weight:600;letter-spacing:.06em;padding:6px 13px;border-radius:20px}
+.p-nota{font-size:.72rem;color:var(--gris);font-style:italic;margin-top:9px}
+
+/* Leyenda */
+.leyenda{display:flex;gap:18px;flex-wrap:wrap;font-size:.82rem;color:var(--gris);margin:0 2px 12px}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.pto{width:10px;height:10px;border-radius:50%;display:inline-block}
+.pto.ok{background:var(--verde)} .pto.low{background:var(--ambar)} .pto.out{background:var(--rojo)}
+
+/* Rejilla de tallas */
+.tallas{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;padding:18px;margin-bottom:22px}
+.tcel{border:1px solid var(--linea);border-radius:6px;padding:10px 8px 9px;text-align:center;background:#fff;position:relative}
+.tcel .tnum{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:600}
+.tcel .testado{font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;font-weight:700;
+  margin-top:3px;display:flex;align-items:center;justify-content:center;gap:5px;min-height:2.1em;line-height:1.15}
+.tcel.ok .testado{color:var(--verde)} .tcel.low .testado{color:var(--ambar)} .tcel.out .testado{color:var(--rojo)}
+.tcel.out{background:#FDF4F4;opacity:.85;border-color:#EAD5D5}
+.step{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px}
+.step-lab{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);margin-top:8px;margin-bottom:-4px}
+.step button{width:26px;height:26px;border:1px solid var(--az);background:#fff;color:var(--az);border-radius:4px;
+  font-size:1rem;font-weight:700;cursor:pointer;line-height:1;font-family:inherit}
+.step button:hover{background:var(--az);color:#fff}
+.step .sv{min-width:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.tcel.sel{border-color:var(--oro);box-shadow:0 0 0 1px var(--oro)}
+.tstock{margin-top:8px}
+.tstock input{width:58px;text-align:center;border:1px solid var(--linea);border-radius:4px;padding:5px 3px;
+  font-family:inherit;font-size:.9rem}
+
+/* Resumen del pedido */
+.res-ped{padding:20px;margin-bottom:22px}
+.res-ped h3{font-family:"Playfair Display",serif;font-size:1.15rem;margin-bottom:10px}
+.res-lineas{font-size:.92rem;line-height:1.7;color:var(--az-noche);margin-bottom:12px}
+.res-lineas b{font-variant-numeric:tabular-nums}
+.res-vacio{color:var(--gris);font-style:italic;font-size:.9rem}
+.res-ped textarea{width:100%;border:1px solid var(--linea);border-radius:6px;padding:10px;font-family:inherit;
+  font-size:.9rem;min-height:64px;resize:vertical;margin-bottom:12px}
+.btn{display:inline-block;border:0;background:var(--az);color:#fff;font-family:inherit;font-weight:600;
+  font-size:.95rem;padding:12px 26px;border-radius:5px;cursor:pointer}
+.btn:hover{filter:brightness(1.12)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.oro{background:transparent;color:var(--az);border:1px solid var(--oro)}
+.btn.oro:hover{background:var(--oro);color:#fff;filter:none}
+.aviso-conf{font-size:.78rem;color:var(--gris);margin-top:10px;font-style:italic}
+
+/* Mis pedidos */
+.ped-item{border-top:1px solid var(--linea);padding:13px 20px;font-size:.9rem}
+.ped-item:first-of-type{border-top:0}
+.ped-cab{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:3px}
+.ped-fecha{color:var(--gris)}
+.ped-badge{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;
+  padding:3px 10px;border-radius:12px;background:#FEF3E0;color:#A06010}
+.ped-lineas{color:var(--az-noche)}
+.seccion-tit{font-family:"Playfair Display",serif;font-size:1.15rem;padding:18px 20px 8px}
+
+/* Admin */
+.admin-box{border-top:3px solid var(--oro);padding:20px;margin-bottom:22px}
+.admin-box h3{font-family:"Playfair Display",serif;font-size:1.1rem;margin-bottom:4px}
+.admin-box p{font-size:.85rem;color:var(--gris);margin-bottom:10px}
+.admin-fila{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.admin-fila label{font-size:.85rem;font-weight:600}
+.admin-fila input{width:64px;text-align:center;border:1px solid var(--linea);border-radius:4px;padding:6px 4px;font-family:inherit}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--az-noche);color:#fff;
+  padding:11px 22px;border-radius:6px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .25s;z-index:600;
+  max-width:92vw;text-align:center}
+.toast.on{opacity:1}
+
+/* Puerta de acceso */
+.gateBg{position:fixed;inset:0;background:var(--marfil);display:flex;align-items:center;justify-content:center;z-index:500;padding:20px}
+.gateBg[hidden]{display:none}
+.gate{background:#fff;border:1px solid var(--linea);border-top:3px solid var(--oro);max-width:430px;width:100%;
+  padding:30px 26px;text-align:center;box-shadow:0 10px 40px rgba(18,55,129,.08);border-radius:8px}
+.gate h2{font-family:"Playfair Display",serif;color:var(--az-noche);font-size:1.4rem;margin:0 0 6px}
+.gate .g-sub{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--oro);margin-bottom:14px}
+.gate p{font-size:.92rem;color:var(--gris);line-height:1.5;margin:0 0 18px}
+.gate a.g-btn{display:inline-block;background:var(--az);color:#fff;text-decoration:none;padding:11px 26px;border-radius:4px;font-weight:600}
+.gate a.g-btn:hover{filter:brightness(1.12)}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="index.html">Syccoro<small>Alianzas Express</small></a>
+  <nav class="head-links">
+    <a href="area-profesional.html">Mi área</a>
+    <a href="configurador-pro.html">Configurador profesional</a>
+    <a href="#" id="btnSalir">Salir</a>
+  </nav>
+</header>
+
+<main>
+  <div class="eyebrow">Servicio Express · entrega 24–72 h</div>
+  <h1>Alianzas en stock</h1>
+  <p class="intro">Alianzas fabricadas y listas para salir del taller. Consulta la disponibilidad por talla,
+  marca las unidades que necesitas y guarda el pedido: lo confirmamos contigo enseguida.</p>
+
+  <!-- Producto -->
+  <div class="tarjeta producto">
+    <img src="https://syccorojoyeros.github.io/syccoro-img/601/35-601A-B.webp" alt="Alianza media caña lisa en oro amarillo">
+    <div class="p-datos">
+      <h2>Media caña lisa · oro amarillo</h2>
+      <div class="p-specs" id="prodSpecs">18K · brillo · 3,0 × 0,85 mm · interior plano</div>
+      <span class="p-badge">⚡ Entrega en 24–72 h</span>
+      <div class="p-nota">Imagen de referencia (render). Más modelos y medidas se irán incorporando al servicio.</div>
+    </div>
+  </div>
+
+  <!-- Admin: unidades reales -->
+  <div class="tarjeta admin-box" id="adminBox" hidden>
+    <h3>Administración del stock</h3>
+    <p>Solo tú ves este bloque y las unidades reales: al guardar se publica aparte el semáforo
+    (verde = umbral o más · ámbar = entre 1 y umbral−1 · rojo = 0), que es lo único que descargan
+    los profesionales.</p>
+    <div class="admin-fila">
+      <label for="admUmbral">Umbral verde (unidades)</label>
+      <input type="number" id="admUmbral" min="1" step="1" value="2">
+      <button class="btn oro" type="button" id="btnGuardarStock">Guardar stock</button>
+    </div>
+  </div>
+
+  <!-- Leyenda + tallas -->
+  <div class="leyenda">
+    <span><i class="pto ok"></i> Disponible</span>
+    <span><i class="pto low"></i> Últimas unidades</span>
+    <span><i class="pto out"></i> En fabricación</span>
+  </div>
+  <div class="tarjeta tallas" id="gridTallas">
+    <div class="res-vacio" style="grid-column:1/-1">Cargando disponibilidad…</div>
+  </div>
+
+  <!-- Resumen del pedido -->
+  <div class="tarjeta res-ped">
+    <h3>Tu pedido Express</h3>
+    <div class="res-lineas" id="resLineas"><span class="res-vacio">Aún no has marcado ninguna talla.</span></div>
+    <textarea id="pedNota" placeholder="Nota para Syccoro (opcional): referencia interna, urgencia, aviso de entrega…"></textarea>
+    <button class="btn" type="button" id="btnGuardarPedido" disabled>Guardar pedido</button>
+    <div class="aviso-conf">Los pedidos se confirman por parte de Syccoro según disponibilidad en el momento de prepararlos.</div>
+  </div>
+
+  <!-- Mis pedidos -->
+  <div class="tarjeta" id="cajaPedidos" hidden>
+    <div class="seccion-tit">Tus pedidos Express</div>
+    <div id="listaPedidos"></div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="gateBg" id="gateBg">
+  <div class="gate">
+    <div class="g-sub">Syccoro · Área profesional</div>
+    <h2>Alianzas Express</h2>
+    <p id="gateMsg">Comprobando acceso…</p>
+    <a class="g-btn" id="gateBtn" href="login.html?de=express" hidden>Iniciar sesión</a>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ============ Configuración ============ */
+var firebaseConfig = {
+  apiKey: "AIzaSyDakUsgbwpp-ZCBKy9J8YmUvgo5rQFSWa4",
+  authDomain: "syccoro-web.firebaseapp.com",
+  projectId: "syccoro-web",
+  storageBucket: "syccoro-web.firebasestorage.app",
+  messagingSenderId: "548259273508",
+  appId: "1:548259273508:web:3076eee1fe220a73dc31b1"
+};
+firebase.initializeApp(firebaseConfig);
+var auth = firebase.auth(), db = firebase.firestore();
+
+var TALLA_MIN = 6, TALLA_MAX = 36;
+var PRODUCTO_ID = 'express';        /* stock/express: unidades reales (solo admin) */
+var SEMAFORO_ID = 'semaforoExpress';/* stock/semaforoExpress: estados para el profesional */
+var stockDoc = null;                /* ADMIN: {tallas:{'6':n,...}, umbral:2, actualizado} */
+var semDoc = null;                  /* PRO:   {estados:{'6':'ok'|'low'|'out',...}, actualizado} */
+var pedido = {};                    /* talla -> cantidad */
+var esAdmin = false;
+var usuario = null;
+
+function tallas(){ var a=[]; for(var t=TALLA_MIN;t<=TALLA_MAX;t++) a.push(t); return a; }
+function el(id){ return document.getElementById(id); }
+function toast(msg){
+  var t = el('toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('on'); }, 3200);
+}
+
+/* ============ Semáforo (mismo criterio que el gestor de stock) ============
+   El admin lo calcula con las unidades reales; el profesional recibe solo
+   el estado ya calculado (nunca descarga cifras). */
+function umbral(){ return (stockDoc && stockDoc.umbral > 0) ? stockDoc.umbral : 2; }
+function unidades(t){
+  if(!stockDoc || !stockDoc.tallas) return 0;
+  var n = parseInt(stockDoc.tallas[String(t)], 10);
+  return isFinite(n) && n > 0 ? n : 0;
+}
+function hayDatos(){ return esAdmin ? !!stockDoc : !!(semDoc && semDoc.estados); }
+function estado(t){
+  if(!esAdmin){
+    var e = (semDoc && semDoc.estados) ? semDoc.estados[String(t)] : null;
+    return (e==='ok'||e==='low') ? e : 'out';
+  }
+  var n = unidades(t);
+  if(n <= 0) return 'out';
+  if(n < umbral()) return 'low';
+  return 'ok';
+}
+function estadosDesdeUnidades(){
+  var m = {};
+  tallas().forEach(function(t){
+    var n = unidades(t);
+    m[String(t)] = n <= 0 ? 'out' : (n < umbral() ? 'low' : 'ok');
+  });
+  return m;
+}
+function etiqueta(cl){
+  return cl === 'ok' ? 'Disponible' : (cl === 'low' ? 'Últimas unidades' : 'En fabricación');
+}
+
+/* ============ Rejilla de tallas ============ */
+function pintarTallas(){
+  var cont = el('gridTallas');
+  cont.innerHTML = '';
+  if(!hayDatos()){
+    cont.innerHTML = '<div class="res-vacio" style="grid-column:1/-1">Todavía no hay datos de disponibilidad. ' +
+      (esAdmin ? 'Introduce las unidades y pulsa «Guardar stock».' : 'Vuelve a intentarlo en unos minutos.') + '</div>';
+    if(!esAdmin) return;
+  }
+  tallas().forEach(function(t){
+    var cl = estado(t);
+    var cel = document.createElement('div');
+    cel.className = 'tcel ' + cl + (pedido[t] ? ' sel' : '');
+    var html = '<div class="tnum">' + t + '</div>' +
+      '<div class="testado"><i class="pto ' + cl + '"></i>' + etiqueta(cl) + '</div>';
+    if(esAdmin){
+      html += '<div class="tstock"><input type="number" min="0" step="1" data-adm="' + t + '" value="' + unidades(t) + '" aria-label="Unidades talla ' + t + '"></div>';
+    }
+    if(cl !== 'out'){
+      html += '<div class="step-lab">Pedir</div>' +
+        '<div class="step">' +
+        '<button type="button" data-menos="' + t + '" aria-label="Quitar talla ' + t + '">−</button>' +
+        '<span class="sv">' + (pedido[t] || 0) + '</span>' +
+        '<button type="button" data-mas="' + t + '" aria-label="Añadir talla ' + t + '">+</button></div>';
+    }
+    cel.innerHTML = html;
+    cont.appendChild(cel);
+  });
+  cont.querySelectorAll('[data-mas]').forEach(function(b){
+    b.addEventListener('click', function(){ cambia(parseInt(b.getAttribute('data-mas'), 10), +1); });
+  });
+  cont.querySelectorAll('[data-menos]').forEach(function(b){
+    b.addEventListener('click', function(){ cambia(parseInt(b.getAttribute('data-menos'), 10), -1); });
+  });
+}
+function cambia(t, d){
+  var n = (pedido[t] || 0) + d;
+  if(n <= 0){ delete pedido[t]; } else if(n <= 99){ pedido[t] = n; }
+  pintarTallas(); pintarResumen();
+}
+function pintarResumen(){
+  var cont = el('resLineas');
+  var ts = Object.keys(pedido).map(Number).sort(function(a, b){ return a - b; });
+  if(!ts.length){
+    cont.innerHTML = '<span class="res-vacio">Aún no has marcado ninguna talla.</span>';
+    el('btnGuardarPedido').disabled = true;
+    return;
+  }
+  var total = 0;
+  var partes = ts.map(function(t){ total += pedido[t]; return 'Talla ' + t + ' × <b>' + pedido[t] + '</b>'; });
+  cont.innerHTML = partes.join(' · ') + '<br>Total: <b>' + total + '</b> ' + (total === 1 ? 'alianza' : 'alianzas');
+  el('btnGuardarPedido').disabled = false;
+}
+
+/* ============ Guardar pedido ============ */
+/* Correos de Syccoro que reciben el aviso de cada pedido. Para añadir un
+   segundo correo hay que ampliar también la regla de la colección "mail". */
+var EMAILS_SYCCORO = ['alianzas@syccoro.es', 'syccorojoyeros@gmail.com'];
+
+function numeroPedido(){
+  var d = new Date();
+  function p2(n){ return (n < 10 ? '0' : '') + n; }
+  var azar = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return 'EX-' + String(d.getFullYear()).slice(2) + p2(d.getMonth() + 1) + p2(d.getDate()) + '-' + azar;
+}
+function textoPedido(numero, lineas, total, nota){
+  var fecha = new Date().toLocaleString('es-ES');
+  return 'Pedido Alianzas Express ' + numero + '\n' +
+    'Fecha: ' + fecha + '\n' +
+    'Profesional: ' + (usuario.email || usuario.uid) + '\n' +
+    'Producto: media cana lisa oro amarillo 18K, 3,0 x 0,85 mm, brillo\n\n' +
+    'Tallas:\n' +
+    lineas.map(function(l){ return '  - Talla ' + l.talla + ' x ' + l.cant; }).join('\n') + '\n\n' +
+    'Total: ' + total + (total === 1 ? ' alianza' : ' alianzas') + '\n' +
+    (nota ? 'Nota del profesional: ' + nota + '\n' : '') +
+    '\nEstado: pendiente de confirmacion por Syccoro.';
+}
+function avisarPorEmail(numero, lineas, total, nota){
+  var texto = textoPedido(numero, lineas, total, nota);
+  var envios = [];
+  EMAILS_SYCCORO.forEach(function(correo){
+    envios.push(db.collection('mail').add({
+      to: [correo],
+      message: { subject: 'Pedido Express ' + numero + ' · ' + (usuario.email || ''), text: texto }
+    }));
+  });
+  if(usuario.email){
+    envios.push(db.collection('mail').add({
+      to: [usuario.email],
+      message: { subject: 'Syccoro · confirmación de tu pedido Express ' + numero,
+        text: 'Hemos recibido tu pedido. Te lo confirmamos enseguida.\n\n' + texto }
+    }));
+  }
+  /* El pedido ya está guardado en Firestore: un fallo del aviso no lo pierde */
+  return Promise.allSettled ? Promise.allSettled(envios) : Promise.all(envios).catch(function(){});
+}
+function guardarPedido(){
+  var ts = Object.keys(pedido).map(Number).sort(function(a, b){ return a - b; });
+  if(!ts.length || !usuario) return;
+  var lineas = ts.map(function(t){ return { talla: t, cant: pedido[t] }; });
+  var total = lineas.reduce(function(s, l){ return s + l.cant; }, 0);
+  var numero = numeroPedido();
+  var nota = (el('pedNota').value || '').trim();
+  el('btnGuardarPedido').disabled = true;
+  db.collection('pedidosExpress').add({
+    numero: numero,
+    uid: usuario.uid,
+    email: usuario.email || '',
+    producto: PRODUCTO_ID,
+    lineas: lineas,
+    unidades: total,
+    nota: nota,
+    estado: 'pendiente',
+    creado: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function(){
+    pedido = {}; el('pedNota').value = '';
+    pintarTallas(); pintarResumen(); cargarMisPedidos();
+    toast('Pedido ' + numero + ' guardado. Te llegará una copia por email.');
+    avisarPorEmail(numero, lineas, total, nota);
+  }).catch(function(){
+    el('btnGuardarPedido').disabled = false;
+    toast('No se pudo guardar el pedido. Revisa la conexión e inténtalo de nuevo.');
+  });
+}
+
+/* ============ Mis pedidos ============ */
+function fechaTxt(ts){
+  try{
+    var d = ts && ts.toDate ? ts.toDate() : null;
+    if(!d) return '';
+    return d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+      ' · ' + d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+  } catch(e){ return ''; }
+}
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
+  return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function cargarMisPedidos(){
+  if(!usuario) return;
+  db.collection('pedidosExpress').where('uid', '==', usuario.uid).get().then(function(snap){
+    var arr = [];
+    snap.forEach(function(doc){ var d = doc.data(); d._id = doc.id; arr.push(d); });
+    arr.sort(function(a, b){
+      var ta = a.creado && a.creado.toMillis ? a.creado.toMillis() : 0;
+      var tb = b.creado && b.creado.toMillis ? b.creado.toMillis() : 0;
+      return tb - ta;
+    });
+    var caja = el('cajaPedidos'), lista = el('listaPedidos');
+    if(!arr.length){ caja.hidden = true; return; }
+    caja.hidden = false;
+    lista.innerHTML = arr.slice(0, 20).map(function(p){
+      var lin = (p.lineas || []).map(function(l){ return 'T' + l.talla + '×' + l.cant; }).join(' · ');
+      return '<div class="ped-item">' +
+        '<div class="ped-cab"><span class="ped-fecha">' + (p.numero ? '<b>' + esc(p.numero) + '</b> · ' : '') + esc(fechaTxt(p.creado)) + '</span>' +
+        '<span class="ped-badge">' + esc(p.estado || 'pendiente') + '</span></div>' +
+        '<div class="ped-lineas">' + esc(lin) + ' — ' + (p.unidades || 0) + ' uds' +
+        (p.nota ? ' · <i>' + esc(p.nota) + '</i>' : '') + '</div></div>';
+    }).join('');
+  }).catch(function(){ /* sin permiso o sin conexión: se omite la lista */ });
+}
+
+/* ============ Disponibilidad en vivo ============ */
+function escucharStock(){
+  if(esAdmin){
+    /* Solo el administrador escucha las unidades reales */
+    db.collection('stock').doc(PRODUCTO_ID).onSnapshot(function(snap){
+      stockDoc = snap.exists ? (snap.data() || null) : null;
+      if(stockDoc && stockDoc.umbral){ el('admUmbral').value = stockDoc.umbral; }
+      pintarTallas(); pintarResumen();
+    }, function(){
+      el('gridTallas').innerHTML = '<div class="res-vacio" style="grid-column:1/-1">No se pudo cargar el stock. Revisa la conexión.</div>';
+    });
+    return;
+  }
+  /* El profesional escucha únicamente el semáforo (sin cifras) */
+  db.collection('stock').doc(SEMAFORO_ID).onSnapshot(function(snap){
+    semDoc = snap.exists ? (snap.data() || null) : null;
+    pintarTallas(); pintarResumen();
+  }, function(){
+    el('gridTallas').innerHTML = '<div class="res-vacio" style="grid-column:1/-1">No se pudo cargar la disponibilidad. Revisa la conexión.</div>';
+  });
+}
+
+/* ============ Admin: guardar unidades ============ */
+function guardarStock(){
+  var tallasObj = {};
+  document.querySelectorAll('[data-adm]').forEach(function(inp){
+    var n = parseInt(inp.value, 10);
+    tallasObj[inp.getAttribute('data-adm')] = isFinite(n) && n > 0 ? n : 0;
+  });
+  var u = parseInt(el('admUmbral').value, 10);
+  var umbralN = isFinite(u) && u > 0 ? u : 2;
+  /* Estados calculados aquí mismo, para escribirlos junto a las unidades */
+  var estadosObj = {};
+  Object.keys(tallasObj).forEach(function(t){
+    var n = tallasObj[t];
+    estadosObj[t] = n <= 0 ? 'out' : (n < umbralN ? 'low' : 'ok');
+  });
+  var lote = db.batch();
+  lote.set(db.collection('stock').doc(PRODUCTO_ID), {
+    tallas: tallasObj,
+    umbral: umbralN,
+    actualizado: firebase.firestore.FieldValue.serverTimestamp()
+  });
+  lote.set(db.collection('stock').doc(SEMAFORO_ID), {
+    estados: estadosObj,
+    actualizado: firebase.firestore.FieldValue.serverTimestamp()
+  });
+  lote.commit()
+    .then(function(){ toast('Stock y semáforo guardados.'); })
+    .catch(function(){ toast('No se pudo guardar el stock.'); });
+}
+
+/* ============ Puerta de acceso profesional ============ */
+(function(){
+  var gate = el('gateBg'), msg = el('gateMsg'), btn = el('gateBtn');
+  function denegar(texto, conLogin){
+    msg.textContent = texto; btn.hidden = !conLogin; gate.hidden = false;
+  }
+  auth.onAuthStateChanged(function(user){
+    if(!user){ denegar('El servicio Alianzas Express es exclusivo para joyerías profesionales. Inicia sesión con tu cuenta profesional.', true); return; }
+    db.collection('usuarios').doc(user.uid).get().then(function(snap){
+      var d = snap.exists ? (snap.data() || {}) : {};
+      esAdmin = d.rol === 'admin';
+      var esPro = d.rol === 'profesional' && (d.estado === undefined || d.estado === 'aprobado');
+      if(esAdmin || esPro){
+        usuario = user;
+        gate.hidden = true;
+        el('adminBox').hidden = !esAdmin;
+        escucharStock();
+        cargarMisPedidos();
+      } else if(d.rol === 'profesional'){
+        denegar('Tu cuenta profesional está pendiente de aprobación. Te avisaremos por email en cuanto esté activa.', false);
+      } else {
+        denegar('Esta zona es exclusiva para joyerías profesionales. Si sois particulares, vuestra joyería de confianza puede pedir por vosotros: el diseño y la talla se los lleváis vosotros.', true);
+      }
+    }).catch(function(){ denegar('No se pudo comprobar el acceso. Revisa tu conexión e inténtalo de nuevo.', true); });
+  });
+})();
+
+el('btnGuardarPedido').addEventListener('click', guardarPedido);
+el('btnGuardarStock').addEventListener('click', guardarStock);
+el('btnSalir').addEventListener('click', function(e){
+  e.preventDefault();
+  auth.signOut().then(function(){ location.href = 'login.html'; });
+});
+</script>
+</body>
+</html>
