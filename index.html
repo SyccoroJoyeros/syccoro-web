@@ -481,6 +481,11 @@ footer{background:var(--az-noche);color:#8FA2C4;padding:44px 0;font-size:.85rem}
           </div>
           <div class="sep-menu" id="cuentaProSep" style="display:none">
             <a href="area-profesional.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Área profesional</a>
+            <a href="configurador-pro.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Configurador con tarifas</a>
+            <a href="express.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Alianzas Express</a>
+          </div>
+          <div class="sep-menu" id="cuentaDisenarSep" style="display:none">
+            <a href="configurador-particular.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Diseñar mis alianzas</a>
           </div>
           <div class="sep-menu">
             <button type="button" onclick="cerrarSesion()">Cerrar sesión</button>
@@ -602,7 +607,7 @@ footer{background:var(--az-noche);color:#8FA2C4;padding:44px 0;font-size:.85rem}
           <span class="num">3–4</span>
           <span class="lbl">semanas de fabricación y entrega*</span>
         </div>
-        <a class="btn btn-az" href="configurador-particular.html">Empezar a diseñar</a>
+        <a class="btn btn-az" href="configurador-particular.html" id="ctaDisenar">Empezar a diseñar</a>
       </div>
       <div class="serv-card reveal">
         <span class="tag">Entrega rápida</span>
@@ -1064,14 +1069,25 @@ const REDES_SYCCORO = {
          área profesional para los profesionales (el admin también la ve). */
       db.collection('usuarios').doc(user.uid).get().then(function(snap){
         const rol = snap.exists ? snap.data().rol : 'particular';
+        const esPro = (rol === 'profesional' || rol === 'admin');
         cuentaAdminSep.style.display = (rol === 'admin') ? 'block' : 'none';
-        cuentaProSep.style.display = (rol === 'profesional' || rol === 'admin') ? 'block' : 'none';
+        cuentaProSep.style.display = esPro ? 'block' : 'none';
+        const dSep = document.getElementById('cuentaDisenarSep');
+        if(dSep) dSep.style.display = esPro ? 'none' : 'block';
+        /* Un profesional que pulsa «Empezar a diseñar» va a SU configurador
+           (con tarifas), no al de particulares. */
+        const cta = document.getElementById('ctaDisenar');
+        if(cta) cta.href = esPro ? 'configurador-pro.html' : 'configurador-particular.html';
       }).catch(function(){ /* sin conexión a Firestore: no se muestran */ });
     } else {
       navCta.style.display = '';
       cuentaBox.style.display = 'none';
       cuentaAdminSep.style.display = 'none';
       cuentaProSep.style.display = 'none';
+      const dSep = document.getElementById('cuentaDisenarSep');
+      if(dSep) dSep.style.display = 'none';
+      const cta = document.getElementById('ctaDisenar');
+      if(cta) cta.href = 'configurador-particular.html';
     }
   });
 

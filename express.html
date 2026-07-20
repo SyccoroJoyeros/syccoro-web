@@ -2,7 +2,11 @@
 <html lang="es">
 <head>
 <!-- ============================================================
-   ALIANZAS EXPRESS · express.html · v0.4
+   ALIANZAS EXPRESS · express.html · v0.4.1
+   v0.4.1: los correos hablan de pedido «EN TRAMITACION» y anuncian el
+   aviso de confirmación que envía la calculadora al importar/aceptar
+   (así no se promete una confirmación inmediata que no existe).
+   Menú de navegación en la cabecera.
    v0.4: el profesional ya NO descarga las unidades reales. Lee el
    documento stock/semaforoExpress (solo estados verde/ámbar/rojo),
    que la página del administrador escribe junto al stock al pulsar
@@ -131,6 +135,17 @@ h1{font-family:"Playfair Display",serif;font-size:1.9rem;margin-bottom:6px}
   max-width:92vw;text-align:center}
 .toast.on{opacity:1}
 
+
+/* ---- Menú de navegación (desplegable de cabecera) ---- */
+.menu-nav{position:relative;display:inline-block}
+.menu-nav>button{appearance:none;background:none;border:0;font-family:inherit;font-size:.88rem;font-weight:600;
+  color:inherit;cursor:pointer;padding:4px 2px}
+.menu-nav>button:hover{color:var(--oro)}
+.menu-pop{position:absolute;right:0;top:calc(100% + 10px);background:#fff;border:1px solid var(--linea);
+  border-radius:8px;box-shadow:0 12px 34px rgba(18,55,129,.14);min-width:225px;padding:6px;z-index:80}
+.menu-pop a{display:block;padding:10px 13px;border-radius:6px;font-weight:600;text-decoration:none;font-size:.88rem}
+.menu-pop a:hover{background:#F2EFE8}
+
 /* Puerta de acceso */
 .gateBg{position:fixed;inset:0;background:var(--marfil);display:flex;align-items:center;justify-content:center;z-index:500;padding:20px}
 .gateBg[hidden]{display:none}
@@ -148,8 +163,16 @@ h1{font-family:"Playfair Display",serif;font-size:1.9rem;margin-bottom:6px}
 <header>
   <a class="brand" href="index.html">Syccoro<small>Alianzas Express</small></a>
   <nav class="head-links">
-    <a href="area-profesional.html">Mi área</a>
-    <a href="configurador-pro.html">Configurador profesional</a>
+    <div class="menu-nav" id="menuNav">
+      <button type="button" id="menuBtn" aria-haspopup="true" aria-expanded="false">☰ Menú</button>
+      <div class="menu-pop" id="menuPop" hidden>
+        <a href="index.html">Portada</a>
+        <a href="area-profesional.html">Mi área profesional</a>
+        <a href="configurador-pro.html">Configurador con tarifas</a>
+        <a href="biblioteca.html">Biblioteca</a>
+        <a href="admin.html" class="mn-admin" hidden>Panel de administración</a>
+      </div>
+    </div>
     <a href="#" id="btnSalir">Salir</a>
   </nav>
 </header>
@@ -358,7 +381,7 @@ function textoPedido(numero, lineas, total, nota){
     lineas.map(function(l){ return '  - Talla ' + l.talla + ' x ' + l.cant; }).join('\n') + '\n\n' +
     'Total: ' + total + (total === 1 ? ' alianza' : ' alianzas') + '\n' +
     (nota ? 'Nota del profesional: ' + nota + '\n' : '') +
-    '\nEstado: pendiente de confirmacion por Syccoro.';
+    '\nEstado: EN TRAMITACION. Te avisaremos en cuanto quede confirmado y salga hacia tu joyeria.';
 }
 function avisarPorEmail(numero, lineas, total, nota){
   var texto = textoPedido(numero, lineas, total, nota);
@@ -372,8 +395,8 @@ function avisarPorEmail(numero, lineas, total, nota){
   if(usuario.email){
     envios.push(db.collection('mail').add({
       to: [usuario.email],
-      message: { subject: 'Syccoro · confirmación de tu pedido Express ' + numero,
-        text: 'Hemos recibido tu pedido. Te lo confirmamos enseguida.\n\n' + texto }
+      message: { subject: 'Syccoro · tu pedido Express ' + numero + ' está en tramitación',
+        text: 'Hemos recibido tu pedido y ya esta en tramitacion. En cuanto quede confirmado y salga hacia tu joyeria (24-72 h segun destino) te llegara otro aviso.\n\n' + texto }
     }));
   }
   /* El pedido ya está guardado en Firestore: un fallo del aviso no lo pierde */
@@ -511,6 +534,7 @@ function guardarStock(){
         usuario = user;
         gate.hidden = true;
         el('adminBox').hidden = !esAdmin;
+        if(esAdmin){ document.querySelectorAll('.mn-admin').forEach(function(x){ x.hidden = false; }); }
         escucharStock();
         cargarMisPedidos();
       } else if(d.rol === 'profesional'){
@@ -520,6 +544,20 @@ function guardarStock(){
       }
     }).catch(function(){ denegar('No se pudo comprobar el acceso. Revisa tu conexión e inténtalo de nuevo.', true); });
   });
+})();
+
+/* Menú de navegación de la cabecera */
+(function(){
+  var btn = el('menuBtn'), pop = el('menuPop'), box = el('menuNav');
+  if(btn && pop){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      pop.hidden = !pop.hidden;
+      btn.setAttribute('aria-expanded', pop.hidden ? 'false' : 'true');
+    });
+    document.addEventListener('click', function(e){ if(box && !box.contains(e.target)) pop.hidden = true; });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') pop.hidden = true; });
+  }
 })();
 
 el('btnGuardarPedido').addEventListener('click', guardarPedido);
