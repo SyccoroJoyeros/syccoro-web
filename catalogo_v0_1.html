@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de modelos · Syccoro</title>
+<meta name="description" content="Todos los modelos de alianzas Syccoro con buscador: media caña, plano y gota, en oro de 18K y 9K y plata de ley. Pasa el cursor para ver combinaciones.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Syccoro Alianzas">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Catálogo de modelos · Syccoro">
+<meta property="og:description" content="Todos los modelos de alianzas Syccoro, con sus combinaciones de anchura, color y acabado.">
+<meta property="og:image" content="https://syccorojoyeros.github.io/syccoro-img/601/35-601A-B.webp">
+<meta property="og:url" content="https://syccorojoyeros.github.io/syccoro-web/catalogo.html">
+<meta name="twitter:card" content="summary_large_image">
+<!-- ============================================================
+   CATÁLOGO PÚBLICO · catalogo.html · v0.1
+   v0.1 (NUEVA): el catálogo completo «en bruto» con buscador y
+   filtros por perfil (los mismos del configurador). Al pasar el
+   cursor por un modelo van rotando combinaciones reales de color,
+   ancho y acabado. Al tocar un modelo: con sesión iniciada se abre
+   el configurador particular con ese modelo cargado (deep-link
+   #modelo=NNN); sin sesión, aviso para crear la cuenta gratuita.
+   Datos de modelos e imágenes extraídos del configurador (fuente
+   única). Sin precios ni tarifas: página 100 % pública.
+   ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<style>
+:root{ --az:#123781; --az-noche:#0B2255; --marfil:#F7F5F0; --oro:#C4A15A; --oro-claro:#E5D3A8;
+  --linea:#E3DFD6; --gris:#5A6B8C; --borde-fuerte:#D8D0BF; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Source Sans 3",sans-serif;background:var(--marfil);color:var(--az-noche);min-height:100vh}
+header{position:sticky;top:0;z-index:50;background:rgba(247,245,240,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--linea);padding:14px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-family:"Playfair Display",serif;font-size:1.35rem;color:var(--az);font-weight:600;text-decoration:none}
+.brand small{display:block;font-family:"Source Sans 3",sans-serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--oro);font-weight:600}
+.head-links{margin-left:auto;display:flex;gap:16px;align-items:center;font-size:.88rem}
+.head-links a{text-decoration:none;font-weight:600;color:var(--az)}
+.head-links a:hover{color:var(--oro)}
+main{max-width:1060px;margin:0 auto;padding:26px 18px 70px}
+.eyebrow{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--oro);font-weight:700;margin-bottom:6px}
+h1{font-family:"Playfair Display",serif;font-size:1.9rem;margin-bottom:6px}
+.intro{color:var(--gris);max-width:660px;line-height:1.55;margin-bottom:22px}
+.busca{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.busca input{flex:1;min-width:220px;padding:12px 14px;border:1px solid var(--borde-fuerte);border-radius:9px;
+  font-family:inherit;font-size:.95rem;background:#fff;color:var(--az-noche)}
+.busca input:focus{outline:2px solid var(--oro);outline-offset:1px}
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filtros button{appearance:none;border:1px solid var(--borde-fuerte);background:#fff;color:var(--az);
+  font-family:inherit;font-size:.85rem;font-weight:600;padding:8px 15px;border-radius:999px;cursor:pointer;
+  transition:.15s;display:inline-flex;align-items:center;gap:7px}
+.filtros button:hover{border-color:var(--oro)}
+.filtros button[aria-pressed="true"]{background:var(--az);color:#fff;border-color:var(--az)}
+.catf-svg{width:26px;display:inline-flex;pointer-events:none}
+.catf-svg svg{width:100%;height:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.card{appearance:none;font-family:inherit;text-align:left;background:#fff;border:1px solid var(--linea);
+  border-radius:10px;overflow:hidden;cursor:pointer;transition:.18s;padding:0}
+.card:hover{border-color:var(--oro);transform:translateY(-2px);box-shadow:0 10px 26px rgba(18,55,129,.08)}
+.thumb{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;position:relative}
+.thumb img{width:88%;height:88%;object-fit:contain;display:block;transition:opacity .3s}
+.thumb .ph{display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;color:#9AA7C7;font-size:.72rem}
+.meta{padding:10px 12px;border-top:1px solid var(--linea);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.meta b{font-family:"Playfair Display",serif;font-size:1.05rem;display:block;line-height:1.15}
+.meta span{font-size:.72rem;color:var(--gris)}
+.meta .mboceto{flex:0 0 auto;width:40px;opacity:.9}
+.meta .mboceto svg{width:100%;height:auto;display:block}
+.combi{font-size:.7rem;color:var(--gris);padding:0 12px 9px;min-height:1.4em;letter-spacing:.02em}
+.nada{color:var(--gris);font-style:italic;padding:20px 4px}
+.avisoBg{position:fixed;inset:0;background:rgba(11,34,85,.6);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+.avisoBg.open{display:flex}
+.aviso{background:#fff;border:1px solid var(--linea);border-top:3px solid var(--oro);max-width:430px;width:100%;
+  padding:30px 26px;text-align:center;box-shadow:0 10px 40px rgba(18,55,129,.18);border-radius:10px}
+.aviso h2{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:8px}
+.aviso p{font-size:.92rem;color:var(--gris);line-height:1.55;margin-bottom:18px}
+.aviso .a-btn{display:inline-block;background:var(--az);color:#fff;text-decoration:none;padding:11px 24px;border-radius:6px;font-weight:600;margin:0 4px 8px}
+.aviso .a-btn:hover{filter:brightness(1.12)}
+.aviso .a-lnk{display:block;margin-top:6px;background:none;border:none;font-family:inherit;font-size:.85rem;font-weight:600;color:var(--gris);cursor:pointer;text-decoration:underline;text-underline-offset:3px;margin-left:auto;margin-right:auto}
+footer{border-top:1px solid var(--linea);padding:22px;text-align:center;font-size:.8rem;color:var(--gris)}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="index.html">Syccoro<small>Catálogo de modelos</small></a>
+  <nav class="head-links">
+    <a href="index.html">Portada</a>
+    <a href="biblioteca.html">Biblioteca</a>
+    <a href="login.html?de=configurador" id="lnkEntrar">Entrar</a>
+  </nav>
+</header>
+
+<main>
+  <div class="eyebrow">Catálogo completo</div>
+  <h1>Todos nuestros modelos</h1>
+  <p class="intro">Cada modelo se fabrica bajo pedido en toda la gama de anchuras, colores de oro y acabados.
+  Pasad el cursor por un modelo para ver combinaciones — y tocadlo para diseñarlo a vuestro gusto en el configurador.</p>
+
+  <div class="busca"><input type="search" id="q" placeholder="Buscar por número, familia o perfil… (ej.: 601, gota, escalón)" autocomplete="off"></div>
+  <div class="filtros" id="filtros" role="group" aria-label="Filtrar por perfil">
+    <button data-pf="" aria-pressed="true">Todos</button>
+    <button data-pf="Media caña" aria-pressed="false">Media caña</button>
+    <button data-pf="Gota" aria-pressed="false">Gota</button>
+    <button data-pf="Plano" aria-pressed="false">Plano</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<div class="avisoBg" id="avisoBg">
+  <div class="aviso">
+    <div class="eyebrow">Syccoro · Configurador</div>
+    <h2>Cread vuestra cuenta gratuita</h2>
+    <p id="avisoTxt">Para ver y configurar este modelo a vuestro gusto —colores, anchura, grabado, piedras— solo hace falta
+    una cuenta gratuita con vuestro nombre y correo.</p>
+    <a class="a-btn" id="avisoEntrar" href="login.html?de=configurador">Entrar o crear cuenta</a>
+    <button type="button" class="a-lnk" id="avisoSeguir">Seguir mirando el catálogo</button>
+  </div>
+</div>
+
+<footer>Syccoro Alianzas · Fabricado íntegramente en España</footer>
+
+<script>
+"use strict";
+/* ══ Datos y utilidades extraídos del configurador (fuente única) ══ */
+function esPlata(c){ return c && c.metal==='Plata'; }
+function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+function perfilBasico(familia){
+  var f=norm(familia);
+  if(f.indexOf("media cana")!==-1) return "Media caña";
+  if(f.indexOf("gota")!==-1) return "Gota";
+  return "Plano";
+}
+const IMG_BASE = "https://syccorojoyeros.github.io/syccoro-img/";
+
+/* Colores (hex de swatch). Amarillo y rosa con más contraste entre sí (punto 6). */
+const COLORES = {
+  A:{n:"Amarillo", hex:"#E8C04A"},
+  B:{n:"Blanco",   hex:"#D9DBDD"},
+  R:{n:"Rosa",     hex:"#E0A488"},
+  N:{n:"Negro",    hex:"#2C2C2C"}
+};
+const ACABADOS = {
+  B:"Brillo", D:"Diamantado", R:"Rayado suave", N:"Rayado fuerte", H:"Arenado", E:"Esmeril",
+  BE:"Brillo y esmeril", EB:"Esmeril y brillo"
+};
+const ANCHOS = [["30","3,0"],["35","3,5"],["40","4,0"],["45","4,5"],["50","5,0"],["55","5,5"],["60","6,0"]];
+
+/* Altos/grosores estándar de oro (tomados de la calculadora). */
+const GROSORES_STD = [0.70,0.85,1.00,1.15,1.30,1.40,1.50,1.80];
+const CONFORT_MIN = 1.15;          /* el interior confort se ofrece a partir de 1,15 mm */
+const METALES = ["18K","9K","Plata"];
+const BOCAS = ["R","C"];
+const BOCA_NOM = {R:"redonda", C:"cuadrada"};
+/* Tamaños de piedra y sus mínimos de alto/ancho (tomados de la calculadora) */
+const ENGASTES_SIZES = [
+  {ct:"0.010", disp:"0,010 ct · 1,30 mm", grosorMin:0.85, anchoMin:2.0},
+  {ct:"0.015", disp:"0,015 ct · 1,50 mm", grosorMin:1.00, anchoMin:2.0},
+  {ct:"0.020", disp:"0,020 ct · 1,70 mm", grosorMin:1.00, anchoMin:2.5},
+  {ct:"0.025", disp:"0,025 ct · 1,80 mm", grosorMin:1.30, anchoMin:3.0},
+  {ct:"0.030", disp:"0,030 ct · 2,00 mm", grosorMin:1.50, anchoMin:3.5},
+  {ct:"0.040", disp:"0,040 ct · 2,20 mm", grosorMin:1.50, anchoMin:3.5},
+  {ct:"0.060", disp:"0,060 ct · 2,60 mm", grosorMin:1.80, anchoMin:4.0}
+];
+
+/* Disponibilidad REAL por modelo, sacada de las imágenes del repositorio.
+   a = anchos · x = acabados · c = combinaciones de color · d = combo por defecto [ancho,color,acabado] (existe seguro) */
+const IMG={
+  "196":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "199":{a:["50","55","60"],x:["E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["50","A","E"]},
+  "200":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N","BE"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "301":{a:["45","50","55","60"],x:["B","E","D","R","N","BE","EB"],c:["A","B","R","BA","BR"],d:["45","A","B"]},
+  "302":{a:["45","50","55","60"],x:["B","E","D","R","N","BE","EB"],c:["A","B","R","BA","BR"],d:["45","A","B"]},
+  "312":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "331":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AR","BA","BR"],d:["40","A","B"]},
+  "332":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","AR","BA","BR","RA","RB"],d:["40","A","B"]},
+  "340":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "341":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "342":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","AR","BA","BR","RA","RB"],d:["40","A","B"]},
+  "344":{a:["40","45","50","55","60"],x:["B","E","D","R","N","EB"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "346":{a:["40","45","50","55","60"],x:["E"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","E"]},
+  "347":{a:["40","45","50","55","60"],x:["B","E"],c:["A","B","R","ABA","ABR","ARA","ARB","BAB","BAR","BRA","BRB","RAB","RAR","RBA","RBR"],d:["40","A","E"]},
+  "348":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ANA","ANB","ANR","ARA","ARB","BAB","BAR","BNA","BNB","BNR","BRA","BRB","RAB","RAR","RBA","RBR","RNA","RNB","RNR"],d:["40","A","B"]},
+  "349":{a:["40","45","50","55","60"],x:["B","E"],c:["A","B","R","AB","AN","AR","BA","BN","BR","RA","RB","RN"],d:["40","A","B"]},
+  "350":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","AR","BA","BR","RA","RB"],d:["40","A","B"]},
+  "351":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "352":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "360":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","BAB","BRB","RBR"],d:["40","A","B"]},
+  "362":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "370":{a:["50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","BAB","BAR","BRA","BRB","RBR"],d:["50","A","B"]},
+  "393":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AR","BA","BR"],d:["40","A","B"]},
+  "590":{a:["50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","BAB","BRB","RBR"],d:["50","A","B"]},
+  "592":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "593":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AR","BA","BR"],d:["40","A","B"]},
+  "597":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "601":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]}
+};
+
+/* Catálogo: 28 modelos reales (carpeta = nº de modelo tras el renombrado). */
+const MODELOS = [
+  {num:"196", familia:"Plano"},
+  {num:"199", familia:"Plano"},
+  {num:"200", familia:"Media caña"},
+  {num:"301", familia:"Media caña"},
+  {num:"302", familia:"Plano"},
+  {num:"312", familia:"Plano"},
+  {num:"331", familia:"Plano"},
+  {num:"332", familia:"Plano"},
+  {num:"340", familia:"Gota"},
+  {num:"341", familia:"Gota"},
+  {num:"342", familia:"Gota"},
+  {num:"344", familia:"Gota"},
+  {num:"346", familia:"Gota"},
+  {num:"347", familia:"Gota"},
+  {num:"348", familia:"Gota"},
+  {num:"349", familia:"Gota"},
+  {num:"350", familia:"Gota con borde en escalón"},
+  {num:"351", familia:"Gota con bordes en escalón"},
+  {num:"352", familia:"Plano con bordes en escalón"},
+  {num:"360", familia:"Gota con bordes suaves"},
+  {num:"362", familia:"Plano con bordes suaves"},
+  {num:"370", familia:"Plano"},
+  {num:"393", familia:"Media caña"},
+  {num:"590", familia:"Plano"},
+  {num:"592", familia:"Media caña"},
+  {num:"593", familia:"Media caña"},
+  {num:"597", familia:"Plano"},
+  {num:"601", familia:"Media caña"}
+];
+MODELOS.forEach(function(m){ m.folder=m.num; m.mc = m.familia.toLowerCase().indexOf("media caña")!==-1; m.perfil = perfilBasico(m.familia); });
+const MODELO_POR_NUM = {};
+MODELOS.forEach(function(m){ MODELO_POR_NUM[m.num]=m; });
+
+function folderDe(modeloNum){
+  var m = MODELO_POR_NUM[modeloNum];
+  return m ? m.folder : modeloNum;
+}
+function candidatos(c){
+  var f = folderDe(c.modelo);
+  var info = IMG[c.modelo];
+  var colBase = esPlata(c) ? 'B' : c.color;   /* plata: usar imagen del oro blanco */
+  var u = function(a,col,ac){ return IMG_BASE + f + '/' + a + '-' + c.modelo + col + '-' + ac + '.webp'; };
+  var lista = [ u(c.ancho, colBase, c.acabado) ];
+  if(info){
+    info.a.forEach(function(a){ lista.push(u(a, colBase, c.acabado)); });
+    info.x.forEach(function(x){ lista.push(u(c.ancho, colBase, x)); });
+    lista.push(u(info.d[0], info.d[1], info.d[2]));   /* combo por defecto: existe seguro */
+  } else {
+    lista.push(u("40", colBase, "B"));
+  }
+  return lista.filter(function(v,i){ return lista.indexOf(v)===i; });
+}
+function cargarImagen(imgEl, phEl, c){
+  var cands = candidatos(c);
+  var i = 0;
+  imgEl.classList.add("cargando");
+  function siguiente(){
+    if(i >= cands.length){
+      imgEl.removeAttribute("src");
+      imgEl.style.display="none";
+      phEl.style.display="flex";
+      return;
+    }
+    var url = cands[i++];
+    imgEl.onload = function(){ imgEl.style.display="block"; phEl.style.display="none"; requestAnimationFrame(function(){ imgEl.classList.remove("cargando"); }); };
+    imgEl.onerror = siguiente;
+    imgEl.src = url;
+  }
+  siguiente();
+}
+function cargarThumb(imgEl, modeloNum, phEl){
+  var f = folderDe(modeloNum);
+  var info = IMG[modeloNum];
+  var cands = [];
+  if(info){
+    cands.push(IMG_BASE + f + '/' + info.d[0] + '-' + modeloNum + info.d[1] + '-' + info.d[2] + '.webp');
+    cands.push(IMG_BASE + f + '/' + info.a[0] + '-' + modeloNum + info.c[0] + '-' + info.x[0] + '.webp');
+  } else {
+    cands.push(IMG_BASE + f + '/40-' + modeloNum + 'A-B.webp');
+  }
+  var i=0;
+  function sig(){
+    if(i>=cands.length){ imgEl.style.display="none"; if(phEl) phEl.style.display="flex"; return; }
+    imgEl.onload=function(){ imgEl.style.display="block"; if(phEl) phEl.style.display="none"; };
+    imgEl.onerror=sig;
+    imgEl.src=cands[i++];
+  }
+  sig();
+}
+
+/* ====== Texto ====== */
+function colorNombre(cod){ return cod.split("").map(function(ch){ return COLORES[ch]?COLORES[ch].n:ch; }).join(" / "); }
+function anchoTxt(cod){ var f=ANCHOS.find(function(a){ return a[0]===cod; }); return f?f[1]:cod; }
+function bocaNombre(b){ return BOCA_NOM[b]||b; }
+function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+function perfilBasico(familia){
+  var f=norm(familia);
+  if(f.indexOf("media cana")!==-1) return "Media caña";
+  if(f.indexOf("gota")!==-1) return "Gota";
+  return "Plano";
+}
+function sizeTxt(ct){ return String(ct).replace('.',',') + ' ct'; }
+function tallasEngaste(c){
+  var anchoMm = parseFloat(c.ancho)/10;
+  return ENGASTES_SIZES.filter(function(s){ return c.grosor>=s.grosorMin && anchoMm>=s.anchoMin; });
+}
+function descEngaste(c){
+  var p=[];
+  if(c.diamQty>0) p.push(c.diamQty + ' ' + (c.diamQty>1?'diamantes':'diamante') + ' (' + sizeTxt(c.diamSize) + ', boca ' + bocaNombre(c.diamBoca) + ')');
+  if(c.circQty>0) p.push(c.circQty + ' ' + (c.circQty>1?'circonitas':'circonita') + ' (' + sizeTxt(c.circSize) + ', boca ' + bocaNombre(c.circBoca) + ')');
+  var base = p.join(' + ');
+  var t = (c.engasteTxt||'').trim();
+  if(t) base = base ? base + ' — ' + t : t;
+  return base;
+}
+
+/* ====== Construcción de selectores ====== */
+function stripeHTML(cod){
+  return '<span class="tira">' + cod.split("").map(function(ch){ return '<i style="background:' + (COLORES[ch]?COLORES[ch].hex:"#ccc") + '"></i>'; }).join("") + '</span>';
+}
+function pintarSwatches(){
+  var cont = document.getElementById("swColor");
+  cont.innerHTML = "";
+  var c = activa();
+  if(esPlata(c)){ pintarOpcionesPlata(cont, c); return; }
+  var info = IMG[c.modelo];
+  var cols = info ? info.c : ["A"];
+  cols.forEach(function(cod){
+    var b=document.createElement("button");
+    b.className="sw"; b.type="button";
+    b.setAttribute("aria-pressed", String(c.color===cod));
+    b.setAttribute("aria-label","Color "+colorNombre(cod));
+    b.innerHTML = stripeHTML(cod) + '<span class="sw-name">'+colorNombre(cod)+'</span>';
+    b.addEventListener("click", function(){ setCampo("color", cod); });
+    cont.appendChild(b);
+  });
+}
+/* Opciones específicas de plata: tipo (Normal/Bicolor), rodio negro y, si es bicolor,
+   una casilla para describir cómo la quieren (hasta que haya imágenes de bicolor). */
+function pintarOpcionesPlata(cont, c){
+  var tipos=[['base','Plata (normal)'],['bi','Bicolor']];
+  var wrap=document.createElement('div'); wrap.className='chips';
+  tipos.forEach(function(t){
+    var b=document.createElement('button'); b.className='chip'; b.type='button';
+    b.textContent=t[1];
+    b.setAttribute('aria-pressed', String(c.plataTipo===t[0]));
+    b.addEventListener('click', function(){ setCampo('plataTipo', t[0]); });
+    wrap.appendChild(b);
+  });
+  cont.appendChild(wrap);
+
+  var rwrap=document.createElement('div'); rwrap.className='chips'; rwrap.style.marginTop='8px';
+  var rb=document.createElement('button'); rb.type='button';
+  rb.className='chip toggle'+(c.plataRodio?' on':'');
+  rb.textContent='Rodio negro';
+  rb.setAttribute('aria-pressed', String(!!c.plataRodio));
+  rb.addEventListener('click', function(){ setCampo('plataRodio', !c.plataRodio); });
+  rwrap.appendChild(rb);
+  cont.appendChild(rwrap);
+
+  if(c.plataTipo==='bi'){
+    var box=document.createElement('div'); box.className='plata-desc-box';
+    var lab=document.createElement('label'); lab.className='sub-nota'; lab.style.display='block'; lab.style.marginBottom='5px';
+    lab.textContent='Describe cómo quieres la bicolor:';
+    var ta=document.createElement('textarea'); ta.className='plata-desc'; ta.rows=2;
+    ta.placeholder='Ej.: centro en otro tono, laterales mate, línea central…';
+    ta.value=c.descBicolor||'';
+    ta.addEventListener('input', function(){ objetivos().forEach(function(o){ o.descBicolor=ta.value; }); });
+    box.appendChild(lab); box.appendChild(ta);
+    cont.appendChild(box);
+  }
+}
+function pintarChips(contId, items, campo, getLabel){
+  var cont=document.getElementById(contId);
+  cont.innerHTML="";
+  items.forEach(function(it){
+    var val = Array.isArray(it)? it[0] : it;
+    var lab = getLabel ? getLabel(it) : (Array.isArray(it)? it[1] : it);
+    var b=document.createElement("button");
+    b.className="chip"; b.type="button";
+    b.textContent=lab;
+    b.setAttribute("aria-pressed", String(activa()[campo]===val));
+    b.addEventListener("click", function(){ setCampo(campo, val); });
+    cont.appendChild(b);
+  });
+}
+/* ====== Bocetos del corte (perfil de la alianza) ======
+   Los mismos bocetos del modo guiado, como utilidad común para el
+   catálogo, el apartado de grosor y el interior. ALTO CONTINUO: cada
+   grosor seleccionable tiene su propio corte (de 12 px a 0,70 mm hasta
+   38 px a 1,80 mm), sin compartir boceto grosores distintos. */
+function bocetoPerfil(perfil, confort, alto){
+  var W=96, H=68, x1=16, x2=80, B=46, m=(x1+x2)/2;
+  var a=Number(alto)||1.0;
+  var h=12 + (Math.max(0.70, Math.min(1.80, a)) - 0.70) * (38-12) / (1.80-0.70);
+  var t=+(B-h).toFixed(1), d;
+  if(perfil==='Media caña'){
+    d='M'+x1+','+B+' C'+x1+','+(B-1.33*h).toFixed(1)+' '+x2+','+(B-1.33*h).toFixed(1)+' '+x2+','+B;
+  } else if(perfil==='Gota'){
+    var y0=(B-h*0.55).toFixed(1), yc=(B-1.15*h).toFixed(1);
+    d='M'+x1+','+B+' L'+x1+','+y0+' C'+x1+','+yc+' '+x2+','+yc+' '+x2+','+y0+' L'+x2+','+B;
+  } else {
+    d='M'+x1+','+B+' L'+x1+','+(t+3).toFixed(1)+' Q'+x1+','+t+' '+(x1+3)+','+t
+     +' L'+(x2-3)+','+t+' Q'+x2+','+t+' '+x2+','+(t+3).toFixed(1)+' L'+x2+','+B;
+  }
+  d += confort ? ' Q'+m+','+(B+5.5)+' '+x1+','+B+' Z' : ' Z';
+  return '<svg viewBox="0 0 '+W+' '+H+'" fill="none" aria-hidden="true">'
+    + '<path d="'+d+'" stroke="#123781" stroke-width="1.6" fill="#FAF6EC" stroke-linejoin="round"/>'
+    + '<line x1="8" y1="'+(B+13)+'" x2="'+(W-8)+'" y2="'+(B+13)+'" stroke="#C4A15A" stroke-width="1" opacity=".55"/>'
+    + '</svg>';
+}
+function perfilDe(c){ var m=MODELO_POR_NUM[c.modelo]; return (m && m.perfil) || 'Media caña'; }
+
+function pintarGrosores(){
+  var cont=document.getElementById("chGrosor");
+  cont.innerHTML="";
+  var c=activa();
+  grosoresDisponibles(c).forEach(function(g){
+    var b=document.createElement("button");
+    b.className="chip chip-boceto"; b.type="button";
+    b.innerHTML='<span class="chip-svg">'+bocetoPerfil(perfilDe(c), c.confort, g)+'</span><span>'+fmtMm(g)+' mm</span>';
+    b.setAttribute("aria-pressed", String(!c.grosorOtro && c.grosor===g));
+    b.addEventListener("click", function(){ setGrosorChip(g); });
+    cont.appendChild(b);
+  });
+  /* chip "Otro…" para alto manual (no en plata) */
+  if(!esPlata(c)){
+    var bo=document.createElement("button");
+    bo.className="chip"; bo.type="button";
+    bo.textContent="Otro…";
+    bo.setAttribute("aria-pressed", String(!!c.grosorOtro));
+    bo.addEventListener("click", activarGrosorOtro);
+    cont.appendChild(bo);
+  }
+  /* casilla manual, solo visible con "Otro…" activo */
+  var caja=document.getElementById("grosorOtroBox");
+  var inp=document.getElementById("grosorOtroInput");
+  if(c.grosorOtro){
+    caja.hidden=false;
+    if(document.activeElement!==inp) inp.value=Number(c.grosor).toFixed(2);
+  } else {
+    caja.hidden=true;
+  }
+}
+/* Alto manual: redondea al múltiplo de 0,05 más cercano y limita a 1,10–2,00 mm (igual que la calculadora) */
+function validarGrosorManual(v){
+  if(isNaN(v)) return null;
+  v=Math.round(v/0.05)*0.05;
+  v=Math.max(1.10, Math.min(2.00, v));
+  return parseFloat(v.toFixed(2));
+}
+function setGrosorChip(g){
+  objetivos().forEach(function(c){ c.grosor=g; c.grosorOtro=false; if(c.grosor<CONFORT_MIN) c.confort=false; });
+  refrescar();
+}
+function activarGrosorOtro(){
+  objetivos().forEach(function(c){
+    c.grosorOtro=true;
+    var v=validarGrosorManual(c.grosor); if(v!=null) c.grosor=v;
+    if(c.grosor<CONFORT_MIN) c.confort=false;
+  });
+  refrescar();
+  var inp=document.getElementById("grosorOtroInput");
+  if(inp) inp.focus();
+}
+function onGrosorOtro(){
+  var inp=document.getElementById("grosorOtroInput");
+  var v=validarGrosorManual(parseFloat(String(inp.value).replace(',','.')));
+  if(v==null) return;
+  objetivos().forEach(function(c){ c.grosor=v; c.grosorOtro=true; if(c.grosor<CONFORT_MIN) c.confort=false; });
+  refrescar();
+}
+function pintarInterior(){
+  var c=activa();
+  var box=document.getElementById("interiorBox");
+  var ok = c.grosor>=CONFORT_MIN;
+  var pf=perfilDe(c);
+  var html =
+    '<div class="chips">'
+    + '<button class="chip toggle chip-boceto'+(!c.confort?' on':'')+'" type="button" data-int="plano" aria-pressed="'+(!c.confort)+'">'
+    +   '<span class="chip-svg">'+bocetoPerfil(pf, false, c.grosor)+'</span><span>Interior plano</span></button>'
+    + '<button class="chip toggle chip-boceto'+(c.confort?' on':'')+(ok?'':' bloq')+'" type="button" data-int="confort" aria-pressed="'+(c.confort)+'"'+(ok?'':' disabled')+'>'
+    +   '<span class="chip-svg">'+bocetoPerfil(pf, true, c.grosor)+'</span><span>Interior confort</span></button>'
+    + '</div>'
+    + (ok
+        ? '<div class="sub-nota">El plano es el estándar; el confort da un tacto interior redondeado más cómodo.</div>'
+        : '<div class="sub-nota">El interior confort necesita un alto mínimo de '+(esPlata(c)?'1,5 mm':'1,15 mm')+'.</div>');
+  box.innerHTML = html;
+  box.querySelectorAll("[data-int]").forEach(function(b){
+    b.addEventListener("click", function(){
+      if(b.dataset.int==="confort" && !ok) return;
+      setCampo("confort", b.dataset.int==="confort");
+    });
+  });
+}
+function pintarEngastes(){
+  var c=activa();
+  document.getElementById("diamVal").textContent=c.diamQty;
+  document.getElementById("circVal").textContent=c.circQty;
+  pintarEngExtra("diam", c);
+  pintarEngExtra("circ", c);
+  var et=document.getElementById("engTxt");
+  if(et.value!==c.engasteTxt) et.value=c.engasteTxt;
+}
+function pintarEngExtra(tipo, c){
+  var cont=document.getElementById(tipo+"Extra");
+  var qty = tipo==='diam' ? c.diamQty : c.circQty;
+  if(qty<=0){ cont.innerHTML=""; return; }
+  var boca = tipo==='diam' ? c.diamBoca : c.circBoca;
+  var size = tipo==='diam' ? c.diamSize : c.circSize;
+  var sizes = tallasEngaste(c);
+  var opts = sizes.map(function(s){ return '<option value="'+s.ct+'"'+(s.ct===size?' selected':'')+'>'+s.disp+'</option>'; }).join("");
+  cont.innerHTML =
+    '<div class="boca-mini">'
+    + '<button type="button" data-boca="R" aria-pressed="'+(boca==='R')+'">R</button>'
+    + '<button type="button" data-boca="C" aria-pressed="'+(boca==='C')+'">C</button>'
+    + '</div>'
+    + '<select class="sel sel-mini" aria-label="Tamaño de piedra">'+opts+'</select>';
+  cont.querySelectorAll(".boca-mini button").forEach(function(b){ b.addEventListener("click", function(){ setBoca(tipo, b.dataset.boca); }); });
+  var sel=cont.querySelector("select");
+  if(sel) sel.addEventListener("change", function(e){ setSize(tipo, e.target.value); });
+}
+function setSize(tipo, ct){
+  var k = tipo==='diam' ? 'diamSize' : 'circSize';
+  objetivos().forEach(function(c){ c[k]=ct; });
+  refrescar();
+}
+function pintarGrabado(){
+  var c=activa();
+  var sel=document.getElementById("selGrabado");
+  var tipo=grabTipo(c);
+  var esP=esPlata(c);
+  for(var i=0;i<sel.options.length;i++){
+    var o=sel.options[i];
+    if(o.value==='relieve'){ o.disabled=esP; o.textContent='Altorrelieve'+(esP?' (solo oro)':''); }
+  }
+  if(esP && tipo==='relieve'){ setGrabadoTipo('tradicional'); return; }
+  if(sel.value!==tipo) sel.value=tipo;
+  var tx=document.getElementById("grabTxt");
+  tx.hidden = !tipo;
+  if(tx.value!==c.grabadoTxt) tx.value=c.grabadoTxt;
+}
+function pintarSelect(id, items, campo){
+  var s=document.getElementById(id);
+  s.innerHTML="";
+  items.forEach(function(it){
+    var o=document.createElement("option");
+    o.value=it; o.textContent=it;
+    if(activa()[campo]===it) o.selected=true;
+    s.appendChild(o);
+  });
+  s.onchange=function(){ setCampo(campo, s.value); };
+}
+function tallasLista(){ var t=[]; for(var i=6;i<=36;i++) t.push(String(i).padStart(2,"0")); return t; }
+
+/* ====== Aplicar cambios ====== */
+function setCampo(campo, val){
+  objetivos().forEach(function(c){ c[campo]=val; normalizar(c); });
+  refrescar();
+}
+function setModelo(num){
+  objetivos().forEach(function(c){ c.modelo=num; normalizar(c); });
+  irModo("cfg");
+  refrescar();
+}
+function setEngQty(tipo, delta){
+  var k = tipo==='diam' ? 'diamQty' : 'circQty';
+  objetivos().forEach(function(c){ c[k] = Math.max(0, Math.min(30, (c[k]||0)+delta)); });
+  refrescar();
+}
+function setBoca(tipo, val){
+  var k = tipo==='diam' ? 'diamBoca' : 'circBoca';
+  objetivos().forEach(function(c){ c[k]=val; });
+  refrescar();
+}
+function setEngTxt(val){ objetivos().forEach(function(c){ c.engasteTxt=val; }); pintarResumen(); }
+function setGrabadoTxt(val){ objetivos().forEach(function(c){ c.grabadoTxt=val; }); pintarResumen(); }
+
+/* ====== Resumen "Tu alianza" ====== */
+function resumenCard(c, etiqueta, extraDerecha){
+  var m=MODELO_POR_NUM[c.modelo];
+  var nom=m?("Modelo "+m.num):("Modelo "+c.modelo);
+  var fam=m?m.familia:"";
+  var filas=[];
+  filas.push(['Talla / Nº', c.talla]);
+  if(esPlata(c)){
+    filas.push(['Metal', 'Plata']);
+    filas.push(['Tipo y acabado', 'Plata ' + (c.plataTipo==='bi'?'bicolor':'normal') + ' · ' + ACABADOS[c.acabado]]);
+  } else {
+    filas.push(['Metal', c.metal + (c.metal==="18K"?" oro":"") ]);
+    filas.push(['Color y acabado', colorNombre(c.color) + ' · ' + ACABADOS[c.acabado]]);
+  }
+  filas.push(['Ancho', anchoTxt(c.ancho) + ' mm']);
+  filas.push(['Alto', fmtMm(c.grosor) + ' mm']);
+  if(c.confort && c.grosor>=CONFORT_MIN) filas.push(['Interior', 'Confort']);
+  if(esPlata(c) && c.plataRodio) filas.push(['Acabado especial', 'Rodio negro']);
+  if(esPlata(c) && c.plataTipo==='bi' && (c.descBicolor||'').trim()) filas.push(['Bicolor', '"'+(c.descBicolor||'').trim()+'"']);
+  var eng=descEngaste(c);
+  if(eng) filas.push(['Engaste', eng]);
+  if(grabTipo(c)){
+    var gt=(c.grabadoTxt||'').trim();
+    var gn=GRABADOS[grabTipo(c)] ? GRABADOS[grabTipo(c)].n : 'Grabado';
+    filas.push(['Grabado', gn + (gt ? ' · "'+gt+'"' : ' (texto a indicar)')]);
+  }
+  var ref=refCompleta(c);
+  var filasHTML = filas.map(function(f){ return '<dt>'+f[0]+'</dt><dd>'+esc(f[1])+'</dd>'; }).join("");
+  return ''
+    + '<div class="res-card"><div class="res-in">'
+    +   '<div class="res-head">'
+    +     '<div class="res-modelo">'+esc(nom)+'<small>'+esc(fam)+'</small></div>'
+    +     (etiqueta?'<div class="res-eti">'+esc(etiqueta)+(extraDerecha?' · '+esc(extraDerecha):'')+'</div>':'')
+    +   '</div>'
+    +   '<dl class="res-grid">'+filasHTML+'</dl>'
+    +   '<div class="res-foot">'
+    +     '<div class="res-code"><div class="rotulo">Referencia completa</div><div class="valor">'+esc(ref)+'</div></div>'
+    +     '<button class="res-copiar" type="button" data-copiar="'+esc(ref)+'">'
+    +       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>'
+    +       '<span class="cp-txt">Copiar referencia</span>'
+    +     '</button>'
+    +   '</div>'
+    +   bloquePrecioCard(c)
+    + '</div></div>';
+}
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function grupoTotal(){ return estado.grupo.reduce(function(s,it){ return s+(it.cant||1); },0); }
+function addAlGrupo(){
+  estado.grupo.push({ cfg: JSON.parse(JSON.stringify(estado.a1)), cant: Math.max(1, estado.cantidad||1) });
+  estado.cantidad=1;
+  refrescar();
+}
+function delDelGrupo(idx){ estado.grupo.splice(idx,1); refrescar(); }
+function editarDelGrupo(idx){
+  var it=estado.grupo[idx];
+  if(!it) return;
+  estado.a1 = JSON.parse(JSON.stringify(it.cfg));
+  estado.cantidad = it.cant || 1;
+  estado.grupo.splice(idx,1);
+  normalizar(estado.a1);
+  refrescar();
+}
+
+function bocetoPerfil(perfil, confort, alto){
+  var W=96, H=68, x1=16, x2=80, B=46, m=(x1+x2)/2;
+  var a=Number(alto)||1.0;
+  var h=12 + (Math.max(0.70, Math.min(1.80, a)) - 0.70) * (38-12) / (1.80-0.70);
+  var t=+(B-h).toFixed(1), d;
+  if(perfil==='Media caña'){
+    d='M'+x1+','+B+' C'+x1+','+(B-1.33*h).toFixed(1)+' '+x2+','+(B-1.33*h).toFixed(1)+' '+x2+','+B;
+  } else if(perfil==='Gota'){
+    var y0=(B-h*0.55).toFixed(1), yc=(B-1.15*h).toFixed(1);
+    d='M'+x1+','+B+' L'+x1+','+y0+' C'+x1+','+yc+' '+x2+','+yc+' '+x2+','+y0+' L'+x2+','+B;
+  } else {
+    d='M'+x1+','+B+' L'+x1+','+(t+3).toFixed(1)+' Q'+x1+','+t+' '+(x1+3)+','+t
+     +' L'+(x2-3)+','+t+' Q'+x2+','+t+' '+x2+','+(t+3).toFixed(1)+' L'+x2+','+B;
+  }
+  d += confort ? ' Q'+m+','+(B+5.5)+' '+x1+','+B+' Z' : ' Z';
+  return '<svg viewBox="0 0 '+W+' '+H+'" fill="none" aria-hidden="true">'
+    + '<path d="'+d+'" stroke="#123781" stroke-width="1.6" fill="#FAF6EC" stroke-linejoin="round"/>'
+    + '<line x1="8" y1="'+(B+13)+'" x2="'+(W-8)+'" y2="'+(B+13)+'" stroke="#C4A15A" stroke-width="1" opacity=".55"/>'
+    + '</svg>';
+}
+/* ══ Catálogo público ══
+   La sesión solo decide qué pasa AL TOCAR un modelo: si Firebase no
+   cargara (red lenta o cortada), el catálogo se pinta igual y el click
+   ofrece crear la cuenta, como a un visitante sin sesión. */
+var usuarioOk = false;   /* sesión con correo verificado */
+try{
+  var firebaseConfig = {
+    apiKey: "AIzaSyDakUsgbwpp-ZCBKy9J8YmUvgo5rQFSWa4",
+    authDomain: "syccoro-web.firebaseapp.com",
+    projectId: "syccoro-web",
+    storageBucket: "syccoro-web.firebasestorage.app",
+    messagingSenderId: "548259273508",
+    appId: "1:548259273508:web:3076eee1fe220a73dc31b1"
+  };
+  firebase.initializeApp(firebaseConfig);
+  firebase.auth().onAuthStateChanged(function(u){
+    usuarioOk = !!(u && u.emailVerified);
+    var e=document.getElementById('lnkEntrar');
+    if(e && usuarioOk){ e.textContent='Mi configurador'; e.href='configurador-particular.html'; }
+  });
+}catch(e){ /* sin SDK: catálogo operativo en modo visitante */ }
+
+function escC(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function combosModelo(num){
+  var f=IMG[num]; if(!f) return [];
+  var out=[];
+  for(var i=0;i<f.c.length;i++) out.push({ a:f.a[(i*3)%f.a.length], c:f.c[i], x:f.x[i%f.x.length] });
+  return out;
+}
+function anchoT(a){ return String((parseInt(a,10)/10).toFixed(1)).replace('.',','); }
+function colorT(cod){ return String(cod).split('').map(function(ch){ return COLORES[ch]?COLORES[ch].n:ch; }).join(' / '); }
+function capCombo(cb){ return anchoT(cb.a)+' mm · '+colorT(cb.c)+' · '+(ACABADOS[cb.x]||cb.x); }
+
+var filtro='';
+function cardModelo(m){
+  var card=document.createElement('button');
+  card.className='card'; card.type='button'; card.setAttribute('data-num', m.num);
+  card.innerHTML='<div class="thumb"><img decoding="async" alt="Modelo '+escC(m.num)+'">'
+    +'<div class="ph"><b>Imagen pendiente</b></div></div>'
+    +'<div class="meta"><span><b>Modelo '+escC(m.num)+'</b><span>'+escC(m.familia)+'</span></span>'
+    +'<span class="mboceto" aria-hidden="true">'+bocetoPerfil(m.perfil,false,1.0)+'</span></div>'
+    +'<div class="combi"></div>';
+  var img=card.querySelector('img'), ph=card.querySelector('.ph'), combiEl=card.querySelector('.combi');
+  var d=(IMG[m.num]||{}).d||['40','A','B'];
+  function porDefecto(){
+    cargarImagen(img, ph, { modelo:m.num, ancho:d[0], color:d[1], acabado:d[2], metal:'18K' });
+    combiEl.textContent='';
+  }
+  porDefecto();
+  /* al pasar el cursor van rotando combinaciones */
+  var timer=null, ci=0, combos=combosModelo(m.num);
+  card.addEventListener('mouseenter', function(){
+    if(!combos.length || timer) return;
+    function paso(){
+      var cb=combos[ci++ % combos.length];
+      cargarImagen(img, ph, { modelo:m.num, ancho:cb.a, color:cb.c, acabado:cb.x, metal:'18K' });
+      combiEl.textContent=capCombo(cb);
+    }
+    paso();
+    timer=setInterval(paso, 1100);
+  });
+  card.addEventListener('mouseleave', function(){
+    if(timer){ clearInterval(timer); timer=null; }
+    porDefecto();
+  });
+  card.addEventListener('click', function(){ elegirModelo(m.num); });
+  return card;
+}
+function elegirModelo(num){
+  if(usuarioOk){ location.href='configurador-particular.html#modelo='+num; return; }
+  var bg=document.getElementById('avisoBg');
+  document.getElementById('avisoEntrar').href='login.html?de=configurador';
+  bg.classList.add('open');
+}
+document.getElementById('avisoSeguir').addEventListener('click', function(){
+  document.getElementById('avisoBg').classList.remove('open');
+});
+document.getElementById('avisoBg').addEventListener('click', function(e){
+  if(e.target===this) this.classList.remove('open');
+});
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') document.getElementById('avisoBg').classList.remove('open'); });
+
+function pintar(){
+  var q=norm((document.getElementById('q').value||'').trim());
+  var toks=q.split(/\s+/).filter(Boolean);
+  var lista=MODELOS.filter(function(m){
+    if(filtro && m.perfil!==filtro) return false;
+    if(toks.length){
+      var hay=norm(m.num+' '+m.familia+' '+m.perfil);
+      if(!toks.every(function(t){ return hay.indexOf(t)!==-1; })) return false;
+    }
+    return true;
+  });
+  var g=document.getElementById('grid');
+  g.innerHTML='';
+  if(!lista.length){ g.innerHTML='<div class="nada">No hay modelos que coincidan.</div>'; return; }
+  lista.forEach(function(m){ g.appendChild(cardModelo(m)); });
+}
+document.getElementById('q').addEventListener('input', pintar);
+document.querySelectorAll('#filtros button').forEach(function(b){
+  if(b.dataset.pf) b.insertAdjacentHTML('afterbegin','<span class="catf-svg" aria-hidden="true">'+bocetoPerfil(b.dataset.pf,false,1.0)+'</span>');
+  b.addEventListener('click', function(){
+    filtro=b.dataset.pf;
+    document.querySelectorAll('#filtros button').forEach(function(x){ x.setAttribute('aria-pressed', String(x===b)); });
+    pintar();
+  });
+});
+pintar();
+</script>
+</body>
+</html>
