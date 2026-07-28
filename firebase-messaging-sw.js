@@ -1,4 +1,3 @@
-```javascript
 /* ============================================================
    SYCCORO · firebase-messaging-sw.js · v1.0 (27/07/2026)
 
@@ -50,7 +49,6 @@ self.addEventListener('notificationclick', function(evento){
         if (c.url.indexOf('/syccoro-web/') !== -1 && 'focus' in c) return c.focus();
       }
       if (clients.openWindow) return clients.openWindow(destino);
-    })
+})
   );
 });
-```
