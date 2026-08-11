@@ -1,0 +1,13 @@
+# Syccoro Alianzas · syccoro-web
+User-agent: *
+Allow: /
+# Zonas privadas o con sesión: fuera del índice
+Disallow: /syccoro-web/admin.html
+Disallow: /syccoro-web/login.html
+Disallow: /syccoro-web/registro-profesional.html
+Disallow: /syccoro-web/area-profesional.html
+Disallow: /syccoro-web/mis-pedidos.html
+Disallow: /syccoro-web/express.html
+Disallow: /syccoro-web/configurador-pro.html
+
+Sitemap: https://syccorojoyeros.github.io/syccoro-web/sitemap.xml
