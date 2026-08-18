@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syccoro · Alianzas de boda personalizadas, fabricadas en España</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Syccoro Alianzas">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Syccoro · Alianzas de boda personalizadas, fabricadas en España">
+<meta property="og:description" content="Diseñad vuestras alianzas a medida: oro de 18K y 9K y plata de ley, grabados y diamantes, fabricadas íntegramente en nuestro taller.">
+<meta property="og:image" content="https://syccorojoyeros.github.io/syccoro-img/fotos/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://syccorojoyeros.github.io/syccoro-web/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Syccoro Alianzas",
+  "url": "https://syccorojoyeros.github.io/syccoro-web/",
+  "logo": "https://syccorojoyeros.github.io/syccoro-img/iconos/icono-syccoro-512.png",
+  "image": "https://syccorojoyeros.github.io/syccoro-img/fotos/og-image.jpg",
+  "description": "Fabricante español de alianzas de boda personalizadas bajo pedido, en oro de 18 y 9 quilates y plata de ley. Trabaja con joyerías y profesionales del sector.",
+  "email": "alianzas@syccoro.es",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ES"
+  }
+}
+</script>
+<meta name="description" content="Syccoro diseña y fabrica alianzas de boda personalizadas bajo pedido, en oro de 18 y 9 quilates y plata de ley. Configurador de alianzas y servicio Express para joyerías y profesionales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SYCCORO WEB · index.html · v0.4.4 — el carrusel de Contacto crece a SIETE
+   momentos intercalando contexto boda y vida diaria (ceremonia →
+   desayuno → velas → otoño → ramo → brindis → vacaciones), a
+   petición de Jorge. Misma mecánica: fundido cada 7 s, respeta
+   prefers-reduced-motion y las fotos caídas salen solas de la rueda.
+   v0.4.3 — las fotos de Contacto y del cierre dejan de ir
+   incrustadas y pasan al CDN (el archivo adelgaza ~74 KB). El cierre
+   estrena la pizarra azul noche y Contacto se convierte en un CARRUSEL
+   sereno de cuatro momentos con las alianzas puestas (fundido cada 7 s,
+   se queda quieto si el sistema pide menos movimiento y con la caída de
+   siempre: webp → fotos → ocultarse sin dejar hueco). Logotipo del pie
+   ampliado (32 → 40 px) y el fondo del cierre algo más presente
+   (opacidad .35 → .55, motivo bajado) para que la pizarra se aprecie. v0.4.2 — reequilibrio de la sección de
+   contacto (11/08). La columna derecha encadenaba foto + texto +
+   formulario y dejaba la izquierda hueca al hacer scroll. Ahora: la foto
+   pasa a la columna de datos, esa columna se queda ACOMPAÑANDO (sticky)
+   mientras se rellena el formulario en escritorio, y fuera los
+   duplicados — el correo aparecía dos veces (queda solo en los datos; el
+   aviso de error del formulario lo sigue mencionando, que ahí sí hace
+   falta) y la mención a profesionales tres (queda la de los datos, que
+   habla del canal del área profesional, y la etiqueta del selector).
+   v0.4.1 — dos remates del pie (11/08).
+   ARREGLO del logo del pie: salía estirado porque el width="780" que
+   añadimos para el CLS se aplicaba al no fijar la regla CSS su anchura
+   (la cabecera tiene width:auto y por eso se veía bien); ahora la regla
+   del pie también lleva width:auto. Y SELLO nuevo «Fabricado en España»:
+   cuño circular con canto moneteado, leyenda FABRICADO EN ESPAÑA · ORO Y
+   PLATA DE LEY, la estrella de siempre y una cinta rojigualda discreta.
+   v0.4.0 — FORMULARIO DE CONTACTO (11/08).
+   Sustituye al botón mailto (fallaba en sobremesa sin gestor de correo):
+   nombre, correo, joyería/particular y mensaje. Escribe en la colección
+   `mail` de Firestore (la del Trigger Email) con `replyTo` del visitante,
+   así el correo llega a alianzas@ y se contesta con Responder; y como la
+   función de avisos escucha esa colección, cada consulta suena en el móvil.
+   REQUIERE publicar antes el bloque nuevo de reglas (va aparte, en el md
+   de instrucciones): solo permite crear correos dirigidos a alianzas@,
+   con campos y tamaños acotados — nada de reenvíos a terceros. Honeypot
+   contra robots, botón con estados y, si Firestore no responde, caída
+   elegante al correo de siempre. v0.3.9 — flechita en las pastillas de la
+   Biblioteca: siempre visible en dorado suave (en el móvil no hay hover que
+   valga) y al pasar el cursor se aviva y se desliza; la transición del borde
+   dorado ya existía (transition:all .2s de la base). v0.3.8 — tanda del 11/08: el logotipo sale del
+   HTML (iconos/logo-syccoro.png del CDN, con ocultación si no carga) y el
+   archivo adelgaza ~100 KB; flechas manuales en el carrusel (‹ › por fila,
+   avanzan o retroceden la combinación y el giro automático vuelve a contar
+   7 s desde el toque; con prefers-reduced-motion solo hay manual); el
+   Espacio Profesional pasa a la izquierda en escritorio (en móvil las
+   parejas siguen primero); y el «¿Por qué bajo pedido?» baja de 760 a
+   680 px de ancho de lectura. v0.3.7 — afinado del doble público (auditoría
+   del 10/08): micro-enlace B2B bajo los botones del hero («¿Eres joyería o
+   profesional?» → #acceso), botón fantasma con fondo translúcido para que no
+   se pierda sobre la foto, las cuatro claves de «Nosotros» como tarjetas
+   sueltas con sombra, el compromiso limitado a 720 px de lectura en
+   escritorio, tarjeta del Espacio Profesional con filo dorado, datos
+   estructurados JSON-LD (Organization) en el head, «tocad o haced clic» en
+   el carrusel, y en la guía de tallas: conversor mejor recortado sobre el
+   fondo azul y casilla del Tatum de madera en pastilla con checkbox de
+   18 px. v0.3.6 — la portada aterriza el modelo en cadena
+   (Syccoro fabrica → la joyería asesora y entrega → la pareja disfruta): hero con
+   propuesta clara y CTA directa al configurador (los cuatro «Diseñad vuestra
+   alianza» llevan la clase cta-config y el rol profesional los cambia a su
+   configurador), viñetas de confianza en las tarjetas de servicio (contraste
+   oficial 750·375·925, talla medida en la joyería, envío asegurado hasta la
+   joyería), refuerzo del asesoramiento en persona (anillero, forma del dedo y
+   del nudillo, justa/holgada/confort) en «Nosotros» y en la guía de tallas,
+   enlace a la guía de tallas desde la tarjeta «A medida», y remates Android:
+   tarjetas con padding 24/20 bajo 600 px, botones del conversor a 48 px y
+   sombra «hay más» en la comparativa deslizable. v0.3.5 — fotos al juego limpio del CDN: `webp/NOMBRE.webp` con caída al original de `fotos/`. Importante: al desaparecer los `fotos/*_resultado.webp`, la portada estaba sirviendo el PNG original de portada-taller, de 10,4 MB; el WebP pesa 581 KB. v0.3.4 — la portada ya arranca ARRIBA DEL TODO: el logotipo de la cabecera apuntaba a #inicio (el hero), así que al pulsarlo —o al recargar con ese ancla en la URL— el navegador bajaba justo la altura de la cabecera fija y ésta tapaba el arranque del círculo. Ahora la cabecera reserva su altura al saltar a cualquier ancla (scroll-padding-top), el logotipo lleva al principio real de la página y, al cargar, un pequeño ajuste devuelve la portada a su sitio. Media caña v3 (canto recto lateral que crece con el alto, cúpula redonda sin parábola). Plazos de entrega reales: 1-2 semanas sin engaste y 2-3 con engastes, recomendando un mes de margen. v0.3.3 — fotos del CDN con sus nombres reales tras el renombrado de Jorge (NOMBRE_resultado.webp con caída al NOMBRE.png original) y og:image al nuevo fotos/og-image.jpg (1200×630 optimizado). v0.3.2 — fotografías del taller en «Nosotros» y en el proceso, y og-image real al compartir. v0.3.1 — bocetos de perfil v2. v0.3 — carrusel de modelos por perfil (combinaciones y modelos rotando, zoom con un click) y enlace al catálogo público. v0.2: Open Graph. (prototipo)
+   Tokens de marca: azul #123781 · Playfair Display · Source Sans 3
+   ============================================================ */
+:root{
+  --az:#123781;
+  --az-noche:#0B2255;
+  --marfil:#F7F5F0;
+  --oro:#C4A15A;
+  --oro-claro:#E5D3A8;
+  --tinta:#212B3D;
+  --gris:#6B7280;
+  --linea:#E3DFD6;
+  --blanco:#FFFFFF;
+  --sombra:0 18px 50px rgba(11,34,85,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}   /* la cabecera es fija: al saltar a un ancla se le reserva su altura */
+@media(max-width:900px){html{scroll-padding-top:86px}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  font-family:'Source Sans 3',sans-serif;
+  color:var(--tinta);
+  background:var(--marfil);
+  line-height:1.6;
+  font-weight:400;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:500;line-height:1.15;color:var(--az-noche)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--oro);font-weight:600;margin-bottom:14px;
+}
+.eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--oro);vertical-align:middle;margin-right:10px}
+section{padding:96px 0}
+.sec-title{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:18px}
+.sec-lead{max-width:640px;color:var(--gris);font-size:1.05rem}
+
+/* ---------- Header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,245,240,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--linea);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:78px;padding:6px 0}
+.nav-logo img{height:54px;width:auto;display:block}
+.nav-links{display:flex;gap:30px;align-items:center;font-size:.92rem;font-weight:500}
+.nav-links a{position:relative;padding:4px 0;color:var(--tinta)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--oro);transition:width .25s}
+.nav-links a:hover::after,.nav-links a:focus-visible::after{width:100%}
+.nav-cta{
+  background:var(--az);color:#fff!important;padding:9px 20px;border-radius:3px;
+  font-weight:600;letter-spacing:.02em;transition:background .2s;
+}
+.nav-cta:hover{background:var(--az-noche)}
+.nav-cta::after{display:none}
+.lang{position:relative}
+.lang select{
+  appearance:none;background:transparent;border:1px solid var(--linea);border-radius:3px;
+  padding:6px 26px 6px 10px;font-family:inherit;font-size:.82rem;color:var(--tinta);cursor:pointer;
+}
+.lang::after{content:"▾";position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:.7rem;color:var(--gris);pointer-events:none}
+.burger{display:none;background:none;border:none;font-size:1.5rem;color:var(--az);cursor:pointer}
+@media(max-width:900px){
+  .nav-links{
+    display:none;position:absolute;top:72px;left:0;right:0;
+    background:var(--marfil);border-bottom:1px solid var(--linea);
+    flex-direction:column;padding:20px;gap:16px;
+  }
+  .nav-links.open{display:flex}
+  .burger{display:block}
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  background:linear-gradient(160deg,var(--az-noche) 0%,var(--az) 78%);
+  color:#fff;padding:0;overflow:hidden;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:48px;
+  align-items:center;min-height:560px;padding:70px 0;
+}
+.hero h1{
+  color:#fff;font-size:clamp(2.2rem,4.6vw,3.6rem);
+  margin:0 0 22px;font-weight:500;
+}
+.hero h1 em{font-style:italic;color:var(--oro-claro)}
+.hero p{color:#C7D2E8;font-size:1.08rem;max-width:480px;margin-bottom:34px}
+.hero .eyebrow{color:var(--oro-claro)}
+.hero .eyebrow::before{background:var(--oro-claro)}
+.hero-frase{
+  font-family:'Playfair Display',serif;font-style:italic;color:var(--oro-claro)!important;
+  font-size:1.02rem!important;min-height:1.6em;margin-bottom:28px!important;
+  opacity:1;transition:opacity .7s ease;
+}
+.hero-frase.fade{opacity:0}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:13px 28px;border-radius:3px;font-weight:600;
+  font-size:.95rem;letter-spacing:.02em;transition:all .2s;cursor:pointer;border:none;font-family:inherit;
+}
+.btn-oro{background:var(--oro);color:var(--az-noche)}
+.btn-oro:hover{background:var(--oro-claro)}
+.btn-ghost{border:1px solid rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.12)}
+.btn-ghost:hover{border-color:var(--oro-claro);color:var(--oro-claro)}
+.hero-b2b{margin-top:18px;font-size:.88rem;color:#C7D2E8}
+.hero-b2b a{color:var(--oro-claro);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(229,211,168,.45)}
+.hero-b2b a:hover{border-bottom-color:var(--oro-claro)}
+.btn-az{background:var(--az);color:#fff}
+.btn-az:hover{background:var(--az-noche)}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-ring{
+  width:min(420px,90%);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%,#FFFFFF 0%,#F3EFE6 62%,#E9E3D5 100%);
+  border:1px solid rgba(229,211,168,.55);
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+  position:relative;overflow:hidden;
+}
+.hero-ring::before{
+  content:"";position:absolute;inset:22px;border-radius:50%;
+  border:1px solid rgba(196,161,90,.25);z-index:2;pointer-events:none;
+}
+.hero-ring img{
+  position:absolute;inset:12%;width:76%;height:76%;object-fit:contain;
+  mix-blend-mode:multiply;opacity:0;transition:opacity .9s ease;
+}
+.hero-ring img.on{opacity:1}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;min-height:auto;padding:56px 0;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}
+  .hero-actions{justify-content:center}
+  .hero .eyebrow::before{display:none}
+  .hero-visual{order:-1}
+  .hero-ring{width:min(300px,80%)}
+}
+
+/* ---------- Nosotros ---------- */
+.nosotros-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:40px}
+.nosotros-txt p{margin-bottom:16px;color:var(--tinta)}
+.nosotros-claves{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.clave{padding:26px 24px;background:#fff;border:1px solid var(--linea);border-radius:3px;box-shadow:0 12px 32px rgba(11,34,85,.06)}
+.clave h3{font-size:1.05rem;margin-bottom:6px}
+.clave p{font-size:.9rem;color:var(--gris)}
+@media(max-width:900px){.nosotros-grid{grid-template-columns:1fr}}
+
+/* ---------- Servicios ---------- */
+.servicios{background:#fff;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.serv-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.serv-card{
+  border:1px solid var(--linea);background:var(--marfil);
+  padding:44px 40px;position:relative;transition:box-shadow .25s,transform .25s;
+}
+.serv-card:hover{box-shadow:var(--sombra);transform:translateY(-3px)}
+.serv-card .tag{
+  position:absolute;top:0;right:0;background:var(--az);color:#fff;
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:6px 14px;font-weight:600;
+}
+.serv-card h3{font-size:1.5rem;margin-bottom:14px}
+.serv-card p{color:var(--gris);margin-bottom:18px;font-size:.97rem}
+.serv-plazo{
+  display:flex;align-items:baseline;gap:10px;border-top:1px solid var(--linea);
+  padding-top:18px;margin-top:auto;
+}
+.serv-plazo .num{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--az);white-space:nowrap}
+.serv-plazo .lbl{font-size:.8rem;color:var(--gris);text-transform:uppercase;letter-spacing:.1em}
+.serv-card .btn{margin-top:22px}
+.serv-fiables{list-style:none;margin:18px 0 0;padding:14px 0 0;border-top:1px solid var(--linea);display:flex;flex-direction:column;gap:8px}
+.serv-fiables li{font-size:.86rem;color:var(--gris);padding-left:22px;position:relative}
+.serv-fiables li::before{content:'✓';position:absolute;left:0;top:0;color:var(--oro);font-weight:700}
+.serv-fiables a{color:var(--az);font-weight:600}
+@media(max-width:900px){.serv-grid{grid-template-columns:1fr}}
+
+/* ---------- Modelos ---------- */
+.modelos-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px;
+}
+.modelo{
+  background:#fff;border:1px solid var(--linea);padding:18px;
+  text-align:center;transition:box-shadow .25s;
+}
+.modelo:hover{box-shadow:var(--sombra)}
+.modelo .foto{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 42%,#fff 55%,#F2EFE8);margin-bottom:12px;
+}
+.modelo img{width:86%;mix-blend-mode:multiply}
+.modelo .num{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--az-noche)}
+.modelo .fam{font-size:.78rem;color:var(--gris);text-transform:uppercase;letter-spacing:.12em}
+.modelos-nota{text-align:center;margin-top:34px;color:var(--gris);font-size:.95rem}
+@media(max-width:900px){.modelos-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Guía de tallas ---------- */
+.tallas{background:var(--az-noche);color:#fff}
+.tallas .sec-title,.tallas h3{color:#fff}
+.tallas .sec-lead{color:#B9C6DE}
+.tallas .eyebrow{color:var(--oro-claro)}
+.tallas .eyebrow::before{background:var(--oro-claro)}
+.tallas-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;margin-top:48px;align-items:start}
+.conversor{
+  background:rgba(255,255,255,.07);border:1px solid rgba(229,211,168,.5);
+  padding:36px 32px;border-radius:4px;
+}
+.conversor label{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro-claro);font-weight:600}
+.talla-sel{display:flex;align-items:center;gap:18px;margin:16px 0 26px}
+.talla-sel button{
+  width:48px;height:48px;border-radius:50%;border:1px solid rgba(229,211,168,.5);
+  background:transparent;color:var(--oro-claro);font-size:1.3rem;cursor:pointer;transition:background .2s;
+}
+.talla-sel button:hover{background:rgba(229,211,168,.15)}
+.talla-num{
+  font-family:'Playfair Display',serif;font-size:3.4rem;color:#fff;
+  min-width:110px;text-align:center;line-height:1;
+}
+.talla-num small{display:block;font-family:'Source Sans 3',sans-serif;font-size:.72rem;letter-spacing:.18em;color:#8FA2C4;text-transform:uppercase;margin-top:6px}
+.talla-std{
+  text-align:center;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--oro-claro);min-height:1.4em;margin:-10px 0 16px;
+}
+.equiv{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+@media(max-width:600px){.equiv{grid-template-columns:repeat(2,1fr)}}
+.equiv div{background:var(--az-noche);padding:14px 16px}
+.equiv .k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#8FA2C4}
+.equiv .v{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--oro-claro)}
+.madera-caja{margin-top:14px;background:rgba(255,255,255,.06);border:1px solid rgba(229,211,168,.35);border-radius:4px;padding:12px 14px}
+.madera-tog{display:flex;gap:10px;align-items:center;font-size:.84rem;color:#A9B7D6;cursor:pointer;user-select:none}
+.madera-tog input{accent-color:var(--oro);width:18px;height:18px;min-width:18px;cursor:pointer}
+.madera-eq{margin-top:9px;font-size:.88rem;color:#E8ECF4;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);padding:9px 13px;border-radius:3px}
+.madera-eq b{font-family:'Playfair Display',serif;color:var(--oro-claro);font-size:1.1rem}
+.tallas-info h3{font-size:1.25rem;margin-bottom:12px;color:var(--oro-claro)}
+.tallas-info p{color:#C7D2E8;font-size:.97rem;margin-bottom:16px}
+.tallas-pasos{counter-reset:paso;margin:20px 0}
+.tallas-pasos li{
+  list-style:none;counter-increment:paso;position:relative;
+  padding:0 0 18px 52px;color:#C7D2E8;font-size:.95rem;
+}
+.tallas-pasos li::before{
+  content:counter(paso);position:absolute;left:0;top:0;
+  width:32px;height:32px;border-radius:50%;border:1px solid var(--oro-claro);
+  color:var(--oro-claro);display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:.95rem;
+}
+.tallas-nota{font-size:.82rem;color:#8FA2C4;border-top:1px solid rgba(255,255,255,.15);padding-top:16px;margin-top:8px}
+@media(max-width:900px){.tallas-grid{grid-template-columns:1fr}}
+
+/* ---------- Acceso ---------- */
+.acceso-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.acceso-card{background:#fff;border:1px solid var(--linea);padding:44px 40px;display:flex;flex-direction:column}
+.acceso-card.pro{border-top:3px solid var(--oro)}
+@media(min-width:901px){.acceso-grid .acceso-card.pro{order:-1}}
+@media(max-width:600px){.serv-card,.acceso-card{padding:24px 20px}}
+.acceso-card h3{font-size:1.4rem;margin-bottom:8px}
+.acceso-card .sub{color:var(--oro);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-bottom:16px}
+.acceso-card ul{margin:0 0 26px 0;padding:0;flex:1}
+.acceso-card li{
+  list-style:none;padding:9px 0 9px 26px;position:relative;
+  font-size:.94rem;color:var(--tinta);border-bottom:1px solid var(--linea);
+}
+.acceso-card li:last-child{border-bottom:none}
+.acceso-card li::before{content:"—";position:absolute;left:0;color:var(--oro)}
+@media(max-width:900px){.acceso-grid{grid-template-columns:1fr}}
+
+/* ---------- Contacto / footer ---------- */
+.contacto{background:#fff;border-top:1px solid var(--linea)}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:40px}
+.contacto-datos p{margin-bottom:14px;color:var(--tinta)}
+.contacto-datos .k{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);display:block}
+.contacto-datos .v{font-size:1.08rem;font-weight:500}
+@media(max-width:900px){.contacto-grid{grid-template-columns:1fr}}
+footer{background:var(--az-noche);color:#8FA2C4;padding:44px 0;font-size:.85rem}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.foot img{height:30px;filter:brightness(0) invert(1);opacity:.85}
+.foot a{color:#C7D2E8}
+.foot a:hover{color:var(--oro-claro)}
+
+/* ---------- Modal prototipo ---------- */
+.modal-bg{
+  display:none;position:fixed;inset:0;background:rgba(11,34,85,.55);
+  z-index:100;align-items:center;justify-content:center;padding:24px;
+}
+.modal-bg.open{display:flex}
+.modal{
+  background:#fff;max-width:440px;width:100%;padding:40px 36px;
+  border-top:3px solid var(--oro);text-align:center;box-shadow:var(--sombra);
+}
+.modal h3{margin-bottom:12px}
+.modal p{color:var(--gris);font-size:.95rem;margin-bottom:24px}
+
+/* ---------- Por qué Syccoro ---------- */
+.porque{background:#fff;border-bottom:1px solid var(--linea);padding:80px 0}
+.porque-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px}
+.pq{border-top:2px solid var(--oro);padding:24px 4px 0}
+.pq h3{font-size:1.08rem;margin-bottom:8px}
+.pq p{font-size:.92rem;color:var(--gris)}
+@media(max-width:900px){.porque-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.porque-grid{grid-template-columns:1fr}}
+
+/* ---------- Lema ---------- */
+.lema{background:var(--az);padding:70px 0;text-align:center}
+.lema p{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.35rem,3vw,2rem);color:#fff;max-width:860px;margin:0 auto;line-height:1.4;
+}
+.lema p em{color:var(--oro-claro);font-style:italic}
+
+/* ---------- Proceso ---------- */
+.proceso{background:var(--marfil)}
+.proc-line{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:56px;position:relative}
+.proc-line::before{
+  content:"";position:absolute;top:26px;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--oro) 12%,var(--oro) 88%,transparent);
+}
+.paso{text-align:center;padding:0 14px;position:relative}
+.paso .n{
+  width:52px;height:52px;border-radius:50%;margin:0 auto 18px;
+  background:var(--marfil);border:1px solid var(--oro);color:var(--az);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.25rem;position:relative;z-index:1;
+}
+.paso h3{font-size:1.02rem;margin-bottom:6px}
+.paso p{font-size:.88rem;color:var(--gris)}
+.proc-nota{max-width:680px;margin:52px auto 0;text-align:center;color:var(--gris);font-size:.98rem}
+.proc-nota strong{color:var(--az-noche)}
+@media(max-width:900px){
+  .proc-line{grid-template-columns:1fr;gap:26px}
+  .proc-line::before{display:none}
+}
+
+/* ---------- Comparativa servicios ---------- */
+.comparativa{margin-top:44px;border:1px solid var(--linea);background:var(--marfil);position:relative;overflow:hidden}
+.comp-desliza{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comparativa::after{content:'';position:absolute;top:0;right:0;bottom:0;width:46px;pointer-events:none;
+  background:linear-gradient(270deg,var(--marfil) 15%,rgba(247,245,240,0));opacity:0;transition:opacity .25s}
+.comparativa.desliza-mas::after{opacity:1}
+.comparativa table{width:100%;border-collapse:collapse;font-size:.93rem;min-width:520px}
+.comparativa th,.comparativa td{padding:13px 20px;text-align:left;border-bottom:1px solid var(--linea)}
+.comparativa tr:last-child td{border-bottom:none}
+.comparativa th{
+  font-family:'Playfair Display',serif;font-weight:500;font-size:1.02rem;color:var(--az-noche);
+  border-bottom:2px solid var(--oro);
+}
+.comparativa td:first-child{color:var(--gris);font-size:.82rem;text-transform:uppercase;letter-spacing:.1em}
+
+/* ---------- Biblioteca ---------- */
+.biblio{background:#fff;border-top:1px solid var(--linea)}
+.biblio-grid{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.biblio-grid a{
+  border:1px solid var(--linea);padding:12px 22px;font-size:.93rem;font-weight:500;
+  color:var(--az-noche);background:var(--marfil);transition:all .2s;
+}
+.biblio-grid a:hover{border-color:var(--oro);color:var(--az);box-shadow:var(--sombra)}
+.biblio-grid a::after{content:'→';display:inline-block;margin-left:9px;color:var(--oro);opacity:.7;transition:transform .2s,opacity .2s}
+.biblio-grid a:hover::after{opacity:1;transform:translateX(3px)}
+
+/* ---------- Scrollspy + CTA flotante ---------- */
+.nav-links a.act{color:var(--az)}
+.nav-links a.act::after{width:100%}
+.cta-flot{
+  display:none;position:fixed;bottom:20px;right:20px;z-index:60;
+  background:var(--az);color:#fff;padding:13px 22px;border-radius:40px;
+  font-weight:600;font-size:.9rem;box-shadow:0 8px 28px rgba(11,34,85,.35);
+  opacity:0;transform:translateY(12px);transition:opacity .3s,transform .3s;pointer-events:none;
+}
+.cta-flot.vis{opacity:1;transform:none;pointer-events:auto}
+@media(max-width:900px){.cta-flot{display:block}}
+
+/* ---------- Compromiso ---------- */
+.compromiso{margin-top:44px;border:1px solid var(--linea);background:#fff;padding:32px 36px;max-width:720px;margin-left:auto;margin-right:auto}
+.compromiso ul{margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 36px}
+.compromiso li{list-style:none;position:relative;padding-left:24px;font-size:.95rem}
+.compromiso li::before{content:"—";position:absolute;left:0;color:var(--oro)}
+@media(max-width:700px){.compromiso ul{grid-template-columns:1fr}}
+
+/* ---------- Fotos e iconos (v0.5) ---------- */
+.hero-visual::before{
+  content:"";position:absolute;width:min(520px,110%);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(229,211,168,.16) 0%,rgba(229,211,168,.05) 45%,transparent 70%);
+  pointer-events:none;
+}
+.pq svg{display:block;width:30px;height:30px;margin-bottom:14px;stroke:var(--oro);fill:none;stroke-width:1.4}
+.proc-foto{
+  margin:56px auto 0;max-width:860px;overflow:hidden;border:1px solid var(--linea);
+}
+.proc-foto img{width:100%;display:block;aspect-ratio:21/9;object-fit:cover}
+.proc-foto figcaption{font-size:.78rem;color:var(--gris);padding:10px 16px;background:#fff;text-align:center;letter-spacing:.06em}
+.cierre{
+  position:relative;padding:130px 0;text-align:center;color:#fff;overflow:hidden;
+  background:var(--az-noche);
+}
+.cierre .bg{
+  position:absolute;inset:0;background-size:cover;background-position:center 30%;
+  opacity:.55;filter:saturate(.85);
+}
+.cierre::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,34,85,.35),rgba(11,34,85,.72))}
+.cierre .wrap{position:relative;z-index:2}
+.cierre p.grande{
+  font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.4vw,2.4rem);
+  font-style:italic;max-width:820px;margin:0 auto 36px;line-height:1.35;
+}
+.cierre p.grande em{color:var(--oro-claro)}
+.contacto-foto{overflow:hidden;border:1px solid var(--linea);margin-bottom:22px}
+.contacto-datos .contacto-foto{margin:26px 0 0}
+@media(min-width:901px){.contacto-datos{position:sticky;top:110px;align-self:start}}
+/* v0.4.0 · formulario de consulta */
+.fc-campo{margin-bottom:14px}
+.fc-campo label{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);font-weight:600;margin-bottom:6px}
+.fc-campo input[type=text],.fc-campo input[type=email],.fc-campo textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--linea);border-radius:3px;
+  font-family:inherit;font-size:1rem;color:var(--tinta);background:#fff;transition:border-color .2s}
+.fc-campo input:focus,.fc-campo textarea:focus{outline:none;border-color:var(--az)}
+.fc-campo textarea{min-height:110px;resize:vertical}
+.fc-tipos{display:flex;gap:10px;flex-wrap:wrap}
+.fc-tipos label{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--linea);border-radius:20px;
+  padding:9px 16px;font-size:.9rem;color:var(--tinta);cursor:pointer;transition:border-color .2s,background .2s;text-transform:none;letter-spacing:0;font-weight:500;margin-bottom:0}
+.fc-tipos input{accent-color:var(--az);width:16px;height:16px;cursor:pointer}
+.fc-tipos label:has(input:checked){border-color:var(--az);background:rgba(18,55,129,.06)}
+.fc-miel{position:absolute;left:-9999px;top:-9999px;height:1px;width:1px;overflow:hidden}
+.fc-aviso{display:none;margin-top:14px;padding:12px 14px;border-radius:3px;font-size:.92rem}
+.fc-aviso.on{display:block}
+.fc-aviso.ok{background:#E8F5EE;color:#1A6B3A;border:1px solid #BFE3CF}
+.fc-aviso.error{background:#FBECEC;color:#B3261E;border:1px solid #EEC7C4}
+
+.contacto-foto img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover}
+/* v0.4.3 · carrusel sereno de momentos en Contacto */
+.carrusel-momentos{position:relative;aspect-ratio:16/10}
+.carrusel-momentos img{position:absolute;inset:0;height:100%;opacity:0;transition:opacity 1.4s ease}
+.carrusel-momentos img.vis{opacity:1}
+.sello{display:flex;align-items:center;gap:10px;color:#C7D2E8;font-size:.82rem}
+.sello svg{width:76px;height:76px;flex:none}
+.foot-grid{
+  display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:36px;
+  padding-bottom:38px;margin-bottom:30px;border-bottom:1px solid rgba(255,255,255,.12);
+}
+.foot-grid h4{color:#fff;font-family:'Playfair Display',serif;font-weight:500;font-size:1rem;margin-bottom:14px}
+.foot-grid p,.foot-grid a{font-size:.86rem;color:#8FA2C4;display:block;margin-bottom:9px}
+.foot-grid a:hover{color:var(--oro-claro)}
+.foot-grid img{height:40px;width:auto;filter:brightness(0) invert(1);opacity:.85;margin-bottom:14px}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr}}
+
+/* ---------- Sesión / cuenta ---------- */
+.cuenta{position:relative}
+.cuenta-btn{
+  background:var(--az);color:#fff;border:none;padding:9px 18px;border-radius:3px;
+  font-weight:600;font-family:inherit;font-size:.92rem;cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+}
+.cuenta-btn:hover{background:var(--az-noche)}
+.cuenta-ini{
+  width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;
+}
+.cuenta-menu{
+  display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;
+  border:1px solid var(--linea);box-shadow:var(--sombra);min-width:190px;z-index:60;
+}
+.cuenta-menu.on{display:block}
+.cuenta-menu a,.cuenta-menu button{
+  display:block;width:100%;text-align:left;padding:12px 16px;font-size:.88rem;
+  border:none;background:none;font-family:inherit;color:var(--tinta);cursor:pointer;
+}
+.cuenta-menu a:hover,.cuenta-menu button:hover{background:var(--marfil);color:var(--az)}
+.cuenta-menu .sep-menu{border-top:1px solid var(--linea);margin-top:4px;padding-top:4px}
+
+/* ---------- Reveal ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+</style>
+<style id="carruselCSS">
+.car-fila{margin-bottom:36px}
+.car-cab{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.car-nav{margin-left:auto;display:flex;gap:8px}
+.car-flecha{width:40px;height:40px;border-radius:50%;border:1px solid var(--linea);background:#fff;color:var(--az);
+  font-size:1.25rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:border-color .2s,color .2s;-webkit-tap-highlight-color:transparent}
+.car-flecha:hover{border-color:var(--oro);color:var(--az-noche)}
+.car-cab .cperfil{width:46px;flex:0 0 auto;opacity:.9}
+.car-cab .cperfil svg{width:100%;height:auto;display:block}
+.car-tit{font-family:"Playfair Display",serif;font-size:1.15rem;color:var(--az-noche)}
+.car-tit small{font-family:"Source Sans 3",sans-serif;color:var(--gris);font-size:.82rem;margin-left:6px}
+.car-combos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:820px){.car-combos{grid-template-columns:repeat(2,1fr)}}
+.car-item{background:#fff;border:1px solid var(--linea);border-radius:10px;overflow:hidden;cursor:zoom-in;transition:.18s;margin:0}
+.car-item:hover{border-color:var(--oro);transform:translateY(-2px);box-shadow:0 10px 26px rgba(18,55,129,.08)}
+.car-item .cfoto{aspect-ratio:1/1;background:#fff;display:flex;align-items:center;justify-content:center;position:relative}
+.car-item img{width:88%;height:88%;object-fit:contain;transition:opacity .45s;display:block}
+.car-item img.fuera{opacity:0}
+.car-item .cph{display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;color:#9AA7C7;font-size:.72rem;gap:4px}
+.car-item figcaption{font-size:.74rem;color:var(--gris);padding:8px 10px;border-top:1px solid var(--linea);text-align:center;letter-spacing:.03em;min-height:2.4em}
+.zoomCar{position:fixed;inset:0;background:rgba(11,34,85,.88);display:none;align-items:center;justify-content:center;z-index:600;padding:24px;cursor:zoom-out}
+.zoomCar.open{display:flex}
+.zoomCar img{max-width:min(92vw,860px);max-height:86vh;object-fit:contain;background:#fff;border-radius:12px;padding:18px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="nav-logo" href="#" id="navLogo" aria-label="Portada Syccoro"><img src="https://syccorojoyeros.github.io/syccoro-img/iconos/logo-syccoro.png" width="780" height="306" onerror="this.style.display='none'" alt="Syccoro Joyeros"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#modelos">Modelos</a>
+      <a href="#tallas">Guía de tallas</a>
+      <a href="#biblioteca">Biblioteca</a>
+      <a href="#acceso">Cuentas</a>
+      <a href="#contacto">Contacto</a>
+      <span class="lang">
+        <select id="langSel" aria-label="Idioma">
+          <option value="es" selected>ES</option>
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+          <option value="it">IT</option>
+          <option value="pt">PT</option>
+          <option value="zh">中文</option>
+        </select>
+      </span>
+      <a class="nav-cta" href="login.html" id="navCta">Acceso clientes</a>
+      <div class="cuenta" id="cuentaBox" style="display:none">
+        <button class="cuenta-btn" id="cuentaBtn" type="button">
+          <span class="cuenta-ini" id="cuentaIni">?</span>
+          <span id="cuentaNombre">Mi cuenta</span>
+        </button>
+        <div class="cuenta-menu" id="cuentaMenu">
+          <a href="#" id="cuentaEmailTxt" style="color:var(--gris);cursor:default;font-size:.78rem"></a>
+          <div class="sep-menu" id="cuentaAdminSep" style="display:none">
+            <a href="admin.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Panel de administración</a>
+          </div>
+          <div class="sep-menu" id="cuentaProSep" style="display:none">
+            <a href="area-profesional.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Área profesional</a>
+            <a href="configurador-pro.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Configurador con tarifas</a>
+            <a href="express.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Alianzas Express</a>
+          </div>
+          <div class="sep-menu" id="cuentaDisenarSep" style="display:none">
+            <a href="configurador-particular.html" style="display:block;padding:10px 14px;color:var(--az);font-weight:600;text-decoration:none">Diseñar mis alianzas</a>
+          </div>
+          <div class="sep-menu">
+            <button type="button" onclick="cerrarSesion()">Cerrar sesión</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menú">☰</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Alianzas de boda · Fabricado en España</div>
+      <h1>Cada alianza cuenta una historia.<br><em>Nosotros la fabricamos.</em></h1>
+      <p>Porque ninguna historia es igual a otra, ninguna alianza debería serlo. Fabricamos cada una en exclusiva para una pareja —oro de 18 o 9 quilates, o plata de ley— y podéis diseñarla online al detalle, con imagen real del resultado. Vuestra joyería de confianza os medirá la talla y os la entregará en mano; y si la fecha aprieta, las Alianzas Express están listas en 24–72 horas.</p>
+      <p class="hero-frase" id="heroFrase" aria-hidden="true">Fabricada para vuestra historia.</p>
+      <div class="hero-actions">
+        <a class="btn btn-oro cta-config" href="configurador-particular.html">Diseñad vuestra alianza</a>
+        <a class="btn btn-ghost" href="#modelos">Ver modelos</a>
+      </div>
+      <p class="hero-b2b">¿Eres joyería o profesional del sector? <a href="#acceso">Espacio Profesional y condiciones →</a></p>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-ring" id="heroRing">
+        <img id="heroImgA" alt="Alianza Syccoro personalizada" loading="eager">
+        <img id="heroImgB" alt="Alianza Syccoro personalizada" loading="eager">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ POR QUÉ SYCCORO ============ -->
+<section class="porque" id="porque">
+  <div class="wrap">
+    <div class="eyebrow">¿Por qué Syccoro?</div>
+    <h2 class="sec-title">Alianzas hechas para una sola pareja: la vuestra</h2>
+    <div class="porque-grid">
+      <div class="pq reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="7"/><path d="M9 7l3-4 3 4"/></svg><h3>Fabricación bajo pedido</h3><p>Cada alianza comienza a fabricarse únicamente cuando se confirma el pedido. Nunca antes.</p></div>
+      <div class="pq reveal"><svg viewBox="0 0 24 24"><path d="M4 8h10M18 8h2M4 16h2M10 16h10"/><circle cx="16" cy="8" r="2"/><circle cx="8" cy="16" r="2"/></svg><h3>Personalización sin límites</h3><p>Diseñad una alianza que no exista para nadie más: perfil, anchura, grosor, color, acabado, grabado y piedras.</p></div>
+      <div class="pq reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><h3>Servicio Express</h3><p>Cuando el tiempo importa: alianzas disponibles para entrega rápida, sin renunciar a la calidad Syccoro.</p></div>
+      <div class="pq reveal"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.3 5.5.6-4 3.9 1 5.6-5-2.8-5 2.8 1-5.6-4-3.9 5.5-.6z"/></svg><h3>Fabricado íntegramente en España</h3><p>Calidad artesanal y procesos modernos, controlando personalmente cada paso.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOSOTROS ============ -->
+<section id="nosotros">
+  <div class="wrap">
+    <div class="eyebrow">Nosotros</div>
+    <h2 class="sec-title">Joyeros para joyeros</h2>
+    <div class="nosotros-grid">
+      <div class="nosotros-txt reveal">
+        <p>Creemos que una alianza es una decisión demasiado importante para reducirla a un catálogo. Syccoro es una firma española especializada en alianzas de boda, y trabajamos exclusivamente para joyerías porque creemos que el asesoramiento profesional forma parte de una buena alianza: la pareja diseña, su joyero de confianza le acompaña y nosotros fabricamos. Desde aquí os guiamos y aconsejamos en todo lo que necesitéis, pero hay cosas que piden trato en persona, empezando por la talla: cada dedo y cada nudillo son distintos, y un profesional cualificado, con su anillero, sabrá deciros si os conviene más justa o más holgada, o un interior confort. Por eso, ante cualquier duda, vuestro mejor camino es vuestra joyería de confianza de las que trabajan con nosotros.</p>
+        <p>No hay catálogo cerrado ni producción en masa. Cada alianza se fabrica bajo pedido combinando modelo, anchura, grosor, color, acabado, grabado y piedras, con la talla exacta de cada persona. Y cuando la boda no puede esperar, el servicio Alianzas Express ofrece una selección de alianzas ya fabricadas, listas para entrega inmediata.</p>
+        <p>Detrás de cada alianza hay un proceso de fabricación cuidadosamente controlado, para garantizar el mismo nivel de calidad desde la primera pieza hasta la última.</p>
+      </div>
+      <div class="nosotros-claves reveal">
+        <div class="clave"><h3>Fabricación individual</h3><p>Cada pieza se crea para un pedido concreto, nunca en serie.</p></div>
+        <div class="clave"><h3>Personalización sin límites</h3><p>Anchura, grosor, talla, color y acabado exactos, sin aproximaciones.</p></div>
+        <div class="clave"><h3>Oro 18k, 9k y plata de ley</h3><p>Amarillo, blanco y rosa, con combinaciones bicolor y tricolor.</p></div>
+        <div class="clave"><h3>Servicio profesional</h3><p>Atención directa y cercana a joyerías de toda España.</p></div>
+      </div>
+    </div>
+    <figure class="proc-foto reveal" style="margin-top:44px">
+      <img src="https://syccorojoyeros.github.io/syccoro-img/webp/portada-taller.webp" alt="Interior del taller Syccoro: bancos de joyero, herramientas y luz de trabajo" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.png')}else{this.closest('figure').style.display='none'}">
+      <figcaption>Nuestro taller — donde cada alianza se fabrica pieza a pieza</figcaption>
+    </figure>
+    <div class="compromiso reveal">
+      <div class="eyebrow">Nuestro compromiso</div>
+      <ul>
+        <li>Fabricamos cada alianza bajo pedido.</li>
+        <li>Trabajamos exclusivamente con metales de calidad contrastada.</li>
+        <li>Cada pieza pasa un control individual.</li>
+        <li>Respetamos los plazos acordados.</li>
+        <li>Acompañamos a las joyerías durante todo el proceso.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="lema">
+  <div class="wrap"><p>«No fabricamos en serie. <em>Fabricamos cada alianza exclusivamente para cada pedido.</em>»</p></div>
+</div>
+
+<!-- ============ PROCESO ============ -->
+<section class="proceso" id="proceso">
+  <div class="wrap">
+    <div class="eyebrow">El proceso</div>
+    <h2 class="sec-title">Así nace una alianza Syccoro</h2>
+    <div class="proc-line">
+      <div class="paso reveal"><div class="n">1</div><h3>La imagináis</h3><p>Todo empieza con vuestra historia y una idea de cómo debería ser.</p></div>
+      <div class="paso reveal"><div class="n">2</div><h3>Elegís cada detalle</h3><p>Modelo, anchura, grosor, color, acabado, grabado y piedras.</p></div>
+      <div class="paso reveal"><div class="n">3</div><h3>La fabricamos</h3><p>Exclusivamente para vosotros. Nada empieza antes de confirmar el pedido.</p></div>
+      <div class="paso reveal"><div class="n">4</div><h3>La revisamos</h3><p>Cada pieza pasa un control individual antes de salir del taller.</p></div>
+      <div class="paso reveal"><div class="n">5</div><h3>Llega a la joyería</h3><p>Lista para el momento más importante: ponérsela.</p></div>
+    </div>
+    <figure class="proc-foto reveal">
+      <img src="https://syccorojoyeros.github.io/syccoro-img/webp/portada-proceso.webp" alt="Manos del joyero puliendo una alianza de oro en el banco de trabajo" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.png')}else{this.closest('figure').style.display='none'}">
+      <figcaption>El pulido a mano: el último gesto antes del control final</figcaption>
+    </figure>
+    <p class="proc-nota"><strong>¿Por qué bajo pedido?</strong> Porque no almacenamos miles de alianzas iguales: cada pieza comienza a fabricarse cuando se confirma el pedido, y eso es precisamente lo que os permite elegir el ancho, el perfil, el grosor, el color, el acabado, el grabado y las piedras. Una posible espera convertida en la mayor de las ventajas.</p>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="servicios" id="servicios">
+  <div class="wrap">
+    <div class="eyebrow">Servicios</div>
+    <h2 class="sec-title">Dos formas de conseguir la alianza perfecta</h2>
+    <p class="sec-lead">Diseño a medida cuando hay tiempo para hacerlo todo exacto. Tranquilidad inmediata cuando la fecha aprieta.</p>
+    <div class="serv-grid">
+      <div class="serv-card reveal">
+        <span class="tag">A medida</span>
+        <h3>Diseñad vuestra alianza</h3>
+        <p>Elegid cada detalle antes de fabricar: modelo, anchura, grosor, color del oro, acabado, grabado y diamantes. A vuestro aire o acompañados paso a paso, con imagen real del resultado y ficha en PDF para vuestra joyería.</p>
+        <div class="serv-plazo">
+          <span class="num">1–3</span>
+          <span class="lbl">semanas, según la alianza*</span>
+        </div>
+        <ul class="serv-fiables">
+          <li>Oro y plata con contraste oficial: 750 · 375 · 925.</li>
+          <li>La talla, mejor medida en persona en vuestra joyería — <a href="#tallas">guía de tallas</a>.</li>
+        </ul>
+        <a class="btn btn-az cta-config" href="configurador-particular.html" id="ctaDisenar">Empezar a diseñar</a>
+      </div>
+      <div class="serv-card reveal">
+        <span class="tag">Entrega rápida</span>
+        <h3>Alianzas Express</h3>
+        <p>Cuando el plazo es reducido, el Servicio Express ofrece una selección permanente de alianzas disponibles para una entrega rápida sin renunciar a la calidad Syccoro.</p>
+        <div class="serv-plazo">
+          <span class="num">24–72</span>
+          <span class="lbl">horas, según destino*</span>
+        </div>
+        <ul class="serv-fiables">
+          <li>Envío asegurado hasta vuestra joyería.</li>
+          <li>La misma calidad y el mismo contraste oficial que a medida.</li>
+        </ul>
+        <a class="btn btn-az" href="express.html">Consultar disponibilidad</a>
+      </div>
+    </div>
+    <div class="comparativa reveal">
+      <div class="comp-desliza">
+      <table>
+        <tr><th></th><th>Diseñad vuestra alianza</th><th>Servicio Express</th></tr>
+        <tr><td>Alianza</td><td>Totalmente personalizada</td><td>Modelos disponibles</td></tr>
+        <tr><td>Combinaciones</td><td>Miles de posibilidades</td><td>Selección permanente</td></tr>
+        <tr><td>Fabricación</td><td>Bajo pedido, desde cero</td><td>Ya fabricadas, en stock</td></tr>
+        <tr><td>Plazo</td><td>1–3 semanas*</td><td>24–72 horas*</td></tr>
+      </table>
+      </div>
+    </div>
+    <p class="modelos-nota">* Plazos habituales: <b>1 o 2 semanas</b> si la alianza no lleva engaste y <b>2 o 3</b> si lleva piedras. Aun así os recomendamos encargarlas con <b>un mes de margen</b>: da tiempo a ajustar una talla con calma y cubre cualquier imprevisto. Si vuestra fecha aprieta, consultadnos: casi siempre se puede adelantar. Cada plazo se confirma al formalizar el pedido.</p>
+  </div>
+</section>
+
+<!-- ============ MODELOS ============ -->
+<section id="modelos">
+  <div class="wrap">
+    <div class="eyebrow">Modelos</div>
+    <h2 class="sec-title">Una base, infinitas combinaciones</h2>
+    <p class="sec-lead">Un modelo de cada perfil, mostrando combinaciones reales de anchura, color y acabado.
+    Las muestras van cambiando solas — tocad o haced clic en cualquier alianza para verla en grande.</p>
+    <div id="carrusel"></div>
+    <p class="modelos-nota" style="margin-top:26px"><a class="btn btn-az" href="catalogo.html">Ver el catálogo completo</a></p>
+  </div>
+</section>
+
+<!-- ============ GUÍA DE TALLAS ============ -->
+<section class="tallas" id="tallas">
+  <div class="wrap">
+    <div class="eyebrow">Guía de tallas</div>
+    <h2 class="sec-title">¿Qué talla de alianza necesitas?</h2>
+    <p class="sec-lead">En España la talla de un anillo se mide con el Tatum metálico y corresponde a los milímetros de circunferencia interior menos 40. Usa el conversor para ver el diámetro y la equivalencia en otros países (la talla de Francia y Alemania es la circunferencia en milímetros).</p>
+    <div class="tallas-grid">
+      <div class="conversor reveal">
+        <label for="tallaRange">Talla española · Tatum metálico</label>
+        <div class="talla-sel">
+          <button type="button" onclick="cambiaTalla(-1)" aria-label="Talla anterior">−</button>
+          <div class="talla-num"><span id="tallaVal">14</span><small>Talla ES</small></div>
+          <button type="button" onclick="cambiaTalla(1)" aria-label="Talla siguiente">+</button>
+        </div>
+        <div class="equiv">
+          <div><span class="k">Diámetro interior</span><br><span class="v" id="eqDiam">17,18 mm</span></div>
+          <div><span class="k">Circunferencia</span><br><span class="v" id="eqCirc">54 mm</span></div>
+          <div><span class="k">EE. UU. (US)</span><br><span class="v" id="eqUS">6¾</span></div>
+          <div><span class="k">Reino Unido (UK)</span><br><span class="v" id="eqUK">N½</span></div>
+          <div><span class="k">Francia / Alemania</span><br><span class="v" id="eqFR">54</span></div>
+          <div><span class="k">Países Bajos (NL)</span><br><span class="v" id="eqNL">17</span></div>
+        </div>
+        <div class="madera-caja">
+          <label class="madera-tog"><input type="checkbox" id="maderaChk"> ¿Necesitas la talla antigua (Tatum de madera)?</label>
+          <div class="madera-eq" id="maderaEq" hidden>Equivale a la talla <b id="maderaVal">15</b> del Tatum antiguo de madera.</div>
+        </div>
+      </div>
+      <div class="tallas-info reveal">
+        <h3>Cómo medir la talla en casa</h3>
+        <ol class="tallas-pasos">
+          <li>Rodea la base del dedo con una tira fina de papel o un hilo, sin apretar.</li>
+          <li>Marca el punto exacto donde se cruza y mide la longitud en milímetros con una regla.</li>
+          <li>Resta 40 a esa medida: el resultado es tu talla española. Por ejemplo, 54&nbsp;mm de circunferencia corresponden a la talla&nbsp;14.</li>
+          <li>Si ya tienes un anillo que te quede bien en ese dedo, también puedes medir su diámetro interior y localizarlo en el conversor.</li>
+        </ol>
+        <p class="tallas-nota">Consejo profesional: mide al final del día y con temperatura normal, porque el dedo cambia de grosor con el frío y el calor. Ante la duda entre dos tallas, en alianzas anchas conviene la mayor. Diámetros y talla antigua (Tatum de madera) según la tabla oficial de medidas Syccoro; en la talla 36 y en las equivalencias internacionales de las tallas 31 a 36 los valores son orientativos. ¿No estás del todo seguro de tu talla? Lo mejor es que te la mida en persona un profesional: en cualquier joyería que trabaje con Syccoro te la tomarán con anillero en un momento, viendo la forma de tu dedo y de tu nudillo, y te aconsejarán si te conviene más justa o más holgada, o un interior confort.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIBLIOTECA ============ -->
+<section class="biblio" id="biblioteca">
+  <div class="wrap">
+    <div class="eyebrow">Biblioteca Syccoro</div>
+    <h2 class="sec-title">Aprende todo lo necesario para elegir<br>unas alianzas con confianza</h2>
+    <p class="sec-lead">Creemos que una alianza no debería adaptarse a un catálogo: el catálogo debería adaptarse a cada historia. Aquí aprenderás todo lo necesario para elegir vuestra alianza con tranquilidad, decisión a decisión.</p>
+    <div class="biblio-grid reveal">
+      <a href="biblioteca.html#metales">Metales</a>
+      <a href="biblioteca.html#colores">Colores del oro</a>
+      <a href="biblioteca.html#perfiles">Perfiles</a>
+      <a href="biblioteca.html#anchos-grosores">Anchos y grosores</a>
+      <a href="biblioteca.html#acabados">Acabados</a>
+      <a href="biblioteca.html#personalizacion">Personalización</a>
+      <a href="biblioteca.html#diamantes">Diamantes y circonitas</a>
+      <a href="biblioteca.html#grabados">Grabados</a>
+      <a href="biblioteca.html#fabricacion">Fabricación</a>
+      <a href="biblioteca.html#express">Servicio Express</a>
+      <a href="biblioteca.html#tallas">Guía de tallas</a>
+      <a href="biblioteca.html#cuidados">Cuidados</a>
+    </div>
+    <p style="margin-top:28px"><a class="btn btn-az" href="biblioteca.html">Entrar en la Biblioteca</a></p>
+  </div>
+</section>
+
+<!-- ============ ACCESO ============ -->
+<section id="acceso">
+  <div class="wrap">
+    <div class="eyebrow">Cuentas</div>
+    <h2 class="sec-title">Una cuenta para cada necesidad</h2>
+    <div class="acceso-grid">
+      <div class="acceso-card reveal">
+        <div class="sub">Para parejas y particulares</div>
+        <h3>Diseñad vuestra alianza</h3>
+        <ul>
+          <li>Diseña vuestras alianzas en el configurador y guarda los diseños en PDF.</li>
+          <li>Consulta el catálogo completo de modelos y combinaciones.</li>
+          <li>Encuentra joyerías colaboradoras cerca de ti para pedir presupuesto.</li>
+          <li>Registro gratuito en menos de un minuto, solo con nombre y email.</li>
+        </ul>
+        <a class="btn btn-az" href="login.html#particular">Crear cuenta gratuita</a>
+      </div>
+      <div class="acceso-card pro reveal">
+        <div class="sub">Para joyerías y profesionales</div>
+        <h3>Espacio Profesional</h3>
+        <ul>
+          <li>Configurador con tarifas profesionales y PVP recomendado para mostrar en tienda.</li>
+          <li>Acceso al servicio Alianzas Express con disponibilidad en tiempo real.</li>
+          <li>Tramitación de pedidos con ficha de cliente y direcciones guardadas.</li>
+          <li>Alta con datos del negocio, validada personalmente por nuestro equipo.</li>
+        </ul>
+        <a class="btn btn-az" href="registro-profesional.html">Solicitar acceso profesional</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section class="cierre" id="cierre">
+  <div class="bg" style="background-image:url(https://syccorojoyeros.github.io/syccoro-img/webp/cierre-banco.webp)"></div>
+  <div class="wrap">
+    <p class="grande">No fabricamos alianzas para una boda.<br>Fabricamos la joya que acompañará <em>vuestra historia</em> toda la vida.</p>
+    <a class="btn btn-oro cta-config" href="configurador-particular.html">Diseñad vuestra alianza</a>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div class="eyebrow">Contacto</div>
+    <h2 class="sec-title">Hablemos de vuestras alianzas</h2>
+    <div class="contacto-grid">
+      <div class="contacto-datos reveal">
+        <p><span class="k">Email</span><span class="v"><a href="mailto:alianzas@syccoro.es">alianzas@syccoro.es</a></span></p>
+        <p><span class="k">Horario de atención</span><span class="v">Lunes a viernes · 8:00 – 20:00</span></p>
+        <p style="font-size:.88rem;color:var(--gris);margin-top:22px">¿Eres profesional de la joyería? En tu área profesional encontrarás los teléfonos y WhatsApp de atención directa.</p>
+        <div class="contacto-foto carrusel-momentos" id="carruselMomentos"><img class="mom vis" src="https://syccorojoyeros.github.io/syccoro-img/webp/contacto-manos.webp" alt="Un novio poniéndole a la novia su alianza de oro durante la ceremonia" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.jpg')}else{this.dataset.bad='1';this.style.display='none';var c=this.parentNode;if(!c.querySelector('img:not([data-bad])'))c.style.display='none'}"><img class="mom" src="https://syccorojoyeros.github.io/syccoro-img/webp/momento-desayuno.webp" alt="Las manos de una pareja con sus alianzas en el desayuno" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.jpg')}else{this.dataset.bad='1';this.style.display='none';var c=this.parentNode;if(!c.querySelector('img:not([data-bad])'))c.style.display='none'}"><img class="mom" src="https://syccorojoyeros.github.io/syccoro-img/webp/momento-velas.webp" alt="El intercambio de alianzas a la luz de las velas" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.jpg')}else{this.dataset.bad='1';this.style.display='none';var c=this.parentNode;if(!c.querySelector('img:not([data-bad])'))c.style.display='none'}"><img class="mom" src="https://syccorojoyeros.github.io/syccoro-img/webp/momento-otono.webp" alt="Las manos de una pareja con sus alianzas, de paseo en otoño" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.jpg')}else{this.dataset.bad='1';this.style.display='none';var c=this.parentNode;if(!c.querySelector('img:not([data-bad])'))c.style.display='none'}"><img class="mom" src="https://syccorojoyeros.github.io/syccoro-img/webp/momento-peonias.webp" alt="El ramo de la novia con sus anillos" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.jpg')}else{this.dataset.bad='1';this.style.display='none';var c=this.parentNode;if(!c.querySelector('img:not([data-bad])'))c.style.display='none'}"><img class="mom" src="https://syccorojoyeros.github.io/syccoro-img/webp/momento-brindis.webp" alt="Un brindis con las alianzas puestas" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.jpg')}else{this.dataset.bad='1';this.style.display='none';var c=this.parentNode;if(!c.querySelector('img:not([data-bad])'))c.style.display='none'}"><img class="mom" src="https://syccorojoyeros.github.io/syccoro-img/webp/momento-piscina.webp" alt="Las manos de la pareja con sus alianzas, de vacaciones" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f='1';this.src=this.src.replace('/webp/','/fotos/').replace('.webp','.jpg')}else{this.dataset.bad='1';this.style.display='none';var c=this.parentNode;if(!c.querySelector('img:not([data-bad])'))c.style.display='none'}"></div>
+      </div>
+      <div class="reveal">
+        <form id="formConsulta" novalidate>
+          <div class="fc-campo">
+            <label for="fcNombre">Nombre</label>
+            <input type="text" id="fcNombre" name="nombre" maxlength="80" autocomplete="name" required>
+          </div>
+          <div class="fc-campo">
+            <label for="fcEmail">Correo electrónico</label>
+            <input type="email" id="fcEmail" name="email" maxlength="120" autocomplete="email" required>
+          </div>
+          <div class="fc-campo">
+            <label>¿Quién nos escribe?</label>
+            <div class="fc-tipos">
+              <label><input type="radio" name="fcTipo" value="Pareja o particular" checked> Pareja o particular</label>
+              <label><input type="radio" name="fcTipo" value="Joyería o profesional"> Joyería o profesional</label>
+            </div>
+          </div>
+          <div class="fc-campo">
+            <label for="fcMensaje">Mensaje</label>
+            <textarea id="fcMensaje" name="mensaje" maxlength="2500" required></textarea>
+          </div>
+          <div class="fc-miel" aria-hidden="true">
+            <label>No rellenes este campo<input type="text" name="web" tabindex="-1" autocomplete="off"></label>
+          </div>
+          <button class="btn btn-az" type="submit" id="fcBoton">Enviar consulta</button>
+          <div class="fc-aviso" id="fcAviso" role="status"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="text-align:center;margin-bottom:34px">
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:#C7D2E8">Fabricada para vuestra historia.</p>
+  </div>
+  <div class="wrap foot-grid">
+    <div>
+      <img class="foot-logo" src="https://syccorojoyeros.github.io/syccoro-img/iconos/logo-syccoro.png" width="780" height="306" onerror="this.style.display='none'" alt="Syccoro Joyeros">
+      <p>Firma española especializada en la fabricación de alianzas de boda personalizadas bajo pedido, en oro de 18 y 9 quilates y plata de ley.</p>
+    </div>
+    <div>
+      <h4>Descubre</h4>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#modelos">Modelos</a>
+      <a href="#tallas">Guía de tallas</a>
+      <a href="biblioteca.html">Biblioteca Syccoro</a>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <a href="mailto:alianzas@syccoro.es">alianzas@syccoro.es</a>
+      <p>Lunes a viernes<br>8:00 – 20:00</p>
+      <div id="redesFoot" style="display:none">
+        <h4 style="margin-top:22px">Síguenos</h4>
+        <div id="redesEnlaces"></div>
+      </div>
+    </div>
+    <div>
+      <h4>Garantía</h4>
+      <div class="sello">
+        <svg class="sello-es" viewBox="0 0 96 96" fill="none" role="img" aria-label="Sello: fabricado íntegramente en España, oro y plata de ley">
+  <circle cx="48" cy="48" r="45.2" stroke="#C4A15A" stroke-width="1.5"/>
+  <circle cx="48" cy="48" r="41" stroke="#C4A15A" stroke-width=".6" opacity=".85"/>
+  <path d="M90.3,48.0 L92.2,48.0 M90.1,51.7 L92.0,51.9 M89.7,55.3 L91.5,55.7 M88.9,58.9 L90.7,59.4 M87.7,62.5 L89.5,63.1 M86.3,65.9 L88.1,66.7 M84.6,69.1 L86.3,70.1 M82.7,72.3 L84.2,73.4 M80.4,75.2 L81.9,76.4 M77.9,77.9 L79.3,79.3 M75.2,80.4 L76.4,81.9 M72.3,82.7 L73.4,84.2 M69.2,84.6 L70.1,86.3 M65.9,86.3 L66.7,88.1 M62.5,87.7 L63.1,89.5 M58.9,88.9 L59.4,90.7 M55.3,89.7 L55.7,91.5 M51.7,90.1 L51.9,92.0 M48.0,90.3 L48.0,92.2 M44.3,90.1 L44.1,92.0 M40.7,89.7 L40.3,91.5 M37.1,88.9 L36.6,90.7 M33.5,87.7 L32.9,89.5 M30.1,86.3 L29.3,88.1 M26.9,84.6 L25.9,86.3 M23.7,82.7 L22.6,84.2 M20.8,80.4 L19.6,81.9 M18.1,77.9 L16.7,79.3 M15.6,75.2 L14.1,76.4 M13.3,72.3 L11.8,73.4 M11.4,69.1 L9.7,70.1 M9.7,65.9 L7.9,66.7 M8.3,62.5 L6.5,63.1 M7.1,58.9 L5.3,59.4 M6.3,55.3 L4.5,55.7 M5.9,51.7 L4.0,51.9 M5.7,48.0 L3.8,48.0 M5.9,44.3 L4.0,44.1 M6.3,40.7 L4.5,40.3 M7.1,37.1 L5.3,36.6 M8.3,33.5 L6.5,32.9 M9.7,30.1 L7.9,29.3 M11.4,26.8 L9.7,25.9 M13.3,23.7 L11.8,22.6 M15.6,20.8 L14.1,19.6 M18.1,18.1 L16.7,16.7 M20.8,15.6 L19.6,14.1 M23.7,13.3 L22.6,11.8 M26.8,11.4 L25.9,9.7 M30.1,9.7 L29.3,7.9 M33.5,8.3 L32.9,6.5 M37.1,7.1 L36.6,5.3 M40.7,6.3 L40.3,4.5 M44.3,5.9 L44.1,4.0 M48.0,5.7 L48.0,3.8 M51.7,5.9 L51.9,4.0 M55.3,6.3 L55.7,4.5 M58.9,7.1 L59.4,5.3 M62.5,8.3 L63.1,6.5 M65.9,9.7 L66.7,7.9 M69.2,11.4 L70.1,9.7 M72.3,13.3 L73.4,11.8 M75.2,15.6 L76.4,14.1 M77.9,18.1 L79.3,16.7 M80.4,20.8 L81.9,19.6 M82.7,23.7 L84.2,22.6 M84.6,26.8 L86.3,25.9 M86.3,30.1 L88.1,29.3 M87.7,33.5 L89.5,32.9 M88.9,37.1 L90.7,36.6 M89.7,40.7 L91.5,40.3 M90.1,44.3 L92.0,44.1" stroke="#C4A15A" stroke-width=".55" opacity=".55"/>
+  <defs>
+    <path id="selloArcoSup" d="M 48 48 m -34 0 a 34 34 0 0 1 68 0"/>
+    <path id="selloArcoInf" d="M 48 48 m -34 0 a 34 34 0 1 0 68 0"/>
+  </defs>
+  <text font-family="'Source Sans 3',sans-serif" font-size="6.6" letter-spacing="1.05" fill="#E5D3A8" font-weight="600">
+    <textPath href="#selloArcoSup" startOffset="50%" text-anchor="middle">FABRICADO EN ESPAÑA</textPath>
+  </text>
+  <text font-family="'Source Sans 3',sans-serif" font-size="5.8" letter-spacing="1.1" fill="#E5D3A8" opacity=".9">
+    <textPath href="#selloArcoInf" startOffset="50%" text-anchor="middle">ORO Y PLATA DE LEY</textPath>
+  </text>
+  <path d="M48.0,31.0 L50.3,37.3 L57.0,37.6 L51.7,41.7 L53.6,48.2 L48.0,44.4 L42.4,48.2 L44.3,41.7 L39.0,37.6 L45.7,37.3 Z" stroke="#E5D3A8" stroke-width="1.2" stroke-linejoin="round"/>
+  <g>
+    <rect x="33" y="55.5" width="30" height="2.5" rx="1.25" fill="#AA151B"/>
+    <rect x="33" y="58.5" width="30" height="4" rx="1.25" fill="#F1BF00"/>
+    <rect x="33" y="63" width="30" height="2.5" rx="1.25" fill="#AA151B"/>
+  </g>
+</svg>
+        <span>Fabricado<br>íntegramente<br>en España</span>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="text-align:center;font-size:.82rem">
+    © <span id="anio"></span> Syccoro Joyeros · España · <a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a>
+  </div>
+</footer>
+
+<a class="cta-flot cta-config" id="ctaFlot" href="configurador-particular.html">Diseñad vuestra alianza</a>
+
+<!-- Modal prototipo -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)cerrarModal()">
+  <div class="modal">
+    <h3>Próximamente</h3>
+    <p>Esta función estará disponible en la nueva web de Syccoro. Estás viendo un prototipo de diseño.</p>
+    <button class="btn btn-az" onclick="cerrarModal()">Entendido</button>
+  </div>
+</div>
+
+<script>
+/* ===== Tabla oficial de equivalencias Syccoro (catálogo, pág. 40) ===== */
+const EQUIV = {
+  6:{d:"14,64",uk:"H",nl:"15",us:"3¾"},
+  7:{d:"14,96",uk:"H½–I",nl:"15,25",us:"4¼"},
+  8:{d:"15,27",uk:"I½–J",nl:"15,5",us:"4½"},
+  9:{d:"15,59",uk:"J½",nl:"15,75",us:"5"},
+  10:{d:"15,91",uk:"K–K½",nl:"16",us:"5¼"},
+  11:{d:"16,23",uk:"L",nl:"16,25",us:"5¾"},
+  12:{d:"16,55",uk:"L½–M",nl:"16,5",us:"6"},
+  13:{d:"16,87",uk:"M½–N",nl:"16,75",us:"6½"},
+  14:{d:"17,18",uk:"N½",nl:"17",us:"6¾"},
+  15:{d:"17,50",uk:"O–O½",nl:"17,25",us:"7¼"},
+  16:{d:"17,82",uk:"P",nl:"17,5",us:"7½"},
+  17:{d:"18,14",uk:"P½–Q",nl:"17,75",us:"8"},
+  18:{d:"18,46",uk:"Q½",nl:"18",us:"8¼"},
+  19:{d:"18,78",uk:"R–R½",nl:"18,25",us:"8¾"},
+  20:{d:"19,10",uk:"S",nl:"18,5",us:"9"},
+  21:{d:"19,41",uk:"S½–T",nl:"18,75",us:"9½"},
+  22:{d:"19,73",uk:"T½–U",nl:"19",us:"9¾"},
+  23:{d:"20,05",uk:"U½",nl:"19,25",us:"10¼"},
+  24:{d:"20,37",uk:"V–V½",nl:"19,5",us:"10½"},
+  25:{d:"20,69",uk:"W",nl:"19,75",us:"11"},
+  26:{d:"21,00",uk:"W½–X",nl:"20",us:"11¼"},
+  27:{d:"21,32",uk:"X½–Y",nl:"20,25",us:"11¾"},
+  28:{d:"21,64",uk:"Z",nl:"20,5",us:"12"},
+  29:{d:"21,96",uk:"Z½",nl:"20,75",us:"12½"},
+  30:{d:"22,28",uk:"Z+1–Z+2",nl:"21",us:"12¾"},
+  31:{d:"22,60",uk:"—",nl:"21,25",us:"13"},
+  32:{d:"22,92",uk:"—",nl:"21,5",us:"13¼"},
+  33:{d:"23,24",uk:"—",nl:"21,75",us:"13½"},
+  34:{d:"23,56",uk:"—",nl:"22",us:"13¾"},
+  35:{d:"23,88",uk:"—",nl:"22,25",us:"14"},
+  36:{d:"24,19",uk:"—",nl:"22,5",us:"14¼"}
+};
+const T_MIN=6, T_MAX=36;
+let talla = 14;
+function pintaTalla(){
+  document.getElementById('tallaVal').textContent = talla;
+  const e = EQUIV[talla] || {};
+  document.getElementById('eqCirc').textContent = (talla + 40) + ' mm';
+  document.getElementById('eqDiam').textContent = (e.d || '—') + ' mm';
+  document.getElementById('eqFR').textContent = talla + 40;
+  /* Talla antigua (Tatum de madera), según la tabla oficial de medidas:
+     hasta la 19 metálica es una talla más; de la 20 en adelante es la
+     misma talla y media. Solo se muestra si el cliente lo marca. */
+  document.getElementById('maderaVal').textContent = (talla <= 19) ? (talla + 1) : (talla + '½');
+  document.getElementById('eqUS').textContent = e.us || '—';
+  document.getElementById('eqUK').textContent = e.uk || '—';
+  document.getElementById('eqNL').textContent = e.nl || '—';
+}
+function cambiaTalla(d){
+  talla = Math.min(T_MAX, Math.max(T_MIN, talla + d));
+  pintaTalla();
+}
+document.getElementById('maderaChk').addEventListener('change', function(){
+  document.getElementById('maderaEq').hidden = !this.checked;
+});
+pintaTalla();
+
+/* ===== Carrusel del hero (alianzas especiales, salta las que no existan) ===== */
+const CDN = 'https://syccorojoyeros.github.io/syccoro-img/';
+const HERO_PICKS = [
+  '200/45-200BAB-D','340/45-340ARA-B','352/45-352BRB-D','601/45-601ABR-E',
+  '350/45-350RB-D','590/50-590BAB-B','312/45-312BR-E','196/45-196RB-D',
+  '200/50-200ABR-B','340/50-340BRB-E','601/50-601RAR-B','352/40-352ABA-B'
+].sort(()=>Math.random()-.5);
+let heroIdx = 0, heroFront = true;
+const imgA = document.getElementById('heroImgA');
+const imgB = document.getElementById('heroImgB');
+function heroCarga(el, cb){
+  if(heroIdx >= HERO_PICKS.length) heroIdx = 0;
+  const src = CDN + HERO_PICKS[heroIdx++] + '.webp';
+  el.onload = cb;
+  el.onerror = function(){ heroCarga(el, cb); };
+  el.src = src;
+}
+function heroSiguiente(){
+  const entra = heroFront ? imgB : imgA;
+  const sale  = heroFront ? imgA : imgB;
+  heroCarga(entra, function(){
+    entra.classList.add('on'); sale.classList.remove('on');
+    heroFront = !heroFront;
+  });
+}
+heroCarga(imgA, function(){ imgA.classList.add('on'); });
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  setInterval(heroSiguiente, 4000);
+}
+
+/* ===== Frase secundaria rotatoria del hero ===== */
+const FRASES = [
+  'Fabricada para vuestra historia.',
+  'Creada exclusivamente para vosotros.',
+  'Cada detalle importa.',
+  'Diseñada para durar toda la vida.',
+  'No fabricamos en serie.',
+  'Miles de combinaciones posibles.',
+  'Fabricada íntegramente en España.'
+];
+let fIdx = 0;
+const fraseEl = document.getElementById('heroFrase');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  setInterval(function(){
+    fraseEl.classList.add('fade');
+    setTimeout(function(){
+      fIdx = (fIdx + 1) % FRASES.length;
+      fraseEl.textContent = FRASES[fIdx];
+      fraseEl.classList.remove('fade');
+    }, 700);
+  }, 9000);
+}
+
+/* ===== Menú móvil ===== */
+document.getElementById('burger').onclick = function(){
+  document.getElementById('navLinks').classList.toggle('open');
+};
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+
+/* ===== Selector de idioma (stub) ===== */
+document.getElementById('langSel').addEventListener('change', function(){
+  if(this.value !== 'es'){ modalProto(); this.value='es'; }
+});
+
+/* ===== Modal prototipo ===== */
+function modalProto(){ document.getElementById('modalBg').classList.add('open'); }
+function cerrarModal(){ document.getElementById('modalBg').classList.remove('open'); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarModal(); });
+
+/* ===== Reveal on scroll ===== */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== Scrollspy del menú ===== */
+const secIds = ['nosotros','servicios','modelos','tallas','biblioteca','acceso','contacto'];
+const spyMap = {};
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>{
+  const id = a.getAttribute('href').slice(1);
+  if(secIds.includes(id)) spyMap[id] = a;
+});
+const spy = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting && spyMap[e.target.id]){
+      Object.values(spyMap).forEach(a=>a.classList.remove('act'));
+      spyMap[e.target.id].classList.add('act');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+secIds.forEach(id=>{ const el=document.getElementById(id); if(el) spy.observe(el); });
+
+/* ===== CTA flotante en móvil ===== */
+const ctaFlot = document.getElementById('ctaFlot');
+window.addEventListener('scroll', function(){
+  const y = window.scrollY;
+  const fin = document.getElementById('acceso').offsetTop - window.innerHeight;
+  ctaFlot.classList.toggle('vis', y > 600 && y < fin);
+}, {passive:true});
+
+/* ===== Año footer ===== */
+document.getElementById('anio').textContent = new Date().getFullYear();
+</script>
+<!-- Firebase: solo para saber si hay sesión activa y personalizar el header -->
+<script>
+/* ============ REDES SOCIALES ============
+   Cuando una red esté lista para presentarse al público, pega aquí
+   su URL completa (p. ej. "https://www.instagram.com/syccoro") y
+   aparecerá sola en el pie. Con la URL vacía ("") no se muestra nada.
+   OJO: esta misma lista existe en area-profesional.html — actualizar
+   las dos para que web pública y área profesional vayan a la par. */
+const REDES_SYCCORO = {
+  "Instagram": "",
+  "Facebook": "",
+  "TikTok": "",
+  "Pinterest": "",
+  "YouTube": ""
+};
+(function(){
+  const bloque = document.getElementById('redesFoot');
+  const cont = document.getElementById('redesEnlaces');
+  if(!bloque || !cont) return;
+  let alguna = false;
+  Object.keys(REDES_SYCCORO).forEach(function(nombre){
+    const url = REDES_SYCCORO[nombre];
+    if(!url) return;
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = nombre;
+    cont.appendChild(a);
+    alguna = true;
+  });
+  if(alguna) bloque.style.display = 'block';
+})();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  "use strict";
+  const firebaseConfig = {
+    apiKey: "AIzaSyDakUsgbwpp-ZCBKy9J8YmUvgo5rQFSWa4",
+    authDomain: "syccoro-web.firebaseapp.com",
+    projectId: "syccoro-web",
+    storageBucket: "syccoro-web.firebasestorage.app",
+    messagingSenderId: "548259273508",
+    appId: "1:548259273508:web:3076eee1fe220a73dc31b1"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  const navCta = document.getElementById('navCta');
+  const cuentaBox = document.getElementById('cuentaBox');
+  const cuentaBtn = document.getElementById('cuentaBtn');
+  const cuentaMenu = document.getElementById('cuentaMenu');
+  const cuentaIni = document.getElementById('cuentaIni');
+  const cuentaNombre = document.getElementById('cuentaNombre');
+  const cuentaEmailTxt = document.getElementById('cuentaEmailTxt');
+  const cuentaAdminSep = document.getElementById('cuentaAdminSep');
+  const cuentaProSep = document.getElementById('cuentaProSep');
+
+  auth.onAuthStateChanged(function(user){
+    if(user && user.emailVerified){
+      const nombre = user.displayName || user.email.split('@')[0];
+      navCta.style.display = 'none';
+      cuentaBox.style.display = 'block';
+      cuentaIni.textContent = nombre.charAt(0).toUpperCase();
+      cuentaNombre.textContent = nombre.split(' ')[0];
+      cuentaEmailTxt.textContent = user.email;
+      /* Según el rol (leído de Firestore, el código nunca lleva emails
+         escritos) mostramos los accesos del menú: panel para el admin,
+         área profesional para los profesionales (el admin también la ve). */
+      db.collection('usuarios').doc(user.uid).get().then(function(snap){
+        const rol = snap.exists ? snap.data().rol : 'particular';
+        const esPro = (rol === 'profesional' || rol === 'admin');
+        cuentaAdminSep.style.display = (rol === 'admin') ? 'block' : 'none';
+        cuentaProSep.style.display = esPro ? 'block' : 'none';
+        const dSep = document.getElementById('cuentaDisenarSep');
+        if(dSep) dSep.style.display = esPro ? 'none' : 'block';
+        /* Un profesional que pulsa «Empezar a diseñar» va a SU configurador
+           (con tarifas), no al de particulares. */
+        /* v0.3.6 · todos los CTA de diseñar (hero, tarjeta, cierre y flotante) */
+        document.querySelectorAll('.cta-config').forEach(function(cta){
+          cta.href = esPro ? 'configurador-pro.html' : 'configurador-particular.html';
+        });
+      }).catch(function(){ /* sin conexión a Firestore: no se muestran */ });
+    } else {
+      navCta.style.display = '';
+      cuentaBox.style.display = 'none';
+      cuentaAdminSep.style.display = 'none';
+      cuentaProSep.style.display = 'none';
+      const dSep = document.getElementById('cuentaDisenarSep');
+      if(dSep) dSep.style.display = 'none';
+      document.querySelectorAll('.cta-config').forEach(function(cta){
+        cta.href = 'configurador-particular.html';
+      });
+    }
+  });
+
+  cuentaBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    cuentaMenu.classList.toggle('on');
+  });
+  document.addEventListener('click', function(){
+    cuentaMenu.classList.remove('on');
+  });
+
+  window.cerrarSesion = function(){
+    auth.signOut().then(function(){
+      window.location.reload();
+    });
+  };
+})();
+</script>
+
+<div class="zoomCar" id="zoomCar"><img alt="Alianza ampliada"></div>
+<script>
+"use strict";
+/* ============ CARRUSEL DE MODELOS · v0.3 ============ */
+/* ══ Datos y utilidades extraídos del configurador (fuente única) ══ */
+function esPlata(c){ return c && c.metal==='Plata'; }
+function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+function perfilBasico(familia){
+  var f=norm(familia);
+  if(f.indexOf("media cana")!==-1) return "Media caña";
+  if(f.indexOf("gota")!==-1) return "Gota";
+  return "Plano";
+}
+const IMG_BASE = "https://syccorojoyeros.github.io/syccoro-img/";
+
+/* Colores (hex de swatch). Amarillo y rosa con más contraste entre sí (punto 6). */
+const COLORES = {
+  A:{n:"Amarillo", hex:"#E8C04A"},
+  B:{n:"Blanco",   hex:"#D9DBDD"},
+  R:{n:"Rosa",     hex:"#E0A488"},
+  N:{n:"Negro",    hex:"#2C2C2C"}
+};
+const ACABADOS = {
+  B:"Brillo", D:"Diamantado", R:"Rayado suave", N:"Rayado fuerte", H:"Arenado", E:"Esmeril",
+  BE:"Brillo y esmeril", EB:"Esmeril y brillo"
+};
+const ANCHOS = [["30","3,0"],["35","3,5"],["40","4,0"],["45","4,5"],["50","5,0"],["55","5,5"],["60","6,0"]];
+
+/* Altos/grosores estándar de oro (tomados de la calculadora). */
+const GROSORES_STD = [0.70,0.85,1.00,1.15,1.30,1.40,1.50,1.80];
+const CONFORT_MIN = 1.15;          /* el interior confort se ofrece a partir de 1,15 mm */
+const METALES = ["18K","9K","Plata"];
+const BOCAS = ["R","C"];
+const BOCA_NOM = {R:"redonda", C:"cuadrada"};
+/* Tamaños de piedra y sus mínimos de alto/ancho (tomados de la calculadora) */
+const ENGASTES_SIZES = [
+  {ct:"0.010", disp:"0,010 ct · 1,30 mm", grosorMin:0.85, anchoMin:2.0},
+  {ct:"0.015", disp:"0,015 ct · 1,50 mm", grosorMin:1.00, anchoMin:2.0},
+  {ct:"0.020", disp:"0,020 ct · 1,70 mm", grosorMin:1.00, anchoMin:2.5},
+  {ct:"0.025", disp:"0,025 ct · 1,80 mm", grosorMin:1.30, anchoMin:3.0},
+  {ct:"0.030", disp:"0,030 ct · 2,00 mm", grosorMin:1.50, anchoMin:3.5},
+  {ct:"0.040", disp:"0,040 ct · 2,20 mm", grosorMin:1.50, anchoMin:3.5},
+  {ct:"0.060", disp:"0,060 ct · 2,60 mm", grosorMin:1.80, anchoMin:4.0}
+];
+
+/* Disponibilidad REAL por modelo, sacada de las imágenes del repositorio.
+   a = anchos · x = acabados · c = combinaciones de color · d = combo por defecto [ancho,color,acabado] (existe seguro) */
+const IMG={
+  "196":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "199":{a:["50","55","60"],x:["E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["50","A","E"]},
+  "200":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N","BE"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "301":{a:["45","50","55","60"],x:["B","E","D","R","N","BE","EB"],c:["A","B","R","BA","BR"],d:["45","A","B"]},
+  "302":{a:["45","50","55","60"],x:["B","E","D","R","N","BE","EB"],c:["A","B","R","BA","BR"],d:["45","A","B"]},
+  "312":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "331":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AR","BA","BR"],d:["40","A","B"]},
+  "332":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","AR","BA","BR","RA","RB"],d:["40","A","B"]},
+  "340":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "341":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "342":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","AR","BA","BR","RA","RB"],d:["40","A","B"]},
+  "344":{a:["40","45","50","55","60"],x:["B","E","D","R","N","EB"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "346":{a:["40","45","50","55","60"],x:["E"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","E"]},
+  "347":{a:["40","45","50","55","60"],x:["B","E"],c:["A","B","R","ABA","ABR","ARA","ARB","BAB","BAR","BRA","BRB","RAB","RAR","RBA","RBR"],d:["40","A","E"]},
+  "348":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ANA","ANB","ANR","ARA","ARB","BAB","BAR","BNA","BNB","BNR","BRA","BRB","RAB","RAR","RBA","RBR","RNA","RNB","RNR"],d:["40","A","B"]},
+  "349":{a:["40","45","50","55","60"],x:["B","E"],c:["A","B","R","AB","AN","AR","BA","BN","BR","RA","RB","RN"],d:["40","A","B"]},
+  "350":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","AR","BA","BR","RA","RB"],d:["40","A","B"]},
+  "351":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "352":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "360":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","BAB","BRB","RBR"],d:["40","A","B"]},
+  "362":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]},
+  "370":{a:["50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","BAB","BAR","BRA","BRB","RBR"],d:["50","A","B"]},
+  "393":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AR","BA","BR"],d:["40","A","B"]},
+  "590":{a:["50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","BAB","BRB","RBR"],d:["50","A","B"]},
+  "592":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "593":{a:["30","35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AR","BA","BR"],d:["40","A","B"]},
+  "597":{a:["40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","AB","BA","BR","RB"],d:["40","A","B"]},
+  "601":{a:["35","40","45","50","55","60"],x:["B","E","D","R","N"],c:["A","B","R","ABA","ABR","ARA","BAB","BAR","BRA","BRB","RAR","RBR"],d:["40","A","B"]}
+};
+
+/* Catálogo: 28 modelos reales (carpeta = nº de modelo tras el renombrado). */
+const MODELOS = [
+  {num:"196", familia:"Plano"},
+  {num:"199", familia:"Plano"},
+  {num:"200", familia:"Media caña"},
+  {num:"301", familia:"Media caña"},
+  {num:"302", familia:"Plano"},
+  {num:"312", familia:"Plano"},
+  {num:"331", familia:"Plano"},
+  {num:"332", familia:"Plano"},
+  {num:"340", familia:"Gota"},
+  {num:"341", familia:"Gota"},
+  {num:"342", familia:"Gota"},
+  {num:"344", familia:"Gota"},
+  {num:"346", familia:"Gota"},
+  {num:"347", familia:"Gota"},
+  {num:"348", familia:"Gota"},
+  {num:"349", familia:"Gota"},
+  {num:"350", familia:"Gota con borde en escalón"},
+  {num:"351", familia:"Gota con bordes en escalón"},
+  {num:"352", familia:"Plano con bordes en escalón"},
+  {num:"360", familia:"Gota con bordes suaves"},
+  {num:"362", familia:"Plano con bordes suaves"},
+  {num:"370", familia:"Plano"},
+  {num:"393", familia:"Media caña"},
+  {num:"590", familia:"Plano"},
+  {num:"592", familia:"Media caña"},
+  {num:"593", familia:"Media caña"},
+  {num:"597", familia:"Plano"},
+  {num:"601", familia:"Media caña"}
+];
+MODELOS.forEach(function(m){ m.folder=m.num; m.mc = m.familia.toLowerCase().indexOf("media caña")!==-1; m.perfil = perfilBasico(m.familia); });
+const MODELO_POR_NUM = {};
+MODELOS.forEach(function(m){ MODELO_POR_NUM[m.num]=m; });
+
+function folderDe(modeloNum){
+  var m = MODELO_POR_NUM[modeloNum];
+  return m ? m.folder : modeloNum;
+}
+function candidatos(c){
+  var f = folderDe(c.modelo);
+  var info = IMG[c.modelo];
+  var colBase = esPlata(c) ? 'B' : c.color;   /* plata: usar imagen del oro blanco */
+  var u = function(a,col,ac){ return IMG_BASE + f + '/' + a + '-' + c.modelo + col + '-' + ac + '.webp'; };
+  var lista = [ u(c.ancho, colBase, c.acabado) ];
+  if(info){
+    info.a.forEach(function(a){ lista.push(u(a, colBase, c.acabado)); });
+    info.x.forEach(function(x){ lista.push(u(c.ancho, colBase, x)); });
+    lista.push(u(info.d[0], info.d[1], info.d[2]));   /* combo por defecto: existe seguro */
+  } else {
+    lista.push(u("40", colBase, "B"));
+  }
+  return lista.filter(function(v,i){ return lista.indexOf(v)===i; });
+}
+function cargarImagen(imgEl, phEl, c){
+  var cands = candidatos(c);
+  var i = 0;
+  imgEl.classList.add("cargando");
+  function siguiente(){
+    if(i >= cands.length){
+      imgEl.removeAttribute("src");
+      imgEl.style.display="none";
+      phEl.style.display="flex";
+      return;
+    }
+    var url = cands[i++];
+    imgEl.onload = function(){ imgEl.style.display="block"; phEl.style.display="none"; requestAnimationFrame(function(){ imgEl.classList.remove("cargando"); }); };
+    imgEl.onerror = siguiente;
+    imgEl.src = url;
+  }
+  siguiente();
+}
+function cargarThumb(imgEl, modeloNum, phEl){
+  var f = folderDe(modeloNum);
+  var info = IMG[modeloNum];
+  var cands = [];
+  if(info){
+    cands.push(IMG_BASE + f + '/' + info.d[0] + '-' + modeloNum + info.d[1] + '-' + info.d[2] + '.webp');
+    cands.push(IMG_BASE + f + '/' + info.a[0] + '-' + modeloNum + info.c[0] + '-' + info.x[0] + '.webp');
+  } else {
+    cands.push(IMG_BASE + f + '/40-' + modeloNum + 'A-B.webp');
+  }
+  var i=0;
+  function sig(){
+    if(i>=cands.length){ imgEl.style.display="none"; if(phEl) phEl.style.display="flex"; return; }
+    imgEl.onload=function(){ imgEl.style.display="block"; if(phEl) phEl.style.display="none"; };
+    imgEl.onerror=sig;
+    imgEl.src=cands[i++];
+  }
+  sig();
+}
+
+/* ====== Texto ====== */
+function colorNombre(cod){ return cod.split("").map(function(ch){ return COLORES[ch]?COLORES[ch].n:ch; }).join(" / "); }
+function anchoTxt(cod){ var f=ANCHOS.find(function(a){ return a[0]===cod; }); return f?f[1]:cod; }
+function bocaNombre(b){ return BOCA_NOM[b]||b; }
+function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+function perfilBasico(familia){
+  var f=norm(familia);
+  if(f.indexOf("media cana")!==-1) return "Media caña";
+  if(f.indexOf("gota")!==-1) return "Gota";
+  return "Plano";
+}
+function sizeTxt(ct){ return String(ct).replace('.',',') + ' ct'; }
+function tallasEngaste(c){
+  var anchoMm = parseFloat(c.ancho)/10;
+  return ENGASTES_SIZES.filter(function(s){ return c.grosor>=s.grosorMin && anchoMm>=s.anchoMin; });
+}
+function descEngaste(c){
+  var p=[];
+  if(c.diamQty>0) p.push(c.diamQty + ' ' + (c.diamQty>1?'diamantes':'diamante') + ' (' + sizeTxt(c.diamSize) + ', boca ' + bocaNombre(c.diamBoca) + ')');
+  if(c.circQty>0) p.push(c.circQty + ' ' + (c.circQty>1?'circonitas':'circonita') + ' (' + sizeTxt(c.circSize) + ', boca ' + bocaNombre(c.circBoca) + ')');
+  var base = p.join(' + ');
+  var t = (c.engasteTxt||'').trim();
+  if(t) base = base ? base + ' — ' + t : t;
+  return base;
+}
+
+/* ====== Construcción de selectores ====== */
+function stripeHTML(cod){
+  return '<span class="tira">' + cod.split("").map(function(ch){ return '<i style="background:' + (COLORES[ch]?COLORES[ch].hex:"#ccc") + '"></i>'; }).join("") + '</span>';
+}
+function pintarSwatches(){
+  var cont = document.getElementById("swColor");
+  cont.innerHTML = "";
+  var c = activa();
+  if(esPlata(c)){ pintarOpcionesPlata(cont, c); return; }
+  var info = IMG[c.modelo];
+  var cols = info ? info.c : ["A"];
+  cols.forEach(function(cod){
+    var b=document.createElement("button");
+    b.className="sw"; b.type="button";
+    b.setAttribute("aria-pressed", String(c.color===cod));
+    b.setAttribute("aria-label","Color "+colorNombre(cod));
+    b.innerHTML = stripeHTML(cod) + '<span class="sw-name">'+colorNombre(cod)+'</span>';
+    b.addEventListener("click", function(){ setCampo("color", cod); });
+    cont.appendChild(b);
+  });
+}
+/* Opciones específicas de plata: tipo (Normal/Bicolor), rodio negro y, si es bicolor,
+   una casilla para describir cómo la quieren (hasta que haya imágenes de bicolor). */
+function pintarOpcionesPlata(cont, c){
+  var tipos=[['base','Plata (normal)'],['bi','Bicolor']];
+  var wrap=document.createElement('div'); wrap.className='chips';
+  tipos.forEach(function(t){
+    var b=document.createElement('button'); b.className='chip'; b.type='button';
+    b.textContent=t[1];
+    b.setAttribute('aria-pressed', String(c.plataTipo===t[0]));
+    b.addEventListener('click', function(){ setCampo('plataTipo', t[0]); });
+    wrap.appendChild(b);
+  });
+  cont.appendChild(wrap);
+
+  var rwrap=document.createElement('div'); rwrap.className='chips'; rwrap.style.marginTop='8px';
+  var rb=document.createElement('button'); rb.type='button';
+  rb.className='chip toggle'+(c.plataRodio?' on':'');
+  rb.textContent='Rodio negro';
+  rb.setAttribute('aria-pressed', String(!!c.plataRodio));
+  rb.addEventListener('click', function(){ setCampo('plataRodio', !c.plataRodio); });
+  rwrap.appendChild(rb);
+  cont.appendChild(rwrap);
+
+  if(c.plataTipo==='bi'){
+    var box=document.createElement('div'); box.className='plata-desc-box';
+    var lab=document.createElement('label'); lab.className='sub-nota'; lab.style.display='block'; lab.style.marginBottom='5px';
+    lab.textContent='Describe cómo quieres la bicolor:';
+    var ta=document.createElement('textarea'); ta.className='plata-desc'; ta.rows=2;
+    ta.placeholder='Ej.: centro en otro tono, laterales mate, línea central…';
+    ta.value=c.descBicolor||'';
+    ta.addEventListener('input', function(){ objetivos().forEach(function(o){ o.descBicolor=ta.value; }); });
+    box.appendChild(lab); box.appendChild(ta);
+    cont.appendChild(box);
+  }
+}
+function pintarChips(contId, items, campo, getLabel){
+  var cont=document.getElementById(contId);
+  cont.innerHTML="";
+  items.forEach(function(it){
+    var val = Array.isArray(it)? it[0] : it;
+    var lab = getLabel ? getLabel(it) : (Array.isArray(it)? it[1] : it);
+    var b=document.createElement("button");
+    b.className="chip"; b.type="button";
+    b.textContent=lab;
+    b.setAttribute("aria-pressed", String(activa()[campo]===val));
+    b.addEventListener("click", function(){ setCampo(campo, val); });
+    cont.appendChild(b);
+  });
+}
+/* ====== Bocetos del corte (perfil de la alianza) ======
+   Los mismos bocetos del modo guiado, como utilidad común para el
+   catálogo, el apartado de grosor y el interior. ALTO CONTINUO: cada
+   grosor seleccionable tiene su propio corte (de 12 px a 0,70 mm hasta
+   38 px a 1,80 mm), sin compartir boceto grosores distintos. */
+function bocetoPerfil(perfil, confort, alto){
+  var W=96, H=68, x1=16, x2=80, B=46, m=(x1+x2)/2;
+  var a=Number(alto)||1.0;
+  var h=12 + (Math.max(0.70, Math.min(1.80, a)) - 0.70) * (38-12) / (1.80-0.70);
+  var t=+(B-h).toFixed(1), d;
+  if(perfil==='Media caña'){
+    /* v3 (25/07, Jorge): la media caña MECANIZADA no muere en curva hasta el
+       borde como la antigua acabada a mano: lleva un CANTO RECTO en los
+       laterales justo antes de la base, más corto que el de la gota, y ese
+       canto CRECE con el alto (en 0,70 y 0,85 no se ve; a partir de ~1,15
+       asoma y se hace evidente en las alianzas altas y estrechas). Arriba,
+       arco redondeado y bien visible —más que la gota— pero sin la parábola
+       de la v2. Los puntos de control van sobre los cantos: la cúpula entra
+       tangente al canto y el pico queda EXACTO a la cota del grosor, así
+       ningún corte se sale ya del recuadro. */
+    var canto=Math.max(0, h-20), subida=h-canto;
+    var yw=+(B-canto).toFixed(1), yc=+(B-canto-subida/0.75).toFixed(1);
+    d = canto<0.15
+      ? 'M'+x1+','+B+' C'+x1+','+yc+' '+x2+','+yc+' '+x2+','+B
+      : 'M'+x1+','+B+' L'+x1+','+yw+' C'+x1+','+yc+' '+x2+','+yc+' '+x2+','+yw+' L'+x2+','+B;
+  } else if(perfil==='Gota'){
+    /* v2: cantos algo más altos y cúpula suave, con el centro más bajo que la media caña */
+    var y0=(B-h*0.62).toFixed(1), yc=(B-1.02*h).toFixed(1);
+    d='M'+x1+','+B+' L'+x1+','+y0+' C'+(x1+8)+','+yc+' '+(x2-8)+','+yc+' '+x2+','+y0+' L'+x2+','+B;
+  } else {
+    d='M'+x1+','+B+' L'+x1+','+(t+3).toFixed(1)+' Q'+x1+','+t+' '+(x1+3)+','+t
+     +' L'+(x2-3)+','+t+' Q'+x2+','+t+' '+x2+','+(t+3).toFixed(1)+' L'+x2+','+B;
+  }
+  d += confort ? ' Q'+m+','+(B+5.5)+' '+x1+','+B+' Z' : ' Z';
+  return '<svg viewBox="0 0 '+W+' '+H+'" fill="none" aria-hidden="true">'
+    + '<path d="'+d+'" stroke="#123781" stroke-width="1.6" fill="#FAF6EC" stroke-linejoin="round"/>'
+    + '<line x1="8" y1="'+(B+13)+'" x2="'+(W-8)+'" y2="'+(B+13)+'" stroke="#C4A15A" stroke-width="1" opacity=".55"/>'
+    + '</svg>';
+}
+function perfilDe(c){ var m=MODELO_POR_NUM[c.modelo]; return (m && m.perfil) || 'Media caña'; }
+
+function pintarGrosores(){
+  var cont=document.getElementById("chGrosor");
+  cont.innerHTML="";
+  var c=activa();
+  grosoresDisponibles(c).forEach(function(g){
+    var b=document.createElement("button");
+    b.className="chip chip-boceto"; b.type="button";
+    b.innerHTML='<span class="chip-svg">'+bocetoPerfil(perfilDe(c), c.confort, g)+'</span><span>'+fmtMm(g)+' mm</span>';
+    b.setAttribute("aria-pressed", String(!c.grosorOtro && c.grosor===g));
+    b.addEventListener("click", function(){ setGrosorChip(g); });
+    cont.appendChild(b);
+  });
+  /* chip "Otro…" para alto manual (no en plata) */
+  if(!esPlata(c)){
+    var bo=document.createElement("button");
+    bo.className="chip"; bo.type="button";
+    bo.textContent="Otro…";
+    bo.setAttribute("aria-pressed", String(!!c.grosorOtro));
+    bo.addEventListener("click", activarGrosorOtro);
+    cont.appendChild(bo);
+  }
+  /* casilla manual, solo visible con "Otro…" activo */
+  var caja=document.getElementById("grosorOtroBox");
+  var inp=document.getElementById("grosorOtroInput");
+  if(c.grosorOtro){
+    caja.hidden=false;
+    if(document.activeElement!==inp) inp.value=Number(c.grosor).toFixed(2);
+  } else {
+    caja.hidden=true;
+  }
+}
+/* Alto manual: redondea al múltiplo de 0,05 más cercano y limita a 1,10–2,00 mm (igual que la calculadora) */
+function validarGrosorManual(v){
+  if(isNaN(v)) return null;
+  v=Math.round(v/0.05)*0.05;
+  v=Math.max(1.10, Math.min(2.00, v));
+  return parseFloat(v.toFixed(2));
+}
+function setGrosorChip(g){
+  objetivos().forEach(function(c){ c.grosor=g; c.grosorOtro=false; if(c.grosor<CONFORT_MIN) c.confort=false; });
+  refrescar();
+}
+function activarGrosorOtro(){
+  objetivos().forEach(function(c){
+    c.grosorOtro=true;
+    var v=validarGrosorManual(c.grosor); if(v!=null) c.grosor=v;
+    if(c.grosor<CONFORT_MIN) c.confort=false;
+  });
+  refrescar();
+  var inp=document.getElementById("grosorOtroInput");
+  if(inp) inp.focus();
+}
+function onGrosorOtro(){
+  var inp=document.getElementById("grosorOtroInput");
+  var v=validarGrosorManual(parseFloat(String(inp.value).replace(',','.')));
+  if(v==null) return;
+  objetivos().forEach(function(c){ c.grosor=v; c.grosorOtro=true; if(c.grosor<CONFORT_MIN) c.confort=false; });
+  refrescar();
+}
+function pintarInterior(){
+  var c=activa();
+  var box=document.getElementById("interiorBox");
+  var ok = c.grosor>=CONFORT_MIN;
+  var pf=perfilDe(c);
+  var html =
+    '<div class="chips">'
+    + '<button class="chip toggle chip-boceto'+(!c.confort?' on':'')+'" type="button" data-int="plano" aria-pressed="'+(!c.confort)+'">'
+    +   '<span class="chip-svg">'+bocetoPerfil(pf, false, c.grosor)+'</span><span>Interior plano</span></button>'
+    + '<button class="chip toggle chip-boceto'+(c.confort?' on':'')+(ok?'':' bloq')+'" type="button" data-int="confort" aria-pressed="'+(c.confort)+'"'+(ok?'':' disabled')+'>'
+    +   '<span class="chip-svg">'+bocetoPerfil(pf, true, c.grosor)+'</span><span>Interior confort</span></button>'
+    + '</div>'
+    + (ok
+        ? '<div class="sub-nota">El plano es el estándar; el confort da un tacto interior redondeado más cómodo.</div>'
+        : '<div class="sub-nota">El interior confort necesita un alto mínimo de '+(esPlata(c)?'1,5 mm':'1,15 mm')+'.</div>');
+  box.innerHTML = html;
+  box.querySelectorAll("[data-int]").forEach(function(b){
+    b.addEventListener("click", function(){
+      if(b.dataset.int==="confort" && !ok) return;
+      setCampo("confort", b.dataset.int==="confort");
+    });
+  });
+}
+function pintarEngastes(){
+  var c=activa();
+  document.getElementById("diamVal").textContent=c.diamQty;
+  document.getElementById("circVal").textContent=c.circQty;
+  pintarEngExtra("diam", c);
+  pintarEngExtra("circ", c);
+  var et=document.getElementById("engTxt");
+  if(et.value!==c.engasteTxt) et.value=c.engasteTxt;
+}
+function pintarEngExtra(tipo, c){
+  var cont=document.getElementById(tipo+"Extra");
+  var qty = tipo==='diam' ? c.diamQty : c.circQty;
+  if(qty<=0){ cont.innerHTML=""; return; }
+  var boca = tipo==='diam' ? c.diamBoca : c.circBoca;
+  var size = tipo==='diam' ? c.diamSize : c.circSize;
+  var sizes = tallasEngaste(c);
+  var opts = sizes.map(function(s){ return '<option value="'+s.ct+'"'+(s.ct===size?' selected':'')+'>'+s.disp+'</option>'; }).join("");
+  cont.innerHTML =
+    '<div class="boca-mini">'
+    + '<button type="button" data-boca="R" aria-pressed="'+(boca==='R')+'">R</button>'
+    + '<button type="button" data-boca="C" aria-pressed="'+(boca==='C')+'">C</button>'
+    + '</div>'
+    + '<select class="sel sel-mini" aria-label="Tamaño de piedra">'+opts+'</select>';
+  cont.querySelectorAll(".boca-mini button").forEach(function(b){ b.addEventListener("click", function(){ setBoca(tipo, b.dataset.boca); }); });
+  var sel=cont.querySelector("select");
+  if(sel) sel.addEventListener("change", function(e){ setSize(tipo, e.target.value); });
+}
+function setSize(tipo, ct){
+  var k = tipo==='diam' ? 'diamSize' : 'circSize';
+  objetivos().forEach(function(c){ c[k]=ct; });
+  refrescar();
+}
+function pintarGrabado(){
+  var c=activa();
+  var sel=document.getElementById("selGrabado");
+  var tipo=grabTipo(c);
+  var esP=esPlata(c);
+  for(var i=0;i<sel.options.length;i++){
+    var o=sel.options[i];
+    if(o.value==='relieve'){ o.disabled=esP; o.textContent='Altorrelieve'+(esP?' (solo oro)':''); }
+  }
+  if(esP && tipo==='relieve'){ setGrabadoTipo('tradicional'); return; }
+  if(sel.value!==tipo) sel.value=tipo;
+  var tx=document.getElementById("grabTxt");
+  tx.hidden = !tipo;
+  if(tx.value!==c.grabadoTxt) tx.value=c.grabadoTxt;
+}
+function pintarSelect(id, items, campo){
+  var s=document.getElementById(id);
+  s.innerHTML="";
+  items.forEach(function(it){
+    var o=document.createElement("option");
+    o.value=it; o.textContent=it;
+    if(activa()[campo]===it) o.selected=true;
+    s.appendChild(o);
+  });
+  s.onchange=function(){ setCampo(campo, s.value); };
+}
+function tallasLista(){ var t=[]; for(var i=6;i<=36;i++) t.push(String(i).padStart(2,"0")); return t; }
+
+/* ====== Aplicar cambios ====== */
+function setCampo(campo, val){
+  objetivos().forEach(function(c){ c[campo]=val; normalizar(c); });
+  refrescar();
+}
+function setModelo(num){
+  objetivos().forEach(function(c){ c.modelo=num; normalizar(c); });
+  irModo("cfg");
+  refrescar();
+}
+function setEngQty(tipo, delta){
+  var k = tipo==='diam' ? 'diamQty' : 'circQty';
+  objetivos().forEach(function(c){ c[k] = Math.max(0, Math.min(30, (c[k]||0)+delta)); });
+  refrescar();
+}
+function setBoca(tipo, val){
+  var k = tipo==='diam' ? 'diamBoca' : 'circBoca';
+  objetivos().forEach(function(c){ c[k]=val; });
+  refrescar();
+}
+function setEngTxt(val){ objetivos().forEach(function(c){ c.engasteTxt=val; }); pintarResumen(); }
+function setGrabadoTxt(val){ objetivos().forEach(function(c){ c.grabadoTxt=val; }); pintarResumen(); }
+
+/* ====== Resumen "Tu alianza" ====== */
+function resumenCard(c, etiqueta, extraDerecha){
+  var m=MODELO_POR_NUM[c.modelo];
+  var nom=m?("Modelo "+m.num):("Modelo "+c.modelo);
+  var fam=m?m.familia:"";
+  var filas=[];
+  filas.push(['Talla / Nº', c.talla]);
+  if(esPlata(c)){
+    filas.push(['Metal', 'Plata']);
+    filas.push(['Tipo y acabado', 'Plata ' + (c.plataTipo==='bi'?'bicolor':'normal') + ' · ' + ACABADOS[c.acabado]]);
+  } else {
+    filas.push(['Metal', c.metal + (c.metal==="18K"?" oro":"") ]);
+    filas.push(['Color y acabado', colorNombre(c.color) + ' · ' + ACABADOS[c.acabado]]);
+  }
+  filas.push(['Ancho', anchoTxt(c.ancho) + ' mm']);
+  filas.push(['Alto', fmtMm(c.grosor) + ' mm']);
+  if(c.confort && c.grosor>=CONFORT_MIN) filas.push(['Interior', 'Confort']);
+  if(esPlata(c) && c.plataRodio) filas.push(['Acabado especial', 'Rodio negro']);
+  if(esPlata(c) && c.plataTipo==='bi' && (c.descBicolor||'').trim()) filas.push(['Bicolor', '"'+(c.descBicolor||'').trim()+'"']);
+  var eng=descEngaste(c);
+  if(eng) filas.push(['Engaste', eng]);
+  if(grabTipo(c)){
+    var gt=(c.grabadoTxt||'').trim();
+    var gn=GRABADOS[grabTipo(c)] ? GRABADOS[grabTipo(c)].n : 'Grabado';
+    filas.push(['Grabado', gn + (gt ? ' · "'+gt+'"' : ' (texto a indicar)')]);
+  }
+  var ref=refCompleta(c);
+  var filasHTML = filas.map(function(f){ return '<dt>'+f[0]+'</dt><dd>'+esc(f[1])+'</dd>'; }).join("");
+  return ''
+    + '<div class="res-card"><div class="res-in">'
+    +   '<div class="res-head">'
+    +     '<div class="res-modelo">'+esc(nom)+'<small>'+esc(fam)+'</small></div>'
+    +     (etiqueta?'<div class="res-eti">'+esc(etiqueta)+(extraDerecha?' · '+esc(extraDerecha):'')+'</div>':'')
+    +   '</div>'
+    +   '<dl class="res-grid">'+filasHTML+'</dl>'
+    +   '<div class="res-foot">'
+    +     '<div class="res-code"><div class="rotulo">Referencia completa</div><div class="valor">'+esc(ref)+'</div></div>'
+    +     '<button class="res-copiar" type="button" data-copiar="'+esc(ref)+'">'
+    +       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>'
+    +       '<span class="cp-txt">Copiar referencia</span>'
+    +     '</button>'
+    +   '</div>'
+    +   bloquePrecioCard(c)
+    + '</div></div>';
+}
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function grupoTotal(){ return estado.grupo.reduce(function(s,it){ return s+(it.cant||1); },0); }
+function addAlGrupo(){
+  estado.grupo.push({ cfg: JSON.parse(JSON.stringify(estado.a1)), cant: Math.max(1, estado.cantidad||1) });
+  estado.cantidad=1;
+  refrescar();
+}
+function delDelGrupo(idx){ estado.grupo.splice(idx,1); refrescar(); }
+function editarDelGrupo(idx){
+  var it=estado.grupo[idx];
+  if(!it) return;
+  estado.a1 = JSON.parse(JSON.stringify(it.cfg));
+  estado.cantidad = it.cant || 1;
+  estado.grupo.splice(idx,1);
+  normalizar(estado.a1);
+  refrescar();
+}
+
+function bocetoPerfil(perfil, confort, alto){
+  var W=96, H=68, x1=16, x2=80, B=46, m=(x1+x2)/2;
+  var a=Number(alto)||1.0;
+  var h=12 + (Math.max(0.70, Math.min(1.80, a)) - 0.70) * (38-12) / (1.80-0.70);
+  var t=+(B-h).toFixed(1), d;
+  if(perfil==='Media caña'){
+    /* v3 (25/07, Jorge): la media caña MECANIZADA no muere en curva hasta el
+       borde como la antigua acabada a mano: lleva un CANTO RECTO en los
+       laterales justo antes de la base, más corto que el de la gota, y ese
+       canto CRECE con el alto (en 0,70 y 0,85 no se ve; a partir de ~1,15
+       asoma y se hace evidente en las alianzas altas y estrechas). Arriba,
+       arco redondeado y bien visible —más que la gota— pero sin la parábola
+       de la v2. Los puntos de control van sobre los cantos: la cúpula entra
+       tangente al canto y el pico queda EXACTO a la cota del grosor, así
+       ningún corte se sale ya del recuadro. */
+    var canto=Math.max(0, h-20), subida=h-canto;
+    var yw=+(B-canto).toFixed(1), yc=+(B-canto-subida/0.75).toFixed(1);
+    d = canto<0.15
+      ? 'M'+x1+','+B+' C'+x1+','+yc+' '+x2+','+yc+' '+x2+','+B
+      : 'M'+x1+','+B+' L'+x1+','+yw+' C'+x1+','+yc+' '+x2+','+yc+' '+x2+','+yw+' L'+x2+','+B;
+  } else if(perfil==='Gota'){
+    /* v2: cantos algo más altos y cúpula suave, con el centro más bajo que la media caña */
+    var y0=(B-h*0.62).toFixed(1), yc=(B-1.02*h).toFixed(1);
+    d='M'+x1+','+B+' L'+x1+','+y0+' C'+(x1+8)+','+yc+' '+(x2-8)+','+yc+' '+x2+','+y0+' L'+x2+','+B;
+  } else {
+    d='M'+x1+','+B+' L'+x1+','+(t+3).toFixed(1)+' Q'+x1+','+t+' '+(x1+3)+','+t
+     +' L'+(x2-3)+','+t+' Q'+x2+','+t+' '+x2+','+(t+3).toFixed(1)+' L'+x2+','+B;
+  }
+  d += confort ? ' Q'+m+','+(B+5.5)+' '+x1+','+B+' Z' : ' Z';
+  return '<svg viewBox="0 0 '+W+' '+H+'" fill="none" aria-hidden="true">'
+    + '<path d="'+d+'" stroke="#123781" stroke-width="1.6" fill="#FAF6EC" stroke-linejoin="round"/>'
+    + '<line x1="8" y1="'+(B+13)+'" x2="'+(W-8)+'" y2="'+(B+13)+'" stroke="#C4A15A" stroke-width="1" opacity=".55"/>'
+    + '</svg>';
+}
+(function(){
+  var cont=document.getElementById('carrusel'); if(!cont) return;
+  function escC(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function anchoT(a){ var n=parseInt(a,10)/10; return String(n.toFixed(1)).replace('.',','); }
+  function colorT(cod){ return String(cod).split('').map(function(ch){ return COLORES[ch]?COLORES[ch].n:ch; }).join(' / '); }
+  function capCombo(cb){ return anchoT(cb.a)+' mm · '+colorT(cb.c)+' · '+(ACABADOS[cb.x]||cb.x); }
+  function combosModelo(num){
+    var f=IMG[num]; if(!f) return [];
+    var out=[];
+    for(var i=0;i<f.c.length;i++){
+      out.push({ a:f.a[(i*3)%f.a.length], c:f.c[i], x:f.x[i%f.x.length] });
+    }
+    return out;
+  }
+  var FILAS=['Media caña','Plano','Gota'].map(function(pf,fi){
+    return { pf:pf, lista:MODELOS.filter(function(m){ return m.perfil===pf; }), mi:fi, r:0, el:null };
+  });
+  function ventana(f){
+    var m=f.lista[f.mi % f.lista.length];
+    var combos=combosModelo(m.num);
+    var nV=Math.max(1, Math.ceil(combos.length/4));
+    var sel=[]; var ini=(f.r % nV)*4;
+    for(var i=0;i<4;i++) sel.push(combos[(ini+i) % combos.length]);
+    return { m:m, sel:sel, nV:nV };
+  }
+  function pintarFila(f, conFade){
+    var v=ventana(f);
+    f.el.querySelector('.car-tit').innerHTML='<b>'+escC(f.pf)+'</b> · Modelo '+escC(v.m.num)+'<small>'+escC(v.m.familia)+'</small>';
+    var celdas=f.el.querySelectorAll('.car-item');
+    v.sel.forEach(function(cb,i){
+      var cel=celdas[i]; if(!cel) return;
+      var img=cel.querySelector('img'), ph=cel.querySelector('.cph'), cap=cel.querySelector('figcaption');
+      var cfg={ modelo:v.m.num, ancho:cb.a, color:cb.c, acabado:cb.x, metal:'18K' };
+      function aplicar(){
+        cargarImagen(img, ph, cfg);
+        img.alt='Alianza modelo '+v.m.num+' · '+capCombo(cb);
+        cap.textContent=capCombo(cb);
+        setTimeout(function(){ img.classList.remove('fuera'); }, 80);
+      }
+      if(conFade){ img.classList.add('fuera'); setTimeout(aplicar, 460); }
+      else aplicar();
+    });
+  }
+  /* esqueleto */
+  FILAS.forEach(function(f){
+    var d=document.createElement('div');
+    d.className='car-fila';
+    d.innerHTML='<div class="car-cab"><span class="cperfil" aria-hidden="true">'+bocetoPerfil(f.pf,false,1.15)+'</span>'
+      +'<h3 class="car-tit"></h3>'
+      +'<div class="car-nav">'
+      +'<button type="button" class="car-flecha" data-dir="-1" aria-label="Combinación anterior">‹</button>'
+      +'<button type="button" class="car-flecha" data-dir="1" aria-label="Combinación siguiente">›</button>'
+      +'</div></div>'
+      +'<div class="car-combos">'
+      +'<figure class="car-item"><div class="cfoto"><img decoding="async" alt=""><div class="cph"><b>Imagen pendiente</b></div></div><figcaption></figcaption></figure>'.repeat(4)
+      +'</div>';
+    cont.appendChild(d);
+    f.el=d;
+    pintarFila(f, false);
+    /* v0.3.8 · flechas manuales: avanzan o retroceden y el automático
+       vuelve a contar sus 7 segundos desde el toque */
+    d.querySelectorAll('.car-flecha').forEach(function(b){
+      b.addEventListener('click', function(){
+        if(b.dataset.dir === '1') avanzarFila(f); else retrocederFila(f);
+        armaTimer(f);
+      });
+    });
+  });
+  /* rotación: combinaciones cada ciclo; modelo nuevo al agotar las ventanas */
+  function avanzarFila(f){
+    var v=ventana(f);
+    f.r++;
+    if(f.r >= v.nV){ f.r=0; f.mi++; }
+    pintarFila(f, true);
+  }
+  function retrocederFila(f){
+    if(f.r > 0){ f.r--; }
+    else {
+      f.mi--; if(f.mi < 0) f.mi = f.lista.length ? f.lista.length - 1 : 0;
+      f.r = Math.max(0, ventana(f).nV - 1);
+    }
+    pintarFila(f, true);
+  }
+  window._carAvanzar = avanzarFila;   /* para pruebas */
+  window._carRetroceder = retrocederFila;
+  window._carFilas = FILAS;
+  var quieto = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function armaTimer(f){
+    if(quieto) return;
+    if(f.timer) clearInterval(f.timer);
+    f.timer = setInterval(function(){ if(!document.hidden) avanzarFila(f); }, 7000);
+  }
+  if(!quieto){
+    FILAS.forEach(function(f, i){
+      setTimeout(function(){ armaTimer(f); }, 1800*i);
+    });
+  }
+  /* zoom con un click */
+  var zb=document.getElementById('zoomCar'), zi=zb.querySelector('img');
+  cont.addEventListener('click', function(e){
+    var fig=e.target.closest ? e.target.closest('.car-item') : null;
+    if(!fig) return;
+    var img=fig.querySelector('img');
+    if(!img || !img.src || img.style.display==='none') return;
+    zi.src=img.currentSrc||img.src; zi.alt=img.alt;
+    zb.classList.add('open');
+  });
+  zb.addEventListener('click', function(){ zb.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') zb.classList.remove('open'); });
+})();
+</script>
+<script>
+/* v0.3.4 · La portada tiene que arrancar ARRIBA DEL TODO.
+   Dos cosas la bajaban un pelín (justo la altura de la cabecera):
+   · el ancla #inicio en la URL (el logotipo apuntaba ahí), que el navegador
+     resuelve colocando el hero pegado al borde, con la cabecera encima;
+   · la restauración de scroll del navegador al recargar o al volver atrás.
+   Con esto, sin ancla o con #inicio la página se coloca al principio; los
+   enlaces a #servicios, #modelos, etc. siguen funcionando igual. */
+(function(){
+  /* Sólo corrige el desplazamiento pequeño (el de la cabecera). Si el usuario
+     ya ha bajado por su cuenta, no se le mueve la página. */
+  function alPrincipio(){ if(window.scrollY < 400) window.scrollTo(0,0); }
+  var h=(location.hash||'').toLowerCase();
+  if(!h || h==='#inicio' || h==='#'){
+    alPrincipio();
+    if('scrollRestoration' in history) history.scrollRestoration='manual';
+    window.addEventListener('load', alPrincipio);
+    setTimeout(alPrincipio, 60);   /* tras pintar las fuentes y las fotos */
+  }
+  /* v0.3.6 · La comparativa avisa de que se puede deslizar: sombra a la
+     derecha mientras quede tabla por ver (y nada si cabe entera). */
+  var compMarco=document.querySelector('.comparativa');
+  var compPista=document.querySelector('.comp-desliza');
+  function compPinta(){
+    if(!compMarco || !compPista) return;
+    var puede = compPista.scrollWidth > compPista.clientWidth + 4;
+    var alFinal = compPista.scrollLeft + compPista.clientWidth >= compPista.scrollWidth - 4;
+    compMarco.classList.toggle('desliza-mas', puede && !alFinal);
+  }
+  if(compPista){
+    compPista.addEventListener('scroll', compPinta, {passive:true});
+    window.addEventListener('resize', compPinta);
+    window.addEventListener('load', compPinta);
+    compPinta();
+  }
+
+  var lg=document.getElementById('navLogo');
+  if(lg) lg.addEventListener('click', function(e){
+    e.preventDefault();
+    if(history.replaceState) history.replaceState(null,'',location.pathname+location.search);
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
+<script>
+/* ============ v0.4.0 · Formulario de consulta ============
+   Escribe en la colección `mail` (Trigger Email) SOLO hacia alianzas@:
+   las reglas de Firestore rechazan cualquier otro destinatario o campo.
+   El aviso al móvil sale gratis: la función aviso-syccoro ya escucha
+   esta colección. Sin conexión o sin reglas publicadas, el visitante
+   ve el error con el correo de siempre como alternativa. */
+(function(){
+  "use strict";
+  var form = document.getElementById('formConsulta');
+  if(!form) return;
+  var boton = document.getElementById('fcBoton');
+  function avisa(txt, clase){
+    var a = document.getElementById('fcAviso');
+    a.textContent = txt;
+    a.className = 'fc-aviso on ' + clase;
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nombre = (document.getElementById('fcNombre').value || '').trim();
+    var email = (document.getElementById('fcEmail').value || '').trim();
+    var mensaje = (document.getElementById('fcMensaje').value || '').trim();
+    var tipo = (form.querySelector('[name="fcTipo"]:checked') || {}).value || 'Pareja o particular';
+    var miel = (form.querySelector('[name="web"]').value || '').trim();
+    if(miel){ avisa('Enviado. ¡Gracias!', 'ok'); return; }   /* robot: fingimos y no escribimos */
+    if(!nombre || !email || !mensaje){ avisa('Faltan datos: nombre, correo y mensaje.', 'error'); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ avisa('Ese correo no parece completo. Revísalo, por favor.', 'error'); return; }
+    if(typeof firebase === 'undefined' || !firebase.firestore){
+      avisa('Ahora mismo no podemos enviar el formulario. Escríbenos a alianzas@syccoro.es y te contestamos igual.', 'error');
+      return;
+    }
+    boton.disabled = true; boton.textContent = 'Enviando…';
+    firebase.firestore().collection('mail').add({
+      to: ['alianzas@syccoro.es'],
+      replyTo: email,
+      message: {
+        subject: 'Consulta web · ' + tipo + ' · ' + nombre,
+        text: mensaje + '\n\n————————————\nNombre: ' + nombre + '\nCorreo: ' + email + '\nPerfil: ' + tipo + '\nEnviado desde la portada de syccoro-web.'
+      }
+    }).then(function(){
+      boton.disabled = false; boton.textContent = 'Enviar consulta';
+      form.reset();
+      avisa('Enviado. Te respondemos personalmente, normalmente en horas.', 'ok');
+    }).catch(function(){
+      boton.disabled = false; boton.textContent = 'Enviar consulta';
+      avisa('No se ha podido enviar. Escríbenos a alianzas@syccoro.es y te contestamos igual.', 'error');
+    });
+  });
+})();
+
+/* v0.4.3 · carrusel de momentos del contacto: fundido cada 7 s, respeta
+   prefers-reduced-motion y salta las fotos caídas (data-bad) */
+(function(){
+  var c=document.getElementById('carruselMomentos'); if(!c) return;
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var idx=0;
+  setInterval(function(){
+    var imgs=[].slice.call(c.querySelectorAll('img:not([data-bad])'));
+    if(imgs.length<2) return;
+    idx=(idx+1)%imgs.length;
+    imgs.forEach(function(im,k){im.classList.toggle('vis',k===idx)});
+  },7000);
+})();
+</script>
+</body>
+</html>
